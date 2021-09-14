@@ -9,8 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class RecoverAccountApiService {
-  private url: String = '/recuperarConta/';
-  private url_recuperacao: String = '/recuperarConta/recuperacao';
+  private url_recover: String = '/recoverUser/';
   private recover_alert_text = {};
   public language: string = this.trans.currentLang;
 
@@ -19,44 +18,17 @@ export class RecoverAccountApiService {
     private router: Router,
     public alertController: AlertController,
     private trans: TranslateService
-  ) {
-    this.trans.get('recover_account').subscribe((data) => {
-      this.recover_alert_text = {
-        header: data['header'],
-        message: data['message'],
-        buttons: data['buttons'][0],
-      };
-    });
-  }
+  ) {}
 
-  public recuperarConta(email: String) {
+  public recoverAccount(email: String): void {
     let postData = {
       email: email,
-      code: this.gerarCodigoRandom(),
     };
-
-    this.http.post(environment.apiUrl + this.url, postData).subscribe(
-      (data) => {
-        this.http.post(environment.apiUrl + this.url_recuperacao, postData).subscribe(
-          (data) => {
-            console.log(data)
-          },
-          (error) => {
-            console.log(error);
-            
-          }
-        );
-      },
-      (error) => {
-      }
-    );
-  }
-
-  private gerarCodigoRandom() {
-    return (
-      Math.floor(Math.random() * (Math.floor(99999) - Math.ceil(10000))) +
-      Math.ceil(10000)
-    );
+    this.http
+      .post(environment.apiUrl + this.url_recover, postData)
+      .subscribe((data) => {
+        localStorage.setItem('email', '' + email);
+      });
   }
 
   async showAlert() {

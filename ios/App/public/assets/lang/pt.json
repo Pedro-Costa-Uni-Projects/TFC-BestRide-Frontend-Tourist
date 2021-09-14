@@ -16,21 +16,57 @@
   "create_account": {
     "tabName": "Criar Conta",
     "text": "repita Password",
-    "f_name_field": "Primeiro Nome",
-    "l_name_field": "último Nome",
+    "name": "Nome",
+    "cellphone": "Telemovel",
+    "city": "Cidade",
+    "sex": "Genero",
+    "sex_male": "Masculino",
+    "sex_female": "Feminino",
+    "address": "morada",
     "Date_birth": "Data Nascimento",
+    "postal": "Codigo Postal",
     "button_text": "Criar Conta"
   },
   "menu_navegacao": {
-    "map": "mapa",
-    "definitions": "Definições",
+    "map": "Mapa",
+    "definitions_user": "Definições",
     "agend": "Agenda",
-    "personal": "Perfil"
+    "definitions_app": "Perfil"
   },
   "personal_data_page": {
-    "user": "Utilizador",
+    "tab": "Dados Pessoais",
+    "user": "Nome",
     "email": "email",
+    "city": "Cidade",
+    "address": "Morada",
+    "postal": "Codigo Postal",
     "phone": "Telemovel",
+    "button_update": "Guardar Campos",
     "button_change_pass": "Alterar Password"
+  },
+  "alert_login": {
+    "header": "Erro",
+    "message": "Credenciais Inválidas, tente novamente.",
+    "buttons": ["Ok"]
+  },
+  "alert_data_user": {
+    "header": "Sucesso",
+    "message": "Os campos foram alterados!",
+    "buttons": ["Ok"]
+  },
+  "reset_page_modal": {
+    "header": "Erro",
+    "message": "Valide Corretamente os Dados",
+    "buttons": ["Ok"]
+  },
+  "recover_account": {
+    "header": "Erro",
+    "message": "Introduza um email valido",
+    "buttons": ["Ok"]
+  },
+  "modal_map_form": {
+    "tab_name": "Mapa",
+    "date": "Data Para Reserva?",
+    "people": "Quantas Pessoas?"
   }
 }

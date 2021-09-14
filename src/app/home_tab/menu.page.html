@@ -1,33 +1,99 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Best Ride
-    </ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
-    </ion-buttons>
-    <ion-button slot="end">
-      <ion-icon name="cart-outline"></ion-icon>
-    </ion-button>
+    <div id="content-menu">
+      <img src="assets/BestRideLogo.png" />
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="menu">
-    <h2> {{ 'Lisbon itineraries' | customTranslate | async}} </h2>
-    <div scrollY="true" class="botoes">
-      <ion-card *ngFor="let road of trips" (click)="showRoteiro(road)">
+<ion-content [scrollEvents]="true">
+  <div class="body">
+
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="220" fill="#00adff" />
+      <circle cx="0" cy="calc(100%)" r="210" fill="#58a600" />
+      <circle cx="calc(100%)" cy="calc(50%)" r="210" fill="#ff3f00" />
+    </svg>
+
+    <!-- Skeleton Text -->
+    <div class="content" *ngIf="!contentLoad">
+      <ion-card *ngFor="let item of [].constructor(20)">
         <ion-card-header>
-          <ion-card-subtitle>Preco : {{ road.price }} € Duracao : {{ road.duration}}</ion-card-subtitle>
-          <ion-card-title>{{ road.title| customTranslate | async}}</ion-card-title>
+          <ion-card-subtitle>
+            <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+          </ion-card-subtitle>
+          <ion-card-title>
+            <ion-skeleton-text animated style="width: 70%;"></ion-skeleton-text>
+          </ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          {{ road.description| customTranslate | async}}
-          <ion-button expand="full" color="medium" color="danger"> {{'Book Tour' | customTranslate | async}}
-          </ion-button>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
         </ion-card-content>
       </ion-card>
     </div>
-    <br>
+
+
+    <div class="content" *ngIf="contentLoad && trips.length==0">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>
+                  <ion-icon name="warning-sharp"></ion-icon>
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-text color="danger">
+                  <h3>
+                    There are no scripts available for this area. Try changing the settings.</h3>
+                </ion-text>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="content" *ngIf="contentLoad && trips.length > 0">
+      <ion-card style="text-align: justify;">
+        <br>
+        <div id="iti_title">
+          <h2> {{ place | customTranslate | async}} <br> {{ 'itineraries' | customTranslate | async}}</h2>
+        </div>
+        <div scrollY="true" class="botoes">
+          <ion-list *ngFor="let road of trips">
+            <ion-card-header>
+              <ion-card-title>{{ road.title| customTranslate | async}}</ion-card-title>
+              <ion-card-subtitle>
+                {{ "Duration : " + road.duration| customTranslate |async}}
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <img [src]="road.image">
+              <p>{{ road.description| customTranslate | async}}</p>
+              <br>
+              <h3>{{ "Price : " + road.price + " €" | customTranslate |async}}</h3>
+              <ion-button (click)="showRoteiro(road)" expand="block" color="secondary"> {{'Book Tour' | customTranslate|
+                async}}
+              </ion-button>
+              <ion-button (click)="trip_map_details(road)" expand="block" color="primary"> {{'See Tour' |
+                customTranslate | async}}
+              </ion-button>
+              <ion-button (click)="comments(road)" expand="block" color="danger"> {{'Comments' |
+                customTranslate | async}}
+              </ion-button>
+            </ion-card-content>
+          </ion-list>
+        </div>
+      </ion-card>
+    </div>
+
+
   </div>
 </ion-content>

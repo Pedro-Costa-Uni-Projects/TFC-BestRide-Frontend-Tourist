@@ -15,7 +15,9 @@ export class CodeVerificationPage implements OnInit {
   language: string = this.translateService.currentLang;
 
   registrationForm = this.formBuilder.group({
-    code: [''],
+    code: ['', Validators.required],
+    password: ['', Validators.required],
+    password_repeat: ['', Validators.required],
   });
 
   constructor(
@@ -27,19 +29,16 @@ export class CodeVerificationPage implements OnInit {
 
   ngOnInit() {}
 
-  public submit()  : void {
-    var code = this.registrationForm.get('code').value;
-    this.codeVerificationApi.codeVerification(code)
-    this.presentModal();
-    this.close();
-  }
+  public submit(): void {
+    const code = this.registrationForm.get('code').value;
+    const pass = this.registrationForm.get('password').value;
+    const pass_repeat = this.registrationForm.get('password_repeat').value;
+    const email = localStorage.getItem('email');
+    console.log(email);
 
-  //funcao para abri o model para abrir modal
-  async presentModal() {
-    const modal = await this.model_controller.create({
-      component: ResetPasswordModalPage,
-    });
-    return await modal.present();
+    if (pass == pass_repeat) {
+      this.codeVerificationApi.codeVerification(code, pass, email);
+    }
   }
 
   async close() {

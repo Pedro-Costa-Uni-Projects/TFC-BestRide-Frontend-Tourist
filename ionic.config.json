@@ -1,11 +1,17 @@
 {
   "name": "New Ionic App",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular",
   "proxies": [
     {
-      "path": "/employees",
-      "proxyUrl": "http://localhost:8000/api/employees"
+      "path": "/*",
+      "proxyUrl": "http://localhost:8000"
+    },
+    {
+      "path": "/*",
+      "proxyUrl": "http://10.0.2.2:8100"
     }
   ]
 }

@@ -3,30 +3,43 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="login"></ion-back-button>
     </ion-buttons>
-    <ion-title style="text-align: center;"> {{'Recover your account' | customTranslate | async}}
+    <img id="img" style="width: 15%;margin-left: 11%;" src="assets/BestRideSplash.png" />
+    <ion-title style="text-align: center;">BestRide
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-list class="conteudo">
 
-    <img id="imagem" src="assets/BestRide.png" />
+  <div class="body">
 
-    <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="230" fill="#00ADFF" />
+      <circle cx="0" cy="calc(100%)" r="230" fill="#58A600" />
+      <circle cx="calc(100%)" cy="calc(50%)" r="230" fill="#FF3F00" />
+    </svg>
+
+    <div class="content">
       <ion-card>
-        <ion-item>
+        <ion-list>
 
-          <ion-label>Email</ion-label>
-          <ion-input formControlName="email" type="email" required></ion-input>
-        </ion-item>
+          <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
+            <h2> Recover Account </h2>
+
+            <ion-icon name="person-outline"></ion-icon>
+
+            <ion-item>
+              <ion-label position="stacked">Email</ion-label>
+              <ion-input formControlName="email" type="email" required></ion-input>
+            </ion-item>
+
+            <br>
+            <ion-button [disabled]="!registrationForm.valid" color="dark" expand="block" type="submit">
+              {{'Recover account' | customTranslate | async}}
+            </ion-button>
+          </form>
+
+        </ion-list>
       </ion-card>
-
-      <ion-button [disabled]="!registrationForm.valid" color="primary" expand="block" type="submit">
-        {{'Recover account' | customTranslate | async}}
-      </ion-button>
-    </form>
-
-  </ion-list>
-
+    </div>
+  </div>
 </ion-content>

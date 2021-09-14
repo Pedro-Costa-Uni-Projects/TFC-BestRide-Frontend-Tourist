@@ -34,8 +34,6 @@
 
 > ionic build --prod && npx cap copy && npx cap sync android && npx cap open android
 
----d
-
 #### Bibliotecas Implementadas a instalar:
 
 ```
@@ -48,9 +46,17 @@
 7. npm install @ngx-translate/core @ngx-translate/http-loader --save
 8. npm i ion2-calendar@next moment
 9. npm install @ionic/storage-angular
+10. npm i cordova plugin add cordova-plugin-stripe
+11. npm install @ionic-native/stripe
 ```
 
 ---
+
+# Se houver Algum erro no codigo do Image Picker no Android Studio executar:
+
+npm install jetifier
+npx jetify
+npx cap sync android
 
 ## Nota :
 
@@ -101,3 +107,8 @@
 # AWS
 
 > pip install boto3
+
+# Social Login
+
+> <preference name="OverrideUserAgent" value="Mozilla/5.0 Google" /> 
+> > Inserir no config.xml

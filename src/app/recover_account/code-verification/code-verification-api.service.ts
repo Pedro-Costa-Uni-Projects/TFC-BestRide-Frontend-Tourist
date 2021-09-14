@@ -8,50 +8,41 @@ import { AlertController } from '@ionic/angular';
   providedIn: 'root',
 })
 export class CodeVerificationApiService {
-  private url: String = '/utilizadores/';
-  private url_recuperar: String = '/recuperarConta/verificar';
+  private url_confirm_account: String = '/confirmRecoverUser/';
 
-  constructor(private http: HttpClient, private router: Router, public alertController: AlertController) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public alertController: AlertController
+  ) {}
 
-  public codeVerification( code: String,) : void {
+  public codeVerification(code: String, pass: string, email: string): void {
     let postData = {
+      email: email,
       code: code,
+      password: pass,
     };
 
-    this.http.post(environment.apiUrl + this.url_recuperar, postData).subscribe(
+    this.http
+      .post(environment.apiUrl + this.url_confirm_account, postData)
+      .subscribe(
         (data) => {
-          console.log(data);
+          //console.log(data);
+          this.router.navigate(['/login']);
         },
-        (erro) => {
-          console.log(erro);
-          this.showAlert();
+        (err) => {
+          //console.log(err);
         }
       );
   }
 
   async showAlert() {
     const alert = await this.alertController.create({
-      header: 'Código errado',
-      message: 'Introduza Novamente',
-      buttons: ['Tentar de Novo'],
+      header: '',
+      message: '',
+      buttons: [''],
     });
 
     await alert.present();
-  }
-
-  public atualizaPassword(pass: string)  : void{
-    var id = localStorage.getItem('id');
-    var data = {
-      nome: 'teste',
-      password: pass,
-    };
-    this.http
-      .put(environment.apiUrl + this.url + id + '/', data)
-      .subscribe((resposta) => {
-        console.log(resposta);
-      });
-
-      
-    this.router.navigate(['/login']);
   }
 }

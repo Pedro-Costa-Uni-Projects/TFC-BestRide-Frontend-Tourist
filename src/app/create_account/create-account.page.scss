@@ -1,6 +1,6 @@
-.conteudo {
-  display: flex;
-  flex-direction: column;
+* {
+  font-weight: 700;
+  color: black;
 }
 
 ion-toolbar {
@@ -24,4 +24,41 @@ ion-card {
   font-size: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
+}
+
+.body {
+  background-color: #00adff;
+  height: 140%;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  justify-content: center;
+  text-align: center;
+  font-size: larger;
+}
+
+#content-menu {
+  img {
+    align-self: center;
+    width: 17%;
+    position: relative;
+    left: 18%;
+  }
+
+  #title {
+    color: black;
+    position: absolute;
+    left: 7%;
+  }
+}
+
+.phoneIndicative {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
 }

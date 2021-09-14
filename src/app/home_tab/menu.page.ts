@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 import { LatLngBounds, MarkerOptions } from '@ionic-native/google-maps';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,9 +11,16 @@ import {
   PositionError,
 } from '@ionic-native/geolocation/ngx';
 
-import { ModalMapaPage } from './modal-mapa/modal-mapa.page';
+import { OptionsMapPage } from './options-map/options-map.page';
+import { BookTripModalPage } from './book-trip-modal/book-trip-modal.page';
 import { ModalController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
+import { MapServiceService } from './map-service.service';
+import { AlertController } from '@ionic/angular';
+import { CustomTranslateService } from '../shared/services/custom-translate.service';
+import { User } from './user';
+import { TripDetailsPage } from './trip-details/trip-details.page';
+import { CommentTripPage } from '../comment-trip/comment-trip.page';
 
 declare var google: any;
 
@@ -27,149 +34,121 @@ export class MenuPage implements OnInit {
 
   public selected: RoadMap;
   public language: string = this.translateService.currentLang;
+  private distance: any;
   private currentPos: Geoposition;
-  public trips: Array<RoadMap> = [
-    {
-      title: 'Historical Tour',
-      duration: ' 3 h',
-      price: 6,
-      description:
-        'Visit the hills of the typical neighborhoods of Alfama, Graça and Mouraria by tuc tuc. Feel the true heart of Lisbon' +
-        's roots. Whose ancient traditions persist, the Castle of São Jorge, the Cathedral, the popular saints and the fate of Fado…',
-      interestPoints: [
-        {
-          title: 'SÉ', // inicio da  viagem
-          lat: 38.7098786,
-          lng: -9.132584400000042,
-        },
-        {
-          title: 'MIRADOURO PORTAS DO SOL',
-          lat: 38.711148,
-          lng: -9.133262000000059,
-        },
-        { title: 'ALFAMA', lat: 38.7125, lng: -9.132799999999975 },
-        {
-          title: 'VILA DO BAIRRO DO CASTELO',
-          lat: 38.7131963,
-          lng: -9.133408799999984,
-        },
-        {
-          title: 'MIRADOURO DA GRAÇA',
-          lat: 38.716272,
-          lng: -9.131524000000013,
-        },
-        {
-          title: 'GRAÇA',
-          lat: 38.71794939999999,
-          lng: -9.13039619999995,
-        },
-        {
-          title: 'MIRADOURO NOSSA SENHORA DO MONTE',
-          lat: 38.71906409127469,
-          lng: -9.132594176721227,
-        },
-      ],
-    },
-    {
-      title: 'Old City Tour',
-      duration: ' 1 h',
-      price: 2,
-      description:
-        'Visit by Tuk Tuk, O Chiado, Bairro Alto and Príncipe Real. Lisbon' +
-        's cosmopolitan charm, bohemian being one of the most prestigious places in Lisbon.' +
-        'It has always been linked to a strong intellectual, liberal, modernist and also romantic component.',
-      interestPoints: [
-        {
-          title: 'MIRADOURO DE S. PEDRO DE ALCÂNTARA',
-          lat: 38.7150612,
-          lng: -9.144405199999937,
-        },
-        {
-          title: 'BAIRRO ALTO',
-          lat: 38.7127532,
-          lng: -9.146295099999975,
-        },
-        {
-          title: 'CHIADO',
-          lat: 38.710202,
-          lng: -9.14223800000002,
-        },
-        {
-          title: 'SÉ',
-          lat: 38.7098786,
-          lng: -9.132584400000042,
-        },
-        {
-          title: 'ALFAMA',
-          lat: 38.7125,
-          lng: -9.132799999999975,
-        },
-        {
-          title: 'VILA DO BAIRRO DO CASTELO',
-          lat: 38.7131963,
-          lng: -9.133408799999984,
-        },
-      ],
-    },
-  ];
+  user: User;
+  public contentLoad = false;
+  public trips: Array<RoadMap> = [];
+  public place: string;
 
   constructor(
     private geolocation: Geolocation,
     private translateService: TranslateService,
     private router: Router,
     private model_controller: ModalController,
-    private appComp: AppComponent
+    private appComp: AppComponent,
+    private map_service: MapServiceService,
+    private trans: CustomTranslateService,
+    public modalController: ModalController
   ) {
     appComp.hide_tab = false;
-    //this.translateService.use(this.language);
+    map_service.ngOnInit();
   }
 
-  ngOnInit() {}
+  ionViewWillEnter() {}
+
+  ngOnInit() {
+    this.presentModalMapDefinitions();
+  }
 
   ngAfterViewInit() {}
 
-  ionViewDidEnter() {}
+  async presentModalMapDefinitions() {
+    const modal = await this.modalController.create({
+      component: OptionsMapPage,
+    });
 
-  /* Para futuro Sprint
-  getUserPosition() {
-    this.options = {
-      enableHighAccuracy: false,
-    };
-    this.geolocation.getCurrentPosition(this.options).then(
-      (pos: Geoposition) => {
-        this.currentPos = pos;
+    modal.onDidDismiss().then((data) => {
+      // Using Skeleton Text
+      setTimeout(() => {
+        this.place = data['data'].local;
+        if (this.place == 'Near') {
+          this.map_service.get_roads_near_me().subscribe((data) => {
+            for (let pos in data) {
+              this.trips.push(
+                new RoadMap(
+                  data[pos].id,
+                  data[pos].title,
+                  data[pos].duration,
+                  data[pos].price,
+                  data[pos].description,
+                  data[pos].image,
+                  data[pos].location['coordinates'][0],
+                  data[pos].location['coordinates'][1]
+                )
+              );
+            }
+          });
+        } else {
+          this.map_service.get_roads_by_city(this.place).subscribe((data) => {
+            for (let pos in data) {
+              this.trips.push(
+                new RoadMap(
+                  data[pos].id,
+                  data[pos].title,
+                  data[pos].duration,
+                  data[pos].price,
+                  data[pos].description,
+                  data[pos].image,
+                  data[pos].location['coordinates'][0],
+                  data[pos].location['coordinates'][1]
+                )
+              );
+            }
+          });
+        }
+        this.contentLoad = true;
+      }, 3000);
+    });
 
-        let latLng = new google.maps.LatLng(
-          this.currentPos.coords.latitude,
-          this.currentPos.coords.longitude
-        );
-
-        let marker = new google.maps.Marker({
-          map: this.map,
-          position: latLng,
-          latitude: this.currentPos.coords.latitude,
-          icon: { url: './assets/icon/gps.png' },
-          longitude: this.currentPos.coords.longitude,
-        });
-      },
-      (err: PositionError) => {
-        console.log('ERRO::: : ' + err.message);
-      }
-    );
-  }*/
+    modal.present();
+  }
 
   public showRoteiro(road: RoadMap): void {
     this.selected = road;
     this.presentModal(road);
   }
 
-  //funcao para abri o model para visualizar o mapa
+  //  Open the page for the trip booking
   async presentModal(road: RoadMap) {
     const modal = await this.model_controller.create({
-      component: ModalMapaPage,
-      cssClass: './modal-mapa/modal-mapa.scss',
+      component: BookTripModalPage,
       componentProps: {
         circuito: road,
+      },
+    });
+    return await modal.present();
+  }
+
+  //  Open the page for the trip booking
+  async trip_map_details(road: RoadMap) {
+    const modal = await this.model_controller.create({
+      component: TripDetailsPage,
+      componentProps: {
+        circuito: road,
+      },
+    });
+    return await modal.present();
+  }
+
+  public async comments(road: RoadMap) {
+    //localStorage.setItem('roadMapID', JSON.stringify(road.id));
+    //his.router.navigate(['/comment-trip']);
+
+    const modal = await this.model_controller.create({
+      component: CommentTripPage,
+      componentProps: {
+        road_map_id: JSON.stringify(road.id),
       },
     });
     return await modal.present();

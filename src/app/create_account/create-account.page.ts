@@ -18,51 +18,44 @@ export class CriaContaPage implements OnInit {
   public passwordIconToggle: String = 'eye';
   public passwordIconToggle2: String = 'eye';
   public ionicForm: FormGroup;
+  isSubmitted = false;
 
-  public profileForm = this.formBuilder.group({
-    name: '',
-    dob: '',
-    cellphone: '',
-    address: '',
-    postal: '',
-    gender: '',
-    city: '',
-    email: '',
-    pass: '',
-    passRepeat: '',
-  });
-
-  public registrationForm = this.formBuilder.group(
+  public phoneIndicative: any = [
     {
-      name: ['', Validators.required],
-      dob: ['', Validators.required],
-      cellphone: ['', Validators.required],
-      address: ['', Validators.required],
-      postal: ['', Validators.required],
-      gender: ['', Validators.required],
-      city: ['', Validators.required],
-      email: [
-        '',
-        Validators.compose([
-          Validators.maxLength(70),
-          Validators.pattern(
-            '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
-          ),
-          Validators.required,
-        ]),
-      ],
-      pass: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(12),
-        ]),
-      ],
-      passRepeat: ['', Validators.required],
+      country: 'Portugal',
+      indicative: '+351',
     },
-    { validator: this.matchingPasswords('pass', 'passRepeat') }
-  );
+    {
+      country: 'France',
+      indicative: '+33',
+    },
+    {
+      country: 'Spain',
+      indicative: '+34',
+    },
+    {
+      country: 'United Kingdom',
+      indicative: '+44',
+    },
+  ];
+
+  public gender: any = [
+    {
+      gender: 'male',
+    },
+    {
+      gender: 'female',
+    },
+  ];
+
+  public city: any = [
+    {
+      city: 'Lisbon',
+    },
+    {
+      city: 'Sintra',
+    },
+  ];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -74,7 +67,44 @@ export class CriaContaPage implements OnInit {
     comp.hide_tab = true;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ionicForm = this.formBuilder.group(
+      {
+        name: ['', Validators.required],
+        dob: ['', Validators.required],
+        phone: ['', Validators.required],
+        phone_ind: ['', Validators.required],
+        address: ['', Validators.required],
+        postal: ['', Validators.required],
+        gender: ['', Validators.required],
+        city: ['', Validators.required],
+        email: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+          ]),
+        ],
+        pass: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(12),
+          ]),
+        ],
+        passRepeat: [
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(12),
+          ]),
+        ],
+      },
+      { validator: this.matchingPasswords('pass', 'passRepeat') }
+    );
+  }
 
   togglePass(): void {
     this.showPass = !this.showPass;
@@ -109,20 +139,38 @@ export class CriaContaPage implements OnInit {
     };
   }
 
-  public submit() {
-    const create_account = {
-      name: this.registrationForm.get('name').value,
-      dob: this.registrationForm.get('dob').value,
-      phone: this.registrationForm.get('cellphone').value,
-      address: this.registrationForm.get('address').value,
-      postal: this.registrationForm.get('postal').value,
-      gender: this.registrationForm.get('gender').value,
-      city: this.registrationForm.get('city').value,
-      email: this.registrationForm.get('email').value,
-      pass: this.registrationForm.get('pass').value,
-      passRepeat: this.registrationForm.get('passRepeat').value,
-    };
+  getDate(e) {
+    let date = new Date(e.target.value).toISOString().substring(0, 10);
+    this.ionicForm.get('dob').setValue(date, {
+      onlyself: true,
+    });
+  }
 
-    this.api.criaConta(create_account);
+  public submit() {
+    this.isSubmitted = true;
+    if (!this.ionicForm.valid) {
+      return false;
+    } else {
+      const indicative = this.ionicForm.get('phone_ind').value;
+      const create_account = {
+        name: this.ionicForm.get('name').value,
+        dob: this.ionicForm.get('dob').value,
+        phone: indicative + this.ionicForm.get('phone').value,
+        address: this.ionicForm.get('address').value,
+        postal: this.ionicForm.get('postal').value,
+        gender: this.ionicForm.get('gender').value,
+        city: this.ionicForm.get('city').value,
+        email: this.ionicForm.get('email').value,
+        pass: this.ionicForm.get('pass').value,
+        passRepeat: this.ionicForm.get('passRepeat').value,
+      };
+      console.log(create_account);
+
+      this.api.createAccount(create_account);
+    }
+  }
+
+  get errorControl() {
+    return this.ionicForm.controls;
   }
 }

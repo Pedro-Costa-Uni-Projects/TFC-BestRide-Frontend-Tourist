@@ -9,7 +9,10 @@
       "launchShowDuration": 0
     },
     "GoogleAuth": {
-      "scopes": ["profile", "email"],
+      "scopes": [
+        "profile",
+        "email"
+      ],
       "serverClientId": "386155875693-1sikqp2taljub79la0lele6v4o8vdjje.apps.googleusercontent.com",
       "forceCodeForRefreshToken": true
     },
@@ -20,6 +23,9 @@
       }
     ]
   },
-
-  "cordova": {}
+  "cordova": {},
+  "server": {
+    "url": "http://localhost:8100",
+    "cleartext": true
+  }
 }

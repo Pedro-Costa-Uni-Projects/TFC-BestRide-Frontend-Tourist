@@ -1,33 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button>
-      </ion-back-button>
-    </ion-buttons>
-    <ion-title style="text-align: center;">Code Validation
+    <img id="img" style="width: 15%;margin-left: 11%;" src="assets/BestRideSplash.png" />
+    <ion-title style="text-align: center;">BestRide
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-list class="conteudo">
 
-    <img id="imagem" src="assets/BestRide.png" />
+  <ion-content>
 
-    <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
-      <ion-card>
-        <ion-item>
+    <div class="body">
 
-          <ion-label>Código</ion-label>
-          <ion-input formControlName="code" type="code" required></ion-input>
-        </ion-item>
-      </ion-card>
+      <svg height="100%" width="100%">
+        <circle cx="0" cy="0" r="230" fill="#00ADFF" />
+        <circle cx="0" cy="calc(100%)" r="230" fill="#58A600" />
+        <circle cx="calc(100%)" cy="calc(50%)" r="230" fill="#FF3F00" />
+      </svg>
 
-      <ion-button [disabled]="!registrationForm.valid" color="primary" expand="block" type="submit" translate
-        [translateParams]="{ lang: language }">recovery_account.button_text
-      </ion-button>
-    </form>
+      <div class="content">
+        <ion-card>
+          <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
 
-  </ion-list>
+            <h1> {{'Recover your Account' | customTranslate | async}}</h1>
 
-</ion-content>
+            <p>
+              {{'A code has been sent to the email. check the mailbox' | customTranslate | async}}
+            </p>
+
+            <ion-item>
+              <ion-label position="stacked">{{'Code' | customTranslate | async}}</ion-label>
+              <ion-input formControlName="code" type="number" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">{{'Password' | customTranslate | async}}</ion-label>
+              <ion-input formControlName="password" type="password" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">{{'Repeat Password' | customTranslate | async}}</ion-label>
+              <ion-input formControlName="password_repeat" type="password" required></ion-input>
+            </ion-item>
+
+
+            <ion-button [disabled]="!registrationForm.valid" color="dark" expand="block" type="submit">
+              {{'Recover your Account' | customTranslate | async}}
+            </ion-button>
+          </form>
+
+        </ion-card>
+      </div>
+
+
+    </div>
+
+  </ion-content>

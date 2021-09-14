@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'Validate Account' | customTranslate | async}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body">
+
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="250" fill="#bc3592" />
+      <circle cx="0" cy="calc(100%)" r="250" fill="#ffba00" />
+      <circle cx="calc(100% - 20px)" cy="calc(100% - 20px)" r="250" fill="#ff3f00" />
+    </svg>
+
+    <div class="content">
+      <ion-card>
+        <h1> {{'Confirm Your Account' | customTranslate | async}}</h1>
+        <p> {{'A code was sent to your email.' | customTranslate | async}}</p>
+        <form class="form" [formGroup]="registrationForm" (ngSubmit)="validateUser()">
+          <ion-item>
+            <ion-label position="stacked"> {{'Code' | customTranslate | async}}</ion-label>
+            <ion-input formControlName="code" type="number" required></ion-input>
+          </ion-item>
+          <ion-button [disabled]="!registrationForm.valid" color="dark" expand="block" type="submit">
+            {{'Confirm account' | customTranslate | async}}
+          </ion-button>
+
+          <ion-button color="danger" expand="block" (click)="resend_code()">
+            {{'Resend Code' | customTranslate | async}}
+          </ion-button>
+
+        </form>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

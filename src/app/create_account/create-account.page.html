@@ -3,108 +3,177 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="login"></ion-back-button>
     </ion-buttons>
-    <ion-title style="text-align: center;"> {{'Create Account' | customTranslate | async}}
-    </ion-title>
+    <div id="content-menu">
+      <img src="assets/BestRideSplash.png" />
+      <ion-title id="title">BestRide
+      </ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-list class="conteudo">
+  <div class="body">
+
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="250" fill="#bc3592" />
+      <circle cx="0" cy="calc(100%)" r="250" fill="#ffba00" />
+      <circle cx="calc(100% - 20px)" cy="calc(100% - 20px)" r="250" fill="#ff3f00" />
+    </svg>
 
 
-    <img id="imagem" src="assets/BestRide.png" />
+    <div class="content">
 
-    <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Your Name' | customTranslate | async}}</ion-label>
-          <ion-input formControlName="name" required></ion-input>
-        </ion-item>
-      </ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card>
+              <form class="form" [formGroup]="ionicForm" (ngSubmit)="submit()">
+                <h2> {{'Create Account' | customTranslate | async}}</h2>
 
 
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Date of Birth' | customTranslate | async}}</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" value="2019-02-12" formControlName="dob">
-          </ion-datetime>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Phone Number' | customTranslate | async}}</ion-label>
-          <ion-input type="number" formControlName="cellphone" required></ion-input>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Postal Code' | customTranslate | async}}</ion-label>
-          <ion-input type="number" formControlName="postal" required></ion-input>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Sex' | customTranslate | async}}</ion-label>
-          <ion-select okText="OK" cancelText="Cancelar" formControlName="gender">
-            <ion-select-option value="male" translate [translateParams]="{ lang: language }">create_account.sex_male
-            </ion-select-option>
-            <ion-select-option value="female" translate [translateParams]="{ lang: language }">create_account.sex_female
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Address' | customTranslate | async}}</ion-label>
-          <ion-input formControlName="address" required></ion-input>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'City' | customTranslate | async}}</ion-label>
-          <ion-select okText="OK" cancelText="Cancelar" formControlName="city">
-            <ion-select-option value="Lisbon">Lisboa</ion-select-option>
-            <ion-select-option value="Sintra">Sintra</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label>Email</ion-label>
-          <ion-input formControlName="email" type="email" required></ion-input>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input formControlName="pass" [type]=" showPass ? 'text' : 'password'" required></ion-input>
-          <ion-icon slot="end" [name]="passwordIconToggle" (click)="togglePass()"></ion-icon>
-        </ion-item>
-      </ion-card>
-
-      <ion-card>
-        <ion-item>
-          <ion-label> {{'Repeat Password' | customTranslate | async}}</ion-label>
-          <ion-input formControlName="passRepeat" [type]=" showPass2 ? 'text' : 'password'" required></ion-input>
-          <ion-icon slot="end" [name]="passwordIconToggle2" (click)="togglePass2()"></ion-icon>
-        </ion-item>
-      </ion-card>
+                <ion-item>
+                  <ion-label position="stacked"> {{'Name' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="name" required></ion-input>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+                  {{'Name is required' | customTranslate | async}}
+                </span>
 
 
-      <ion-button color="primary" expand="full" type="submit">
-        {{'Create Account' | customTranslate | async}}
-      </ion-button>
+                <ion-item>
+                  <ion-label position="stacked"> {{'Date of Birth' | customTranslate | async}}</ion-label>
+                  <ion-datetime (ionChange)="getDate($event)" displayFormat="MM/DD/YYYY" value="2019-02-12"
+                    formControlName="dob">
+                  </ion-datetime>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.dob.errors?.required">
+                  {{'Date Of Birth is required' | customTranslate | async}}
+                </span>
 
-    </form>
-  </ion-list>
+                <ion-item>
+                  <ion-label position="stacked"> {{'Phone Number' | customTranslate | async}}</ion-label>
+                  <ion-row>
+                    <ion-col size="4">
+                      <ion-select formControlName="phone_ind" class="phoneIndicative" placeholder="+351"
+                        interface="action-sheet" value="brown" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option *ngFor="let idct of phoneIndicative" [value]="idct.indicative">
+                          {{idct.country + " " + idct.indicative}}
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-input type="number" formControlName="phone" required></ion-input>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone.errors?.required">
+                  {{'Phone is required' | customTranslate | async}}
+                </span>
+
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_ind.errors?.required">
+                  {{'Indicative is required' | customTranslate | async}}
+                </span>
+
+
+
+                <ion-item>
+                  <ion-label position="stacked"> {{'Postal Code' | customTranslate | async}}</ion-label>
+                  <ion-input type="text" formControlName="postal" required></ion-input>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.postal.errors?.required">
+                  {{'Postal is required' | customTranslate | async}}
+                </span>
+
+
+                <ion-item>
+                  <ion-label position="stacked"> {{'Gender' | customTranslate | async}}</ion-label>
+                  <ion-select placeholder="Male" okText="OK" cancelText="Cancel" formControlName="gender">
+                    <ion-select-option *ngFor="let gdr of gender" [value]="gdr.gender">
+                      {{gdr.gender}}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.gender.errors?.required">
+                  {{'Gender is required' | customTranslate | async}}
+                </span>
+
+                <ion-item>
+                  <ion-label position="stacked"> {{'Street Address line 1' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="address" required></ion-input>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.address.errors?.required">
+                  {{'Address is required' | customTranslate | async}}
+                </span>
+
+
+
+                <ion-item>
+                  <ion-label position="stacked"> {{'City' | customTranslate | async}}</ion-label>
+                  <ion-select placeholder="Lisbon" okText="OK" cancelText="Cancel" formControlName="city">
+                    <ion-select-option *ngFor="let ct of city" [value]="ct.city">
+                      {{ct.city}}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.city.errors?.required">
+                  {{'City is required' | customTranslate | async}}
+                </span>
+
+
+                <ion-item>
+                  <ion-label position="stacked">Email</ion-label>
+                  <ion-input formControlName="email" type="email" required></ion-input>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                  {{'Email is required' | customTranslate | async}}
+                </span>
+
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
+                  {{'Emais is not valid' | customTranslate | async}}
+                </span>
+
+                <ion-item>
+                  <ion-label position="stacked">Password</ion-label>
+                  <ion-input formControlName="pass" [type]=" showPass ? 'text' : 'password'" required></ion-input>
+                  <ion-icon slot="end" [name]="passwordIconToggle" (click)="togglePass()"></ion-icon>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pass.errors?.required">
+                  {{'Password is required' | customTranslate | async}}
+                </span>
+
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pass.errors?.minlength">
+                  {{'Password must have 8 digits' | customTranslate | async}}
+                </span>
+
+
+
+                <ion-item>
+                  <ion-label position="stacked"> {{'Repeat Password' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="passRepeat" [type]=" showPass2 ? 'text' : 'password'" required>
+                  </ion-input>
+                  <ion-icon slot="end" [name]="passwordIconToggle2" (click)="togglePass2()"></ion-icon>
+                </ion-item>
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.passRepeat.errors?.required">
+                  {{'Password is required' | customTranslate | async}}
+                </span>
+
+                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.passRepeat.errors?.minlength">
+                  {{'Password must have 8 digits' | customTranslate | async}}
+                </span>
+
+
+                <br>
+                <ion-button expand="block" color="dark" type="submit">
+                  {{'Create Account' | customTranslate | async}}
+                </ion-button>
+                <br>
+              </form>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 
 </ion-content>

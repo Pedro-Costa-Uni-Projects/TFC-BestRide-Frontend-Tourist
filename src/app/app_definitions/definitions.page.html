@@ -1,31 +1,62 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      {{'App Definitions' | customTranslate | async}}
-    </ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
-    </ion-buttons>
+    <div class="header">
+      <img id="img" src="assets/BestRideSplash.png" />
+      <ion-title id="headerTitle" style="text-align: center;">BestRide
+      </ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 
 
 <ion-content>
-  <ion-card>
+
+  <div class="body">
+
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="230" fill="#58a600" />
+      <circle cx="0" cy="calc(100%)" r="230" fill="#FFBA00" />
+      <circle cx="calc(100%)" cy="calc(50%)" r="230" fill="#FF3F00" />
+    </svg>
 
 
-    <ion-card-content>
+    <div class="content">
+      <ion-card>
+        <h1> {{'App Definitions' | customTranslate | async}} </h1>
+        <br>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label> {{'Language' | customTranslate | async}}</ion-label>
+                <ion-select [(ngModel)]='language' (ionChange)='changeLanguage()'
+                  [placeholder]='"definicoes.languageChangePlaceholder" | translate'>
+                  <ion-select-option value='pt'>{{'Portuguese' | customTranslate | async}}</ion-select-option>
+                  <ion-select-option value='en'>{{'English' | customTranslate | async}}</ion-select-option>
+                  <ion-select-option value='es'>{{'Spanish' | customTranslate | async}}</ion-select-option>
+                  <ion-select-option value='fr'>{{'French' | customTranslate | async}}</ion-select-option>
+                  <ion-select-option value='ru'>{{'Russian' | customTranslate | async}}</ion-select-option>
+                  <ion-select-option value='it'>{{'Italian' | customTranslate | async}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button color="danger" [routerLink]="['/login']" expand="block">{{'Log out' | customTranslate |
+                async}}
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button color="warning" expand="block">{{'Terms and conditions' | customTranslate |
+                async}}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+  </div>
 
-      <ion-item>
-        <ion-label> {{'Language of the app?' | customTranslate | async}}</ion-label>
-        <ion-select [(ngModel)]='language' (ionChange)='changeLanguage()'
-          [placeholder]='"definicoes.languageChangePlaceholder" | translate'>
-          <ion-select-option value='pt'>Portugues</ion-select-option>
-          <ion-select-option value='en'>Ingles</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-    </ion-card-content>
-  </ion-card>
 </ion-content>

@@ -1,0 +1,41 @@
+* {
+  color: black;
+  font-weight: 800;
+}
+
+.body {
+  background-color: #ffba00;
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  width: calc(100%);
+  height: calc(100%);
+  position: absolute;
+  top: 5%;
+  justify-content: center;
+  text-align: left;
+  font-size: larger;
+}
+
+#form {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+
+#content-menu {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    align-self: center;
+    width: 39%;
+  }
+}
+
+ion-textarea {
+  color: red;
+  border: solid 1px red;
+}

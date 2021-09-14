@@ -31,6 +31,7 @@
     </ion-content>
   </ion-menu>-->
 
+
 <ion-tabs>
 
   <ion-tab-bar slot="bottom" [hidden]="hide_tab">
@@ -38,25 +39,21 @@
     <!-- Map -->
     <ion-tab-button tab="home_tab">
       <ion-icon name="map-outline"></ion-icon>
-      <ion-label>{{'Home' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
-    <!-- Reserves -->
-    <ion-tab-button tab="callendar">
+    <!-- Bookings  -->
+    <ion-tab-button tab="tourBooking">
       <ion-icon name="analytics-outline"></ion-icon>
-      <ion-label> {{'reserves' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
     <!-- App definitions -->
     <ion-tab-button tab="definitions_tab">
       <ion-icon name="settings-outline"></ion-icon>
-      <ion-label>{{'Definitions' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
     <!-- User definitions -->
     <ion-tab-button tab="user_tab">
       <ion-icon name="person-circle-outline"></ion-icon>
-      <ion-label>{{'User' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
 

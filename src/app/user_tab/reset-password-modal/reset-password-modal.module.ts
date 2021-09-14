@@ -7,6 +7,8 @@ import { ResetPasswordModalPageRoutingModule } from './reset-password-modal-rout
 
 import { ResetPasswordModalPage } from './reset-password-modal.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -14,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ResetPasswordModalPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   declarations: [ResetPasswordModalPage],
 })

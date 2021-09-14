@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ContentChild, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonInput } from '@ionic/angular';
 import { DadosContaApiService } from '../user-tab-api.service';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password-modal',
@@ -20,7 +21,8 @@ export class ResetPasswordModalPage implements OnInit {
     public alertController: AlertController,
     private dadosContaApi: DadosContaApiService,
     private modalCtr: ModalController,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private router: Router
   ) {
     this.translate.get('reset_page_modal').subscribe((data) => {
       this.reset_alert_text = {
@@ -29,6 +31,10 @@ export class ResetPasswordModalPage implements OnInit {
         buttons: data['buttons'][0],
       };
     });
+  }
+
+  public goBack() {
+    this.modalCtr.dismiss();
   }
 
   async alert() {
@@ -41,6 +47,24 @@ export class ResetPasswordModalPage implements OnInit {
     await alert.present();
   }
 
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+
+  public hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
+
+  passwordTyperepeat: string = 'password';
+  passwordIconRepeat: string = 'eye-off';
+
+  public hideShowPasswordRepeat() {
+    this.passwordTyperepeat =
+      this.passwordTyperepeat === 'text' ? 'password' : 'text';
+    this.passwordIconRepeat =
+      this.passwordIconRepeat === 'eye-off' ? 'eye' : 'eye-off';
+  }
+
   submitForm() {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
@@ -49,20 +73,19 @@ export class ResetPasswordModalPage implements OnInit {
     } else {
       const pass = this.ionicForm.get('pass').value;
       const pass_new = this.ionicForm.get('pass_repeat').value;
-      if (pass != pass_new) {
-        this.alert();
-      } else {
-        //atualiza password
-        this.dadosContaApi.atualizaPassword(pass_new);
-        this.modalCtr.dismiss();
-      }
+      const data = {
+        pass: pass,
+        new_pass: pass_new,
+        token: localStorage.getItem('token'),
+      };
+      this.dadosContaApi.updatePassword(data);
     }
   }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      pass: ['', [Validators.required, Validators.minLength(6)]],
-      pass_repeat: ['', [Validators.required, Validators.minLength(6)]],
+      pass: ['', [Validators.required, Validators.minLength(8)]],
+      pass_repeat: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 }

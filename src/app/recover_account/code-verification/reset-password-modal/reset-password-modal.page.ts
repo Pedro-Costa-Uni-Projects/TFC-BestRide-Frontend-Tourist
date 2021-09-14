@@ -30,7 +30,7 @@ export class ResetPasswordModalPage implements OnInit {
     await alert.present();
   }
 
-  submitForm() : boolean{
+  submitForm(): boolean {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
       this.alert('Erro', 'Valide Corretamente os Dados');
@@ -42,7 +42,7 @@ export class ResetPasswordModalPage implements OnInit {
         this.alert('Erro', 'As Password nao coincidem!');
       } else {
         //atualiza password
-        this.codeVerificationApi.atualizaPassword(pass_new);
+        //this.codeVerificationApi.atualizaPassword(pass_new);
         this.alert('Sucesso', 'Password alterada !');
         this.modalCtr.dismiss();
       }

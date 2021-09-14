@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <img id="img" style="width: 15%;margin-left: 11%;" src="assets/BestRideSplash.png" />
+    <ion-title style="text-align: center;">BestRide
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body">
+
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="230" fill="#FF3F00" />
+      <circle cx="0" cy="calc(100%)" r="230" fill="#bc3592" />
+      <circle cx="calc(100%)" cy="calc(100%)" r="230" fill="#58a600" />
+    </svg>
+
+    <div class="content">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card>
+
+              <ion-list-header>
+                <ion-label>{{'Your Reservations' | customTranslate | async}}</ion-label>
+              </ion-list-header>
+
+              <ion-list *ngFor="let tour of tour_array">
+                <ion-item-sliding>
+                  <ion-item>
+                    <ion-row>
+                      <ion-card-title>
+                        <ion-text>
+                          <h1>{{tour.road_map_name}}</h1>
+                        </ion-text>
+                      </ion-card-title>
+                      <ion-card-content>
+                        <ion-text color="primary">
+                          <label>{{tour.duration}} | {{ tour.price }} €</label>
+                        </ion-text>
+                      </ion-card-content>
+                    </ion-row>
+                  </ion-item>
+
+                  <ion-item-options side="end">
+                    <ion-item-option color="danger">
+                      <ion-icon name="close-circle-outline">
+                      </ion-icon>
+                    </ion-item-option>
+                  </ion-item-options>
+
+                </ion-item-sliding>
+              </ion-list>
+            </ion-card>
+            <ion-row>
+              <ion-col>
+                <ion-button expand="full" color="success" (click)="payment()">{{'Pay Trips' | customTranslate | async}}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <!--<ion-card>
+    <h1>{{'your reservations' | customTranslate | async}}</h1>
+    <ion-list *ngFor="let tour of tour_array">
+      <ion-item>
+        <ion-label>{{tour.road_map_name}}</ion-label>
+        <ion-label>{{tour.duration}}</ion-label>
+        <ion-label>{{tour.price}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-button expand="full" color="success" (click)="payment()">{{'Pay Trips' | customTranslate | async}}</ion-button>-->
+</ion-content>

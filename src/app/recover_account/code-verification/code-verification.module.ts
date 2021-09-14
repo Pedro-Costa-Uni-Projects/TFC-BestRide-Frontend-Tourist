@@ -11,6 +11,7 @@ import { CodeVerificationPage } from './code-verification.page';
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SharedModule } from 'src/app/shared/shared.module';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/lang/', '.json');
 }
@@ -22,6 +23,7 @@ export function createTranslateLoader(http: HttpClient) {
     IonicModule,
     CodeVerificationPageRoutingModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     TranslateModule.forChild({
       loader: {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ import { DadosContaPage } from './user-tab.page';
     FormsModule,
     IonicModule,
     SharedModule,
+    ReactiveFormsModule,
     DadosContaPageRoutingModule,
     TranslateModule.forChild({
       loader: {

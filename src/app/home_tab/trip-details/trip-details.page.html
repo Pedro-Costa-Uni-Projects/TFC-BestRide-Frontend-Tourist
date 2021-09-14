@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <img id="img" style="width: 15%;margin-left: 25%;" src="assets/BestRideSplash.png" />
+    <ion-title style="text-align: center;">BestRide
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div #map id="map"></div>
+</ion-content>

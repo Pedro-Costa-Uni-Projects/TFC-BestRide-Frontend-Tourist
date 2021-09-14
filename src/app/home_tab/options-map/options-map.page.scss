@@ -1,0 +1,41 @@
+* {
+  color: black;
+  font-weight: 700;
+}
+
+#content-menu {
+  img {
+    align-self: center;
+    width: 17%;
+    position: relative;
+    left: 29%;
+  }
+
+  #title {
+    color: black;
+    position: absolute;
+    left: 7%;
+  }
+}
+
+ion-card {
+  font-size: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.body {
+  background-color: #ff3f00;
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 5%;
+  justify-content: center;
+  text-align: center;
+  font-size: larger;
+}

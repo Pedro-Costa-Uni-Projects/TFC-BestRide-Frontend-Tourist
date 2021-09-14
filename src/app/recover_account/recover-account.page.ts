@@ -24,12 +24,14 @@ export class RecoverAccountPage implements OnInit {
     private formBuilder: FormBuilder,
     private translateService: TranslateService,
     private recuperarContaApi: RecoverAccountApiService,
-    private model_controller: ModalController
-  ) {}
+    private model_controller: ModalController,
+    private comp: AppComponent
+  ) {
+    comp.hide_tab = true;
+  }
 
   ngOnInit() {}
 
-  //funcao para abri o model para abrir modal
   async presentModal() {
     const modal = await this.model_controller.create({
       component: CodeVerificationPage,
@@ -37,10 +39,10 @@ export class RecoverAccountPage implements OnInit {
     return await modal.present();
   }
 
-  public submit() : void {
+  public submit(): void {
     console.log(this.registrationForm.value);
     var email = this.registrationForm.get('email').value;
-    this.recuperarContaApi.recuperarConta(email)
+    this.recuperarContaApi.recoverAccount(email);
     this.presentModal();
   }
 }
