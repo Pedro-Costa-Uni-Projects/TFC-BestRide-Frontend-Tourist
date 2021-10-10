@@ -88,21 +88,27 @@
               </ion-button>
             </ion-item>
 
-
-            <br>
-            <ion-button [disabled]="button" (click)="updateUser()" expand="block">{{'Update Account' | customTranslate |
-              async}}
-            </ion-button>
-
-            <br>
-            <ion-button *ngIf="social==='false'" color="warning" (click)="alterarPass()" expand="block">{{'Change
-              Password' | customTranslate |
-              async}}</ion-button>
-            <br>
-            <ion-button color="danger" expand="block" (click)="deleteAccount()">{{'Delete Account' | customTranslate |
-              async}}
-            </ion-button>
-
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-button [disabled]="button" (click)="updateUser()" expand="block">{{'Update Account' |
+                    customTranslate |
+                    async}}
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-button *ngIf="social==='false'" color="warning" expand="block" (click)="alterarPass()">{{'Change
+                    Password' | customTranslate |
+                    async}}</ion-button>
+                  <ion-button color="danger" expand="block" (click)="deleteAccount()"> {{'Delete Account' |
+                    customTranslate |
+                    async}}
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </ion-list>
         </form>
       </ion-card>

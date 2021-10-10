@@ -114,6 +114,52 @@ export class MenuPage implements OnInit {
     modal.present();
   }
 
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.trips = [];
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      if (this.place == 'Near') {
+        this.map_service.get_roads_near_me().subscribe((data) => {
+          for (let pos in data) {
+            this.trips.push(
+              new RoadMap(
+                data[pos].id,
+                data[pos].title,
+                data[pos].duration,
+                data[pos].price,
+                data[pos].description,
+                data[pos].image,
+                data[pos].location['coordinates'][0],
+                data[pos].location['coordinates'][1]
+              )
+            );
+          }
+        });
+      } else {
+        this.map_service.get_roads_by_city(this.place).subscribe((data) => {
+          for (let pos in data) {
+            this.trips.push(
+              new RoadMap(
+                data[pos].id,
+                data[pos].title,
+                data[pos].duration,
+                data[pos].price,
+                data[pos].description,
+                data[pos].image,
+                data[pos].location['coordinates'][0],
+                data[pos].location['coordinates'][1]
+              )
+            );
+          }
+        });
+      }
+      event.target.complete();
+    }, 2000);
+  }
+
+
   public showRoteiro(road: RoadMap): void {
     this.selected = road;
     this.presentModal(road);

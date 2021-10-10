@@ -6,8 +6,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollEvents]="true">
+<ion-content [fullscreen]="true" color="light">
   <div class="body">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline"
+        pullingText="{{ 'Pull to refresh' | customTranslate | async}}" refreshingSpinner="circles"
+        refreshingText="{{ 'Refreshing...' | customTranslate | async}}">
+      </ion-refresher-content>
+    </ion-refresher>
 
     <svg height="100%" width="100%">
       <circle cx="0" cy="0" r="220" fill="#00adff" />
