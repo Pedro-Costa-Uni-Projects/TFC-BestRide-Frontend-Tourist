@@ -3,3 +3,4 @@ export interface Tour {
   duration: string;
   price: number;
 }
+
