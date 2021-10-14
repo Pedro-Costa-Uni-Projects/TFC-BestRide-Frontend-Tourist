@@ -15,7 +15,6 @@ export class OptionsMapPage implements OnInit {
 
   public registrationForm = this.formBuilder.group({
     location: ['', Validators.required],
-    people: ['', Validators.required],
   });
 
   constructor(
@@ -31,11 +30,9 @@ export class OptionsMapPage implements OnInit {
 
   submit_form(): void {
     const local = this.registrationForm.get('location').value;
-    const people = this.registrationForm.get('people').value;
 
     const dismiss_data = {
       local: local,
-      people: people,
     };
 
     this.modalController.dismiss(dismiss_data);

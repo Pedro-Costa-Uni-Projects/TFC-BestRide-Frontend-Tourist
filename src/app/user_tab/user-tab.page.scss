@@ -43,7 +43,7 @@ ion-thumbnail {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 5%;
+  top: 2%;
   justify-content: center;
   text-align: center;
   font-size: larger;
@@ -52,4 +52,10 @@ ion-thumbnail {
 ion-button {
   color: white;
   font-weight: bolder;
+}
+
+ion-list {
+  .edit-button {
+    top: 5%;
+  }
 }

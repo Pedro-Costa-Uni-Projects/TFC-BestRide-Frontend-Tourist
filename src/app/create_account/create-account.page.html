@@ -36,7 +36,7 @@
                   <ion-label position="stacked"> {{'Name' | customTranslate | async}}</ion-label>
                   <ion-input formControlName="name" required></ion-input>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.name.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.name.errors?.required">
                   {{'Name is required' | customTranslate | async}}
                 </span>
 
@@ -47,7 +47,7 @@
                     formControlName="dob">
                   </ion-datetime>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.dob.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.dob.errors?.required">
                   {{'Date Of Birth is required' | customTranslate | async}}
                 </span>
 
@@ -67,11 +67,11 @@
                     </ion-col>
                   </ion-row>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.phone.errors?.required">
                   {{'Phone is required' | customTranslate | async}}
                 </span>
 
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.phone_ind.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.phone_ind.errors?.required">
                   {{'Indicative is required' | customTranslate | async}}
                 </span>
 
@@ -81,7 +81,7 @@
                   <ion-label position="stacked"> {{'Postal Code' | customTranslate | async}}</ion-label>
                   <ion-input type="text" formControlName="postal" required></ion-input>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.postal.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.postal.errors?.required">
                   {{'Postal is required' | customTranslate | async}}
                 </span>
 
@@ -94,7 +94,7 @@
                     </ion-select-option>
                   </ion-select>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.gender.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.gender.errors?.required">
                   {{'Gender is required' | customTranslate | async}}
                 </span>
 
@@ -102,7 +102,7 @@
                   <ion-label position="stacked"> {{'Street Address line 1' | customTranslate | async}}</ion-label>
                   <ion-input formControlName="address" required></ion-input>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.address.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.address.errors?.required">
                   {{'Address is required' | customTranslate | async}}
                 </span>
 
@@ -110,13 +110,9 @@
 
                 <ion-item>
                   <ion-label position="stacked"> {{'City' | customTranslate | async}}</ion-label>
-                  <ion-select placeholder="Lisbon" okText="OK" cancelText="Cancel" formControlName="city">
-                    <ion-select-option *ngFor="let ct of city" [value]="ct.city">
-                      {{ct.city}}
-                    </ion-select-option>
-                  </ion-select>
+                  <ion-input formControlName="city" required></ion-input>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.city.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.city.errors?.required">
                   {{'City is required' | customTranslate | async}}
                 </span>
 
@@ -125,11 +121,11 @@
                   <ion-label position="stacked">Email</ion-label>
                   <ion-input formControlName="email" type="email" required></ion-input>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.email.errors?.required">
                   {{'Email is required' | customTranslate | async}}
                 </span>
 
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
                   {{'Emais is not valid' | customTranslate | async}}
                 </span>
 
@@ -138,11 +134,11 @@
                   <ion-input formControlName="pass" [type]=" showPass ? 'text' : 'password'" required></ion-input>
                   <ion-icon slot="end" [name]="passwordIconToggle" (click)="togglePass()"></ion-icon>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pass.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.pass.errors?.required">
                   {{'Password is required' | customTranslate | async}}
                 </span>
 
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.pass.errors?.minlength">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.pass.errors?.minlength">
                   {{'Password must have 8 digits' | customTranslate | async}}
                 </span>
 
@@ -154,11 +150,11 @@
                   </ion-input>
                   <ion-icon slot="end" [name]="passwordIconToggle2" (click)="togglePass2()"></ion-icon>
                 </ion-item>
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.passRepeat.errors?.required">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.passRepeat.errors?.required">
                   {{'Password is required' | customTranslate | async}}
                 </span>
 
-                <span class="error ion-padding" *ngIf="isSubmitted && errorControl.passRepeat.errors?.minlength">
+                <span class="error-message" *ngIf="isSubmitted && errorControl.passRepeat.errors?.minlength">
                   {{'Password must have 8 digits' | customTranslate | async}}
                 </span>
 

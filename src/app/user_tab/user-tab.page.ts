@@ -60,12 +60,24 @@ export class DadosContaPage implements OnInit {
     public alertController: AlertController,
     public modalController: ModalController,
     public formBuilder: FormBuilder,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    private loadingCtrl: LoadingController
   ) {
     this.user = new User('', '', '', '', '', ''); //  Initialize
   }
 
   ngOnInit() {
+    this.loadingCtrl
+      .create({
+        duration: 4000,
+        cssClass: 'loading-ctrl',
+      })
+      .then((res) => {
+        res.present();
+        res.onDidDismiss().then((dis) => {
+          this.user = this.dadosContaApi.getUser();
+        });
+      });
     this.social = localStorage.getItem('isSocialLogin');
     this.ionicForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -74,9 +86,6 @@ export class DadosContaPage implements OnInit {
       phone: ['', Validators.required],
       address: ['', Validators.required],
     });
-    setTimeout(() => {
-      this.user = this.dadosContaApi.getUser();
-    }, 2000);
   }
 
   ionViewDidEnter() {

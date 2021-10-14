@@ -30,28 +30,13 @@
               <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit_form()">
                 <ion-list>
                   <ion-item>
-                    <ion-label>{{'Location ?' | customTranslate | async}}</ion-label>
+                    <ion-label>{{'Location for the Trip ?' | customTranslate | async}}</ion-label>
                     <ion-select formControlName="location" value="brown" okText="OK" cancelText="Dismiss">
                       <ion-select-option value="Near"> {{'Near Me' | customTranslate | async}}</ion-select-option>
                       <ion-select-option value="Lisbon"> {{'Lisbon' | customTranslate | async}}</ion-select-option>
                       <ion-select-option value="Sintra"> {{'Sintra' | customTranslate | async}}</ion-select-option>
                     </ion-select>
                   </ion-item>
-
-                  <br>
-                  <ion-item>
-                    <ion-label>{{'How Many People?' | customTranslate | async}}</ion-label>
-                    <ion-select value="brown" okText="OK" formControlName="people" cancelText="Dismiss">
-                      <ion-select-option value="1"> 1</ion-select-option>
-                      <ion-select-option value="2"> 2</ion-select-option>
-                      <ion-select-option value="3"> 3</ion-select-option>
-                      <ion-select-option value="4"> 4</ion-select-option>
-                      <ion-select-option value="5"> 5</ion-select-option>
-                      <ion-select-option value="6"> 6</ion-select-option>
-                    </ion-select>
-                  </ion-item>
-
-                  <br>
                   <ion-button [disabled]="!registrationForm.valid" color="danger" type="submit">{{'Search Tours' |
                     customTranslate | async}}
                   </ion-button>

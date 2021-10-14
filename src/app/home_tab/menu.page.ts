@@ -40,6 +40,7 @@ export class MenuPage implements OnInit {
   public contentLoad = false;
   public trips: Array<RoadMap> = [];
   public place: string;
+  public searchedItem: any;
 
   constructor(
     private geolocation: Geolocation,
@@ -109,11 +110,11 @@ export class MenuPage implements OnInit {
         }
         this.contentLoad = true;
       }, 3000);
+      this.searchedItem = this.trips;
     });
 
     modal.present();
   }
-
 
   doRefresh(event) {
     console.log('Begin async operation');
@@ -159,7 +160,6 @@ export class MenuPage implements OnInit {
     }, 2000);
   }
 
-
   public showRoteiro(road: RoadMap): void {
     this.selected = road;
     this.presentModal(road);
@@ -198,5 +198,16 @@ export class MenuPage implements OnInit {
       },
     });
     return await modal.present();
+  }
+
+  public ionChange(event) {
+    const val = event.target.value;
+
+    this.searchedItem = this.trips;
+    if (val && val.trim() != '') {
+      this.searchedItem = this.searchedItem.filter((item: any) => {
+        return item.title.toLowerCase().indexOf(val.toLowerCase()) > -1;
+      });
+    }
   }
 }

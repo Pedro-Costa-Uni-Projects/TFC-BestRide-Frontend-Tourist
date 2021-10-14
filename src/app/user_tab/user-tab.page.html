@@ -18,100 +18,112 @@
       <circle cx="0" cy="calc(100%)" r="230" fill="#FFBA00" />
       <circle cx="calc(100%)" cy="calc(100%)" r="230" fill="#FF3F00" />
     </svg>
-    <div class="content">
-      <ion-card>
-        <h2 style="color: black;font-size: 25px;font-weight: bold;">User Definitions</h2>
-
-        <form class="form" [formGroup]="ionicForm">
 
 
+    <div class="content" *ngIf="social==='false'">
+      <ion-grid>
+        <ion-card>
+          <h2 style="color: black;font-size: 25px;font-weight: bold;">User Definitions</h2>
+          <form class="form" [formGroup]="ionicForm">
+            <ion-row>
+              <ion-list lines="full">
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <ion-icon name="person-outline"></ion-icon>
+                  </ion-thumbnail>
+                  <ion-thumbnail slot="end">
+                    <ion-icon name="{{ icon_input }}" (click)="activateEdit('name')"></ion-icon>
+                  </ion-thumbnail>
+                  <ion-label position="stacked">{{ 'Name' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="name" type="text" required value="{{ user.name }}"
+                    [disabled]="name_input">
+                  </ion-input>
+                  <!--<ion-button class="edit-button" expand="block" slot="end" (click)="activateEdit('name')">
+                    <ion-icon name="{{ icon_input }}"></ion-icon>
+                  </ion-button>-->
+                </ion-item>
 
-          <ion-list lines="full">
-            <ion-item *ngIf="social==='false'">
-              <ion-thumbnail slot="start">
-                <ion-icon name="person-outline"></ion-icon>
-              </ion-thumbnail>
-              <ion-label position="stacked">{{ 'Name' | customTranslate | async}}</ion-label>
-              <ion-input formControlName="name" type="text" required value="{{ user.name }}" [disabled]="name_input">
-              </ion-input>
-              <ion-button expand="block" slot="end" (click)="activateEdit('name')">
-                <ion-icon name="{{ icon_input }}"></ion-icon>
-              </ion-button>
-            </ion-item>
 
-
-            <ion-item>
-              <ion-thumbnail slot="start">
-                <ion-icon name="business-outline"></ion-icon>
-              </ion-thumbnail>
-              <ion-label position="stacked">{{ 'City' | customTranslate | async}}</ion-label>
-              <ion-input formControlName="city" type="text" required value="{{ user.city }}" [disabled]="city_input">
-              </ion-input>
-              <ion-button expand="block" slot="end" (click)="activateEdit('city')">
-                <ion-icon name="{{ icon_input }}"></ion-icon>
-              </ion-button>
-            </ion-item>
-
-            <ion-item *ngIf="social==='false'">
-              <ion-thumbnail slot="start">
-                <ion-icon name="mail-outline"></ion-icon>
-              </ion-thumbnail>
-              <ion-label position="stacked">{{ 'Email' | customTranslate | async}}</ion-label>
-              <ion-input formControlName="email" type="email" required value="{{ user.email }}"
-                [disabled]="email_input"></ion-input>
-              <ion-button expand="block" slot="end" (click)="activateEdit('email')">
-                <ion-icon name="{{ icon_input }}"></ion-icon>
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-thumbnail slot="start">
-                <ion-icon name="call-outline"></ion-icon>
-              </ion-thumbnail>
-              <ion-label position="stacked">{{ 'Phone Number' | customTranslate | async}}</ion-label>
-              <ion-input formControlName="phone" type="Number" required value="{{ user.phone }}"
-                [disabled]="phone_input"></ion-input>
-              <ion-button expand="block" slot="end" (click)="activateEdit('phone')">
-                <ion-icon name="{{ icon_input }}"></ion-icon>
-              </ion-button>
-            </ion-item>
-
-            <ion-item>
-              <ion-thumbnail slot="start">
-                <ion-icon name="home-outline"></ion-icon>
-              </ion-thumbnail>
-              <ion-label position="stacked">{{ 'Street address' | customTranslate | async}}</ion-label>
-              <ion-input formControlName="address" type="text" required value="{{ user.address }}"
-                [disabled]="street_input"></ion-input>
-              <ion-button expand="block" slot="end" (click)="activateEdit('street')">
-                <ion-icon name="{{ icon_input }}"></ion-icon>
-              </ion-button>
-            </ion-item>
-
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <ion-button [disabled]="button" (click)="updateUser()" expand="block">{{'Update Account' |
-                    customTranslate |
-                    async}}
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <ion-icon name="business-outline"></ion-icon>
+                  </ion-thumbnail>
+                  <ion-label position="stacked">{{ 'City' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="city" type="text" required value="{{ user.city }}"
+                    [disabled]="city_input">
+                  </ion-input>
+                  <ion-button expand="block" slot="end" (click)="activateEdit('city')">
+                    <ion-icon name="{{ icon_input }}"></ion-icon>
                   </ion-button>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  <ion-button *ngIf="social==='false'" color="warning" expand="block" (click)="alterarPass()">{{'Change
-                    Password' | customTranslate |
-                    async}}</ion-button>
-                  <ion-button color="danger" expand="block" (click)="deleteAccount()"> {{'Delete Account' |
-                    customTranslate |
-                    async}}
+                </ion-item>
+
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <ion-icon name="mail-outline"></ion-icon>
+                  </ion-thumbnail>
+                  <ion-label position="stacked">{{ 'Email' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="email" type="email" required value="{{ user.email }}"
+                    [disabled]="email_input"></ion-input>
+                  <ion-button expand="block" slot="end" (click)="activateEdit('email')">
+                    <ion-icon name="{{ icon_input }}"></ion-icon>
                   </ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-list>
-        </form>
-      </ion-card>
+                </ion-item>
+
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <ion-icon name="call-outline"></ion-icon>
+                  </ion-thumbnail>
+                  <ion-label position="stacked">{{ 'Phone Number' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="phone" type="Number" required value="{{ user.phone }}"
+                    [disabled]="phone_input"></ion-input>
+                  <ion-button expand="block" slot="end" (click)="activateEdit('phone')">
+                    <ion-icon name="{{ icon_input }}"></ion-icon>
+                  </ion-button>
+                </ion-item>
+
+                <ion-item>
+                  <ion-thumbnail slot="start">
+                    <ion-icon name="home-outline"></ion-icon>
+                  </ion-thumbnail>
+                  <ion-label position="stacked">{{ 'Street address' | customTranslate | async}}</ion-label>
+                  <ion-input formControlName="address" type="text" required value="{{ user.address }}"
+                    [disabled]="street_input"></ion-input>
+                  <ion-button expand="block" slot="end" (click)="activateEdit('street')">
+                    <ion-icon name="{{ icon_input }}"></ion-icon>
+                  </ion-button>
+                </ion-item>
+
+                <ion-button [disabled]="button" (click)="updateUser()" expand="block">{{'Update Account' |
+                  customTranslate |
+                  async}}
+                </ion-button>
+
+
+                <ion-button color="warning" expand="block" (click)="alterarPass()">{{'Change
+                  Password' | customTranslate |
+                  async}}</ion-button>
+                <ion-row>
+                  <ion-col>
+                    <ion-button color="danger" expand="block" (click)="deleteAccount()"> {{'Delete Account' |
+                      customTranslate |
+                      async}}
+                    </ion-button>
+                  </ion-col>
+
+                  <ion-col>
+                    <ion-button color="dark" [routerLink]="['/login']" expand="block">{{'Log out' | customTranslate |
+                      async}}
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+
+
+
+              </ion-list>
+            </ion-row>
+          </form>
+        </ion-card>
+      </ion-grid>
     </div>
   </div>
 </ion-content>
