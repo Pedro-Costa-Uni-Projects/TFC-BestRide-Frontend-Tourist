@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { PaymentPage } from 'src/app/payment/payment.page';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,7 +12,8 @@ export class BookServiceService {
 
   constructor(
     private http: HttpClient,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public modalController: ModalController
   ) {}
 
   public booking_trip(data: any): void {
@@ -20,12 +22,26 @@ export class BookServiceService {
       .post(environment.apiUrl + this.url_create_booking, data)
       .subscribe(
         (response) => {
-          this.presentToast('your booking was successful!');
+          console.log(response);
+          const price = response['price'];
+          this.presentModal(price);
         },
         (err) => {
-          this.presentToast('Error!');
+          //this.presentToast('Error!');
+          console.log(err);
         }
       );
+  }
+
+  async presentModal(total: number) {
+    const modal = await this.modalController.create({
+      component: PaymentPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        paymentAmount: total,
+      },
+    });
+    return await modal.present();
   }
 
   async presentToast(message: string) {

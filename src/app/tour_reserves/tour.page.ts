@@ -11,7 +11,8 @@ import { TourApiService } from './tour-api.service';
   styleUrls: ['./tour.page.scss'],
 })
 export class TourPage implements OnInit {
-  public tour_array: Array<Tour>;
+  public tour_array: Array<Tour> = [];
+  public loadingContent: boolean;
 
   constructor(
     private loadingCtrl: LoadingController,
@@ -21,21 +22,19 @@ export class TourPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.presentLoading();
-  }
-
-  async presentLoading() {
-    let loading = await this.loadingCtrl.create({
-      message: 'Loading bookings...',
-    });
-
-    loading.present();
-
-    const userID = localStorage.getItem('userID');
-    this.tour_array = this.tourAPI.getTravelsByUser(userID);
-    setTimeout(() => {
-      loading.dismiss();
-    }, 5000);
+    this.loadingContent = true;
+    this.loadingCtrl
+      .create({
+        duration: 3000,
+      })
+      .then((response) => {
+        response.present();
+        response.onDidDismiss().then((response) => {
+          const userID = localStorage.getItem('userID');
+          this.tour_array = this.tourAPI.getTravelsByUser(userID);
+          this.loadingContent = false;
+        });
+      });
   }
 
   async presentModal(total: number) {

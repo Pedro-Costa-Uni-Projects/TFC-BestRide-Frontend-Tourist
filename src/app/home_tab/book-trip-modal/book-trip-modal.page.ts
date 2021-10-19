@@ -84,13 +84,13 @@ export class BookTripModalPage implements OnInit {
     console.log(book_hour);
 
     const data_booking = {
-      Pagamento_idPagamento: 1,
+      pagamento_idpagamento: 1,
       dataViagem: dateInitial,
-      turist_id: turist_id,
-      horaInicio: book_hour,
-      horaFim: book_hour,
-      road_map_id: '' + this.circuito.id,
-      driver_id: 13,
+      turist: turist_id,
+      trip_date: dateInitial,
+      trip_time: book_hour,
+      road_map: this.circuito.id,
+      driver: 1,
     };
     const response = this.booking_service.booking_trip(data_booking);
   }

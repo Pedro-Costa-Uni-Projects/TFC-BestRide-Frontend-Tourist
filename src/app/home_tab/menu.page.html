@@ -57,7 +57,8 @@
               <ion-card-content>
                 <ion-text color="danger">
                   <h3>
-                    There are no scripts available for this area. Try changing the settings.</h3>
+                    {{ "Sorry, we don't have any travel itinerary in the city you want." | customTranslate | async}}
+                  </h3>
                 </ion-text>
               </ion-card-content>
             </ion-card>

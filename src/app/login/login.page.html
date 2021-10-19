@@ -33,9 +33,6 @@
                       <small class="error-message">{{error.message}}</small>
                     </ng-container>
                   </div>
-
-                  <br>
-
                   <ion-item>
                     <ion-label position="stacked">Password</ion-label>
                     <ion-input formControlName="password" [type]=" showPass ? 'text' : 'password'" required></ion-input>
@@ -57,27 +54,26 @@
             </ion-col>
           </ion-row>
         </ion-card>
+        <!-- Social Login Buttons-->
+        <div class="buttons_social">
+          <ion-button id="btn_google" (click)="socialLogin('Google')">
+            <ion-icon name="logo-google" color="danger" slot="start" size="large"></ion-icon>
+            {{'Sign up with Google' | customTranslate | async}}
+          </ion-button>
+          <ion-button id="btn_face">
+            <ion-icon name="logo-facebook" color="secundary" slot="start" size="large"></ion-icon>
+            {{'Sign up with Facebook' | customTranslate | async}}
+          </ion-button>
+        </div>
+        <!-- Texts -->
+        <div class="texts">
+          <h6>{{'Dont have an account? ' | customTranslate | async}}<u (click)="create_account()">{{'Sign up' |
+              customTranslate |
+              async}}</u></h6>
+          <h6><u (click)="recover_account()">{{'Forgout your password?' | customTranslate | async}}</u></h6>
+        </div>
 
-        <ion-row>
-          <ion-col>
 
-            <!-- Social Login Buttons-->
-            <ion-button id="btn_google" expand="block" (click)="socialLogin('Google')">
-              <ion-icon name="logo-google" color="danger" slot="start" size="large"></ion-icon>
-              {{'Sign up with Google' | customTranslate | async}}
-            </ion-button>
-            <ion-button id="btn_face" expand="block">
-              <ion-icon name="logo-facebook" color="secundary" slot="start" size="large"></ion-icon>
-              {{'Sign up with Facebook' | customTranslate | async}}
-            </ion-button>
-
-            <!-- Texts -->
-            <h6>{{'Dont have an account? ' | customTranslate | async}}<u (click)="create_account()">{{'Sign up' |
-                customTranslate |
-                async}}</u></h6>
-            <h6><u (click)="recover_account()">{{'Forgout your password?' | customTranslate | async}}</u></h6>
-          </ion-col>
-        </ion-row>
       </ion-grid>
 
     </div>

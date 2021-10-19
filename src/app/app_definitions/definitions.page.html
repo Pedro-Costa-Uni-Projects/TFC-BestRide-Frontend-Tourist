@@ -32,22 +32,17 @@
                 <ion-label> {{'Language' | customTranslate | async}}</ion-label>
                 <ion-select [(ngModel)]='language' (ionChange)='changeLanguage()'
                   [placeholder]='"definicoes.languageChangePlaceholder" | translate'>
-                  <ion-select-option value='pt'>{{'Portuguese' | customTranslate | async}}</ion-select-option>
-                  <ion-select-option value='en'>{{'English' | customTranslate | async}}</ion-select-option>
-                  <ion-select-option value='es'>{{'Spanish' | customTranslate | async}}</ion-select-option>
-                  <ion-select-option value='fr'>{{'French' | customTranslate | async}}</ion-select-option>
-                  <ion-select-option value='ru'>{{'Russian' | customTranslate | async}}</ion-select-option>
-                  <ion-select-option value='it'>{{'Italian' | customTranslate | async}}</ion-select-option>
+                  <ion-select-option value='pt'>Portuguese</ion-select-option>
+                  <ion-select-option value='en'>English</ion-select-option>
+                  <ion-select-option value='es'>Spanish</ion-select-option>
+                  <ion-select-option value='fr'>French</ion-select-option>
+                  <ion-select-option value='ru'>Russian</ion-select-option>
+                  <ion-select-option value='it'>Italian</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>
-              <ion-button color="danger" [routerLink]="['/login']" expand="block">{{'Log out' | customTranslate |
-                async}}
-              </ion-button>
-            </ion-col>
             <ion-col>
               <ion-button color="warning" expand="block">{{'Terms and conditions' | customTranslate |
                 async}}

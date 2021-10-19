@@ -1,37 +1,3 @@
-<!--
-  <ion-menu menuId="main-menu" contentId="main" type="reveal" swipeGesture="false">
-    <ion-content>
-      <div class="menu-header-bg"></div>
-      <div class="header-content">
-        <img src="../assets/icon/favicon.png">
-        <ion-label>
-          <h2>Best Ride</h2>
-          <p>{{ user_email }}</p>
-        </ion-label>
-      </div>
-
-      <ion-list class="menu-items" lines="none">
-        <ion-item [routerLink]="['/menu']" translate [translateParams]="{ lang: language }">
-          <ion-icon name="map-outline"></ion-icon>
-          menu_navegacao.map
-        </ion-item>
-
-        <ion-item [routerLink]="['/definicoes']" translate [translateParams]="{ lang: language }">
-          <ion-icon name="settings-outline"></ion-icon> menu_navegacao.definitions
-        </ion-item>
-
-        <ion-item [routerLink]="['/calendario']" translate [translateParams]="{ lang: language }">
-          <ion-icon name="calendar-outline"></ion-icon> menu_navegacao.agend
-        </ion-item>
-
-        <ion-item [routerLink]="['/dados-conta']" translate [translateParams]="{ lang: language }">
-          <ion-icon name="person-outline"></ion-icon> menu_navegacao.personal
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>-->
-
-
 <ion-tabs>
 
   <ion-tab-bar slot="bottom" [hidden]="hide_tab">
@@ -39,21 +5,25 @@
     <!-- Map -->
     <ion-tab-button tab="home_tab">
       <ion-icon name="map-outline"></ion-icon>
+      <ion-label>{{ 'Tuk Explore' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
     <!-- Bookings  -->
     <ion-tab-button tab="tourBooking">
       <ion-icon name="analytics-outline"></ion-icon>
+      <ion-label>{{ 'Reservations' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
     <!-- App definitions -->
     <ion-tab-button tab="definitions_tab">
       <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>{{ 'Settings' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
     <!-- User definitions -->
     <ion-tab-button tab="user_tab">
       <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>{{ 'User' | customTranslate | async}}</ion-label>
     </ion-tab-button>
 
 
