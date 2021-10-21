@@ -29,7 +29,7 @@
           <br>
           <ion-item>
             <ion-label> {{ "Date for the Tour ?" | customTranslate | async}} </ion-label>
-            <ion-datetime formControlName="dateInitial" (ionChange)="getDate($event)" displayFormat="MM/DD/YYYY"
+            <ion-datetime formControlName="dateInitial" (ionChange)="getDate($event)" displayFormat="DD/MMMM/YYYY"
               min="1989" max="2021" value="2019-06-17"></ion-datetime>
           </ion-item>
 

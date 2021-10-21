@@ -188,9 +188,6 @@ export class MenuPage implements OnInit {
   }
 
   public async comments(road: RoadMap) {
-    //localStorage.setItem('roadMapID', JSON.stringify(road.id));
-    //his.router.navigate(['/comment-trip']);
-
     const modal = await this.model_controller.create({
       component: CommentTripPage,
       componentProps: {

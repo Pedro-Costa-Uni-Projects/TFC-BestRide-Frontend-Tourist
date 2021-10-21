@@ -7,6 +7,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Observable } from 'rxjs';
 import { RoadMap } from '../home_tab/roadMap';
 import { Comment, User } from './comment';
+import { CustomTranslateService } from '../shared/services/custom-translate.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,8 @@ export class CommentApiService {
     private http: HttpClient,
     private router: Router,
     public alertController: AlertController,
-    private nativeStorage: NativeStorage
+    private nativeStorage: NativeStorage,
+    private cts: CustomTranslateService
   ) {
     this.ngOnInit();
   }
@@ -71,6 +73,14 @@ export class CommentApiService {
         road_map: comment.roadId,
         username: comment.author.name,
       })
-      .subscribe();
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.cts.showAlert('Comment sent!', 'Thanks for the comment', 'OK');
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }

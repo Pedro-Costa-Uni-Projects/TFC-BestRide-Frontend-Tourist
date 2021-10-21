@@ -60,3 +60,24 @@ ion-alert {
   --background: #00adff;
   --spinner-color: white;
 }
+
+ion-header {
+  ion-toolbar {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    img {
+      align-self: center;
+      width: 39%;
+    }
+  }
+}
+#content-menu {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    align-self: center;
+    width: 1%;
+  }
+}

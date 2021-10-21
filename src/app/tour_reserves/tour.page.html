@@ -1,8 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <img id="img" style="width: 15%;margin-left: 11%;" src="assets/BestRideSplash.png" />
-    <ion-title style="text-align: center;">BestRide
-    </ion-title>
+    <img src="assets/BestRideLogo.png" />
   </ion-toolbar>
 </ion-header>
 
@@ -49,10 +47,12 @@
                         <ion-card>
                           <ion-item>
                             <h1>{{tour.road_map_name}}</h1>
-                            <ion-button color="danger" fill="outline" slot="end">Delete Tour</ion-button>
                           </ion-item>
 
                           <ion-card-content>
+                            <ion-button color="warning" expand="full" (click)="comments(tour.road_id)">
+                              {{'Comment Tour' | customTranslate | async}}
+                            </ion-button>
                             <ion-item>
                               <ion-icon name="time" slot="start"></ion-icon>
                               <ion-label> {{tour.duration}}</ion-label>

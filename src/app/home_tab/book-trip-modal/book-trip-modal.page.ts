@@ -84,7 +84,7 @@ export class BookTripModalPage implements OnInit {
     console.log(book_hour);
 
     const data_booking = {
-      pagamento_idpagamento: 1,
+      Pagamento_idPagamento: 1,
       dataViagem: dateInitial,
       turist: turist_id,
       trip_date: dateInitial,

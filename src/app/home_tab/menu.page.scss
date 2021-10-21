@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+ion-content {
+  --background: #ffba00;
+}
+
 ion-card-content {
   p {
     color: black;
@@ -18,7 +22,7 @@ ion-card-content {
 }
 .content {
   position: absolute;
-  top: 11%;
+  top: 0%;
   justify-content: center;
   text-align: center;
   width: 100%;
@@ -35,12 +39,13 @@ ion-icon {
   font-weight: bold;
 }
 
-#content-menu {
-  display: flex;
-  flex-direction: column;
+.err_no_trips {
+  width: 100%;
 
-  img {
-    align-self: center;
-    width: 39%;
+  h3 {
+    color: #ff3f00;
+    text-align: center;
+    font-weight: 800;
+    font-size: x-large;
   }
 }

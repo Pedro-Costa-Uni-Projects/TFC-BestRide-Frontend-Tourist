@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
+import { CommentTripPage } from '../comment-trip/comment-trip.page';
 import { PaymentPage } from '../payment/payment.page';
 import { Tour } from './tour';
 import { TourApiService } from './tour-api.service';
@@ -22,16 +23,16 @@ export class TourPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    const userID = localStorage.getItem('userID');
+    this.tour_array = this.tourAPI.getTravelsByUser(userID);
     this.loadingContent = true;
     this.loadingCtrl
       .create({
-        duration: 3000,
+        duration: 2000,
       })
       .then((response) => {
         response.present();
         response.onDidDismiss().then((response) => {
-          const userID = localStorage.getItem('userID');
-          this.tour_array = this.tourAPI.getTravelsByUser(userID);
           this.loadingContent = false;
         });
       });
@@ -43,6 +44,16 @@ export class TourPage implements OnInit {
       cssClass: 'my-custom-class',
       componentProps: {
         paymentAmount: total,
+      },
+    });
+    return await modal.present();
+  }
+
+  public async comments(road_id: number) {
+    const modal = await this.modalController.create({
+      component: CommentTripPage,
+      componentProps: {
+        road_map_id: JSON.stringify(road_id),
       },
     });
     return await modal.present();

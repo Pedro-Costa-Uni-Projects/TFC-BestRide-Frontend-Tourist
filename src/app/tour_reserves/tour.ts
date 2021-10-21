@@ -1,6 +1,6 @@
 export interface Tour {
-    road_map_name: string;
-    duration: string;
-    price: number;
-  }
-    
+  road_id: number;
+  road_map_name: string;
+  duration: string;
+  price: number;
+}

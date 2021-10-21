@@ -9,6 +9,9 @@
   width: 100%;
 }
 
+ion-content {
+  background-color: #ffba00;
+}
 .content {
   width: calc(100%);
   height: calc(100%);
@@ -23,16 +26,6 @@
   text-align: center;
   color: black;
   font-weight: bold;
-}
-
-#content-menu {
-  display: flex;
-  flex-direction: column;
-
-  img {
-    align-self: center;
-    width: 39%;
-  }
 }
 
 ion-textarea {

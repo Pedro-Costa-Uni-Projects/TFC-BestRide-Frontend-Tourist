@@ -4,17 +4,12 @@
 }
 
 #content-menu {
+  display: flex;
+  flex-direction: column;
+
   img {
     align-self: center;
-    width: 17%;
-    position: relative;
-    left: 29%;
-  }
-
-  #title {
-    color: black;
-    position: absolute;
-    left: 7%;
+    width: 39%;
   }
 }
 
