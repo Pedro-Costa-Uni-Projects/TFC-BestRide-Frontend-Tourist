@@ -15,6 +15,7 @@ import { retry } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BookServiceService } from './book-service.service';
+import { PaymentPage } from 'src/app/payment/payment.page';
 declare var google: any;
 
 @Component({
@@ -63,37 +64,56 @@ export class BookTripModalPage implements OnInit {
   ionViewDidEnter() {}
 
   getDate(e) {
-    let date = new Date(e.target.value).toISOString().substring(0, 10);
-    this.ionicForm.get('dateInitial').setValue(date, {
-      onlyself: true,
-    });
+    //let date = new Date(e.target.value).toISOString().substring(0, 10);
+    this.ionicForm
+      .get('dateInitial')
+      .setValue(this.ionicForm.get('dateInitial').value, {
+        onlyself: true,
+      });
+  }
+
+  getTime(e) {
+    console.log(e.target.value);
+
+    this.ionicForm
+      .get('book_hour')
+      .setValue(this.ionicForm.get('book_hour').value, {
+        onlyself: true,
+      });
   }
 
   public book_hour: string;
 
   public booking() {
-    this.ionicForm.get('book_hour').setValue(this.book_hour.substring(11, 16), {
-      onlyself: true,
-    });
-    console.log(this.circuito);
     const turist_id = localStorage.getItem('userID');
     const dateInitial = this.ionicForm.get('dateInitial').value;
     const book_hour = this.ionicForm.get('book_hour').value;
-    console.log(turist_id);
-    console.log(dateInitial);
-    console.log(book_hour);
 
     const data_booking = {
       Pagamento_idPagamento: 1,
       dataViagem: dateInitial,
-      turist: turist_id,
+      turist_id: turist_id,
       trip_date: dateInitial,
       trip_time: book_hour,
-      road_map: this.circuito.id,
-      driver: 1,
+      road_map_id: this.circuito.id,
+      driver_id: 1,
     };
-    const response = this.booking_service.booking_trip(data_booking);
+    //const response = this.booking_service.booking_trip(data_booking);
+    this.openPaymentModal(data_booking, 20);
   }
+
+  async openPaymentModal(data: any, total) {
+    const modal = await this.modalCtr.create({
+      component: PaymentPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        data: data,
+        paymentAmount: total,
+      },
+    });
+    return await modal.present();
+  }
+
   async close() {
     const closeModal: string = 'Modal Closed';
     await this.modalCtr.dismiss(closeModal);

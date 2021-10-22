@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline"
+      [pullingText]="'Pull to refresh' | customTranslate | async" refreshingSpinner="circles"
+      [refreshingText]="'refreshing...' | customTranslate | async">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="body">
     <svg height="100%" width="100%">
       <circle cx="0" cy="0" r="220" fill="#00adff" />
@@ -58,9 +64,6 @@
     </div>
 
     <div class="content" *ngIf="contentLoad && trips.length > 0">
-      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      </ion-refresher>
-      <br>
       <ion-searchbar #search debounce="500" (ionChange)="ionChange($event)" color="light"></ion-searchbar>
       <ion-card style="text-align: justify;">
         <br>
@@ -86,15 +89,13 @@
               <ion-button (click)="trip_map_details(road)" expand="block" color="primary"> {{'See Tour' |
                 customTranslate | async}}
               </ion-button>
-              <!-- <ion-button (click)="comments(road)" expand="block" color="danger"> {{'Comments' |
+              <ion-button (click)="comments(road)" expand="block" color="danger"> {{'See Comments' |
                 customTranslate | async}}
-              </ion-button>-->
+              </ion-button>
             </ion-card-content>
           </ion-list>
         </div>
       </ion-card>
     </div>
-
-
   </div>
 </ion-content>

@@ -21,6 +21,7 @@ import { CustomTranslateService } from '../shared/services/custom-translate.serv
 import { User } from './user';
 import { TripDetailsPage } from './trip-details/trip-details.page';
 import { CommentTripPage } from '../comment-trip/comment-trip.page';
+import { CommentsListPage } from '../comments-list/comments-list.page';
 
 declare var google: any;
 
@@ -117,10 +118,8 @@ export class MenuPage implements OnInit {
   }
 
   doRefresh(event) {
-    console.log('Begin async operation');
     this.trips = [];
     setTimeout(() => {
-      console.log('Async operation has ended');
       if (this.place == 'Near') {
         this.map_service.get_roads_near_me().subscribe((data) => {
           for (let pos in data) {
@@ -189,9 +188,11 @@ export class MenuPage implements OnInit {
 
   public async comments(road: RoadMap) {
     const modal = await this.model_controller.create({
-      component: CommentTripPage,
+      component: CommentsListPage,
       componentProps: {
-        road_map_id: JSON.stringify(road.id),
+        road_map_id: road.id,
+        road_map_name: road.title,
+        road_map_image: road.image,
       },
     });
     return await modal.present();

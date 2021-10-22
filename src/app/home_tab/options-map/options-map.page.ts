@@ -28,8 +28,11 @@ export class OptionsMapPage implements OnInit {
     console.log('Selected:' + selectedValue);
   }
 
-  submit_form(): void {
-    const local = this.registrationForm.get('location').value;
+  submit(e) {
+    if (e.target.value == undefined) {
+      return;
+    }
+    const local = e.target.value;
 
     const dismiss_data = {
       local: local,

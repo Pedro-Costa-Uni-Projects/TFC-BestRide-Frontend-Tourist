@@ -6,6 +6,7 @@
 
 ion-content {
   --background: #ffba00;
+  background-color: white;
 }
 
 ion-card-content {
@@ -48,4 +49,7 @@ ion-icon {
     font-weight: 800;
     font-size: x-large;
   }
+}
+ion-refresher {
+  z-index: 4;
 }

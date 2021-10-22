@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="assets/BestRideLogo.png" />
+    <ion-buttons slot="end">
+      <ion-button color="secondary" (click)="closeModal()">
+        <ion-icon name="close" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body">
+    <svg height="100%" width="100%">
+      <circle cx="0" cy="0" r="220" fill="#00adff" />
+      <circle cx="0" cy="calc(100%)" r="210" fill="#58a600" />
+      <circle cx="calc(100%)" cy="calc(50%)" r="210" fill="#ff3f00" />
+    </svg>
+
+    <div class="content">
+      <ion-card>
+        <ion-card-content>
+          <img [src]="road_map_image">
+          <h1>{{ road_map_name |customTranslate | async}}</h1>
+        </ion-card-content>
+      </ion-card>
+      <!-- Avg rating Trip -->
+      <ion-card>
+        <ion-card-content>
+          <h1>{{'AVG Rating : 2' |customTranslate | async}}</h1>
+        </ion-card-content>
+      </ion-card>
+      <!-- List of Comments -->
+      <ion-grid>
+        <ion-list *ngFor="let comment of comments_list">
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-icon style="zoom: 2.0;" name="person-circle-outline"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ comment['author'].name}}</h2>
+              <h3>Portugal</h3>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <p>{{comment.comment}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-grid>
+    </div>
+
+
+  </div>
+</ion-content>

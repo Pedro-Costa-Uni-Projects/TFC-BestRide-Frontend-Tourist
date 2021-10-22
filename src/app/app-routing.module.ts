@@ -95,6 +95,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./payment/payment.module').then((m) => m.PaymentPageModule),
   },
+  {
+    path: 'comments-list',
+    loadChildren: () =>
+      import('./comments-list/comments-list.module').then(
+        (m) => m.CommentsListPageModule
+      ),
+  },
 ];
 
 @NgModule({

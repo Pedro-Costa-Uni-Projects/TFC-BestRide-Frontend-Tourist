@@ -105,6 +105,9 @@ export class DadosContaPage implements OnInit {
     }
   }
 
+  public al() {
+    console.log('rrffrrf');
+  }
   public alterarPass(): void {
     this.presentModal();
   }

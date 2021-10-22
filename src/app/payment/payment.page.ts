@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { PaymentServiceService } from './payment-service.service';
 declare var Stripe;
 
 @Component({
@@ -18,12 +19,14 @@ export class PaymentPage implements OnInit {
   private card_cvc: any;
   public currencyIcon: string = 'logo-euro';
   public paymentAmount;
+  private data: any;
   private url_payment: string = '/makePayment/';
 
   constructor(
     private modalCtrl: ModalController,
     private toast: ToastController,
-    private http: HttpClient
+    private http: HttpClient,
+    private payment_service: PaymentServiceService
   ) {}
 
   ngOnInit() {
@@ -113,8 +116,8 @@ export class PaymentPage implements OnInit {
           };
           this.http.post(environment.apiUrl + this.url_payment, data).subscribe(
             (resp) => {
+              this.payment_service.booking_trip(this.data);
               this.modalCtrl.dismiss();
-              this.showMessageToast('Tour payment made successfully!');
             },
             (err) => {}
           );
