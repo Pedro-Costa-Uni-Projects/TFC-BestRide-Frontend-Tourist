@@ -6,7 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Observable } from 'rxjs';
 import { RoadMap } from '../home_tab/roadMap';
-import { Comment, User } from './comment';
+import { Comment, User } from './Comment';
 import { CustomTranslateService } from '../shared/services/custom-translate.service';
 
 @Injectable({
