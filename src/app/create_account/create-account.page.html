@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="login"></ion-back-button>
+      <ion-back-button defaultHref="login" icon="arrow-back-outline" text=""></ion-back-button>
     </ion-buttons>
     <img src="assets/BestRideLogo.png" />
   </ion-toolbar>
@@ -84,9 +84,10 @@
 
                 <ion-item>
                   <ion-label position="stacked"> {{'Gender' | customTranslate | async}}</ion-label>
-                  <ion-select placeholder="Male" okText="OK" cancelText="Cancel" formControlName="gender">
+                  <ion-select [placeholder]="'Choose Gender' | customTranslate | async" okText="OK" cancelText="Cancel"
+                    formControlName="gender">
                     <ion-select-option *ngFor="let gdr of gender" [value]="gdr.gender">
-                      {{gdr.gender}}
+                      {{gdr.gender | customTranslate | async}}
                     </ion-select-option>
                   </ion-select>
                 </ion-item>

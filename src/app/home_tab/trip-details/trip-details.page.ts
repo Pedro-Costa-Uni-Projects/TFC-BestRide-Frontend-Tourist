@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { InterestPoints, RoadMap } from '../roadMap';
 import { MapServiceService } from '../map-service.service';
@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 declare var google: any;
+
+import * as Leaflet from 'leaflet';
+import { antPath } from 'leaflet-ant-path';
 
 @Component({
   selector: 'app-trip-details',
@@ -16,48 +19,107 @@ declare var google: any;
 export class TripDetailsPage implements OnInit {
   private ZOOM_LEVEL: number = 16.5; // Zoom do mapa
   @ViewChild('map', { static: false }) mapElement: ElementRef;
-  private map: any;
+  //private map: any;
+  map: Leaflet.Map;
   @Input() circuito_rec: InterestPoints;
   public circuito: any;
   public language: string = this.translate.currentLang;
-
+  propertyList = [];
   private interest: Array<any> = [];
 
   constructor(
     private modalCtr: ModalController,
     private translate: TranslateService,
     private map_service: MapServiceService,
-    private http: HttpClient
+    private http: HttpClient,
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {}
 
   ionViewDidEnter() {
-    this.circuito = this.circuito;
-    this.map_service
-      .get_points_interest(this.circuito['id'])
-      .subscribe((data) => {
-        for (let pos in data) {
-          this.interest.push(
-            new InterestPoints(
-              data[pos]['interest_points'].description,
-              data[pos]['interest_points'].location['coordinates'][0],
-              data[pos]['interest_points'].location['coordinates'][1],
-              data[pos]['interest_points'].image
-            )
-          );
-        }
+    this.map = new Leaflet.Map('mapId').setView(
+      [this.circuito.lat, this.circuito.lng],
+      16
+    );
+
+    const leaf_icon = Leaflet.icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    });
+
+    Leaflet.marker([this.circuito.lat, this.circuito.lng], { icon: leaf_icon })
+      .addTo(this.map)
+      .openPopup();
+
+    Leaflet.tileLayer(
+      'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+      {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        attribution: 'BestRide.com',
+      }
+    ).addTo(this.map);
+
+    this.loadingCtrl
+      .create({
+        duration: 2500,
+      })
+      .then((response) => {
+        response.present();
+        /* Background Processing */
+        fetch('./assets/data.json')
+          .then((res) => res.json())
+          .then((data) => {
+            this.propertyList = data.properties;
+            //this.leafletMap();
+          })
+          .catch((err) => console.error(err));
+        this.circuito = this.circuito;
+        this.map_service
+          .get_points_interest(/*this.circuito['id']*/ 1)
+          .subscribe((data) => {
+            for (let pos in data) {
+              this.interest.push(
+                new InterestPoints(
+                  data[pos]['interest_points'].description,
+                  data[pos]['interest_points'].location['coordinates'][0],
+                  data[pos]['interest_points'].location['coordinates'][1],
+                  data[pos]['interest_points'].image
+                )
+              );
+            }
+          });
+        response.onDidDismiss().then((response) => {
+          /* Data */
+        });
       });
-    setTimeout(() => {
-      this.showMap(this.circuito, this.interest);
-    }, 4000);
+  }
+
+  private leafletMap() {
+    const leaf_icon = Leaflet.icon({
+      iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    });
+
+    for (const property of this.propertyList) {
+      Leaflet.marker([property.lat, property.long], { icon: leaf_icon })
+        .addTo(this.map)
+        .bindPopup(property.city)
+        .openPopup();
+    }
+  }
+
+  /** Remove map when we have multiple map object */
+  ngOnDestroy() {
+    this.map.remove();
   }
 
   async close() {
     const closeModal: string = 'Modal Closed';
     await this.modalCtr.dismiss(closeModal);
   }
-
+  /*
   private showMap(road: RoadMap, points: Array<InterestPoints>): void {
     const lat_initial = road.lat;
     const lng_initial = road.lng;
@@ -103,5 +165,5 @@ export class TripDetailsPage implements OnInit {
         infoWindow.open(this.map, marker);
       });
     }
-  }
+  }*/
 }

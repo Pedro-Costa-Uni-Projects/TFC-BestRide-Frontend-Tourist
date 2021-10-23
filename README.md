@@ -48,6 +48,8 @@
 9. npm install @ionic/storage-angular
 10. npm i cordova plugin add cordova-plugin-stripe
 11. npm install @ionic-native/stripe
+12. npm install leaflet --save
+13. npm install leaflet-ant-path --save
 ```
 
 ---

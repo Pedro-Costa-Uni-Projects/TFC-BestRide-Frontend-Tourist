@@ -8,7 +8,11 @@ ion-toolbar {
 }
 
 ion-item {
-  --bacground: white;
+  --background: white;
+}
+
+ion-content {
+  --background: #00adff;
 }
 
 #imagem {

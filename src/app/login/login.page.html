@@ -28,7 +28,7 @@
                   </ion-item>
                   <div *ngFor="let error of errorMessages.email">
                     <ng-container *ngIf="email.hasError(error.type) && ( email.touched || email.dirty)">
-                      <small class="error-message">{{error.message}}</small>
+                      <small class="error-message">{{error.message | customTranslate | async}}</small>
                     </ng-container>
                   </div>
                   <ion-item>
@@ -38,7 +38,7 @@
                   </ion-item>
                   <div *ngFor="let error of errorMessages.password">
                     <ng-container *ngIf="password.hasError(error.type) && ( password.touched || password.dirty)">
-                      <small class="error-message">{{error.message}}</small>
+                      <small class="error-message">{{error.message | customTranslate | async}}</small>
                     </ng-container>
                   </div>
                   <ion-item>

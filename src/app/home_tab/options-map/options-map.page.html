@@ -22,14 +22,16 @@
             <ion-card>
 
               <ion-card-header>
-                {{'Choose your preferences ! ' | customTranslate | async}}
+                {{'Choose the city' | customTranslate | async}}
               </ion-card-header>
 
               <form class="form" [formGroup]="registrationForm">
                 <ion-list>
                   <ion-item>
-                    <ion-select formControlName="location" selectedText="Choose Trip !" value="brown" okText="OK"
-                      cancelText="Dismiss" (ionChange)="submit($event)">
+                    <ion-label>{{'City name' | customTranslate | async}}</ion-label>
+                    <ion-select formControlName="location" value="brown"
+                      [selectedText]="'Lisbon' | customTranslate | async" okText="OK" cancelText="Dismiss"
+                      (ionChange)="submit($event)">
                       <ion-select-option value="Near"> {{'Near Me' | customTranslate | async}}</ion-select-option>
                       <ion-select-option value="Lisbon"> {{'Lisbon' | customTranslate | async}}</ion-select-option>
                       <ion-select-option value="Sintra"> {{'Sintra' | customTranslate | async}}</ion-select-option>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="login"></ion-back-button>
+      <ion-back-button defaultHref="login" icon="arrow-back-outline" text=""></ion-back-button>
     </ion-buttons>
     <img src="assets/BestRideLogo.png" />
   </ion-toolbar>
@@ -21,7 +21,7 @@
         <ion-list>
 
           <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
-            <h2> Recover Account </h2>
+            <h2> {{ 'Recover Account' | customTranslate | async }} </h2>
 
             <ion-icon name="person-outline"></ion-icon>
 

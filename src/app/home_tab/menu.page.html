@@ -64,7 +64,9 @@
     </div>
 
     <div class="content" *ngIf="contentLoad && trips.length > 0">
-      <ion-searchbar #search debounce="500" (ionChange)="ionChange($event)" color="light"></ion-searchbar>
+      <ion-searchbar debounce="500" (ionChange)="ionChange($event)" color="light"
+        [placeholder]="'Search Tour' | customTranslate | async">
+      </ion-searchbar>
       <ion-card style="text-align: justify;">
         <br>
         <div id="iti_title">
@@ -82,7 +84,9 @@
               <img [src]="road.image">
               <p>{{ road.description| customTranslate | async}}</p>
               <br>
-              <h3>{{ "Price : " + road.price + " €" | customTranslate |async}}</h3>
+              <h3>{{ "Price : "| customTranslate |async}}
+                {{ road.price | currency:'EUR'| customTranslate |async}}
+              </h3>
               <ion-button (click)="showRoteiro(road)" expand="block" color="secondary"> {{'Book Tour' | customTranslate|
                 async}}
               </ion-button>

@@ -50,7 +50,7 @@ ion-card {
 #btn_login {
   --background: #000000;
   --border-radius: 10px;
-  --width: 100%;
+  width: 100%;
   --heigth: 40%;
 }
 /*
@@ -99,6 +99,7 @@ ion-button {
 .texts {
   color: white;
   justify-content: center;
+  padding-left: 23px;
   h6 {
     line-height: 0.1;
     text-align: justify;

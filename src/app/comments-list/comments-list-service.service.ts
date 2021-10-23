@@ -4,22 +4,20 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { RoadMap } from '../home_tab/roadMap';
 import { Comment, User } from './Comment';
 import { CustomTranslateService } from '../shared/services/custom-translate.service';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentsListService {
   //urls
-  private url: String = '/users/';
   private url_get_user: String = '/getUser/';
-  private url_get_id_user: String = '/getIdUser/';
   private url_comments: String = '/getComments/';
-  private url_post_comments: String = '/postComments/';
-  private url_road = '/itineary/showRoadMap';
+  private avg_url: string = '/getAverageComments/';
   public comments: Array<Comment> = [];
   public user: User;
 
@@ -63,5 +61,9 @@ export class CommentsListService {
         }
       });
     return this.comments;
+  }
+
+  public getAverageComments(road_map_id: number): Observable<any> {
+    return this.http.get<number>(environment.apiUrl + this.avg_url + 1);
   }
 }
