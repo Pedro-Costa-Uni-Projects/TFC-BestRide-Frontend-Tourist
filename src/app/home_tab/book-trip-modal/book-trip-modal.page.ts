@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import {
   Geolocation,
   GeolocationOptions,
@@ -29,7 +28,6 @@ export class BookTripModalPage implements OnInit {
   private map: any;
   @Input() circuito_rec: InterestPoints;
   public circuito: any;
-  public language: string = this.translate.currentLang;
 
   private interest: any;
   public vehicles: Observable<any>;
@@ -38,7 +36,6 @@ export class BookTripModalPage implements OnInit {
 
   constructor(
     private modalCtr: ModalController,
-    private translate: TranslateService,
     private map_service: MapServiceService,
     private booking_service: BookServiceService,
     private http: HttpClient,
@@ -99,16 +96,17 @@ export class BookTripModalPage implements OnInit {
       driver_id: 1,
     };
     //const response = this.booking_service.booking_trip(data_booking);
-    this.openPaymentModal(data_booking, 20);
+    this.openPaymentModal(data_booking, 20, this.circuito.title);
   }
 
-  async openPaymentModal(data: any, total) {
+  async openPaymentModal(data: any, total, name: any) {
     const modal = await this.modalCtr.create({
       component: PaymentPage,
       cssClass: 'my-custom-class',
       componentProps: {
         data: data,
         paymentAmount: total,
+        tripName: name,
       },
     });
     return await modal.present();

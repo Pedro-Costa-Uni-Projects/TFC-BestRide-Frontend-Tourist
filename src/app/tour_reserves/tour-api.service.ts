@@ -17,8 +17,6 @@ export class TourApiService {
   public getTravelsByUser(userID: string): Array<Tour> {
     this.http.get(environment.apiUrl + this.url_fetch_bookings + 4).subscribe(
       (response) => {
-        console.log(response);
-
         for (let i in response) {
           this.tours.push({
             road_id: response[i]['road_map_id'].id,

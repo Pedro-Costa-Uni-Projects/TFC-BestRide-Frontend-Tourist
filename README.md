@@ -37,19 +37,15 @@
 #### Bibliotecas Implementadas a instalar:
 
 ```
-1. npm install @ionic-native/geolocation
-2. npm install @ionic-native/native-geocoder
-3. npm i @ionic-native/core
-4. npm install --save @ionic-native/core@latest @ionic-native/google-maps@latest
-5. npm i --save @capacitor-community/facebook-login
-6. npm i @codetrix-studio/capacitor-google-auth
-7. npm install @ngx-translate/core @ngx-translate/http-loader --save
-8. npm i ion2-calendar@next moment
-9. npm install @ionic/storage-angular
-10. npm i cordova plugin add cordova-plugin-stripe
-11. npm install @ionic-native/stripe
-12. npm install leaflet --save
-13. npm install leaflet-ant-path --save
+> npm install @ionic-native/geolocation
+> npm install @ionic-native/native-geocoder
+> npm i @ionic-native/core
+> npm install --save @ionic-native/core@latest
+> npm install @ionic/storage-angular
+> npm i cordova plugin add cordova-plugin-stripe
+> npm install @ionic-native/stripe
+> npm install leaflet --save
+> npm install leaflet-ant-path --save
 ```
 
 ---

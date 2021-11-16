@@ -26,8 +26,7 @@
             <ion-col>
               <ion-item>
                 <ion-label> {{'Language' | customTranslate | async}}</ion-label>
-                <ion-select [(ngModel)]='language' (ionChange)='changeLanguage()'
-                  [placeholder]='"definicoes.languageChangePlaceholder" | translate'>
+                <ion-select (ionChange)='changeLanguage()'>
                   <ion-select-option value='pt'>Portuguese</ion-select-option>
                   <ion-select-option value='en'>English</ion-select-option>
                   <ion-select-option value='es'>Spanish</ion-select-option>

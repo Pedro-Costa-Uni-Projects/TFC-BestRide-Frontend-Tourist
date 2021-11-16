@@ -9,16 +9,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="warning">
   <ion-grid text-center>
   </ion-grid>
   <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-title>Payment</ion-card-title>
       <ion-row>
-        <ion-col>Total Payment</ion-col>
-        <ion-col>{{paymentAmount}} <ion-icon name="{{currencyIcon}}"></ion-icon>
-        </ion-col>
+        <h2>{{ tripName | uppercase }} {{ paymentAmount | currency : 'EUR'}}</h2>
       </ion-row>
     </ion-card-header>
     <ion-card-content>

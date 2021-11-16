@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { PaymentServiceService } from './payment-service.service';
@@ -19,6 +20,7 @@ export class PaymentPage implements OnInit {
   private card_cvc: any;
   public currencyIcon: string = 'logo-euro';
   public paymentAmount;
+  public tripName;
   private data: any;
   private url_payment: string = '/makePayment/';
 
@@ -26,11 +28,13 @@ export class PaymentPage implements OnInit {
     private modalCtrl: ModalController,
     private toast: ToastController,
     private http: HttpClient,
-    private payment_service: PaymentServiceService
+    private payment_service: PaymentServiceService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.setupStripe();
+    console.log(this.data);
   }
 
   setupStripe() {
@@ -106,7 +110,6 @@ export class PaymentPage implements OnInit {
           var errorElement = document.getElementById('card-errors');
           errorElement.textContent = result.error.message;
         } else {
-          this.showMessageToast('Your Payment was concluded !!');
           console.log('Sucess!');
           console.log(result['source'].id);
           const token = result['source'].id;
@@ -118,20 +121,13 @@ export class PaymentPage implements OnInit {
             (resp) => {
               this.payment_service.booking_trip(this.data);
               this.modalCtrl.dismiss();
+              this.router.navigate(['/tourBooking']);
             },
             (err) => {}
           );
         }
       });
     });
-  }
-
-  async showMessageToast(msg: string) {
-    const toast = await this.toast.create({
-      message: '' + msg,
-      duration: 2000,
-    });
-    toast.present();
   }
 
   cancel() {

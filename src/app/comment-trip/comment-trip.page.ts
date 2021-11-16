@@ -5,7 +5,6 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { CommentApiService } from './comment-trip-api.service';
 import { Observable } from 'rxjs';
 import { Comment, User } from './comment';
@@ -22,7 +21,6 @@ export class CommentTripPage implements OnInit {
   public roadTitle: String;
   public comments: Array<any> = [];
   public progress: boolean = false;
-  public language: string = this.translateService.currentLang;
   private form: FormGroup;
   public user: User;
 
@@ -38,7 +36,6 @@ export class CommentTripPage implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private http: HttpClient,
-    private translateService: TranslateService,
     private comments_api: CommentApiService,
     private trans: CustomTranslateService,
     private mdlCtrl: ModalController

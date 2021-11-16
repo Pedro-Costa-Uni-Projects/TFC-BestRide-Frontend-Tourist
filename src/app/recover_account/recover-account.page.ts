@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { RecoverAccountApiService } from './recover-account-api.service';
 import { AppComponent } from '../app.component';
 
@@ -14,7 +13,6 @@ import { ModalController } from '@ionic/angular';
 })
 export class RecoverAccountPage implements OnInit {
   ionicForm: FormGroup;
-  language: string = this.translateService.currentLang;
 
   registrationForm = this.formBuilder.group({
     email: [''],
@@ -22,7 +20,6 @@ export class RecoverAccountPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private translateService: TranslateService,
     private recuperarContaApi: RecoverAccountApiService,
     private model_controller: ModalController,
     private comp: AppComponent

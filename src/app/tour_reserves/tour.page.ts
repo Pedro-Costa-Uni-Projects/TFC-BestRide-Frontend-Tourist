@@ -34,7 +34,6 @@ export class TourPage implements OnInit {
         response.present();
         response.onDidDismiss().then((response) => {
           this.loadingContent = false;
-          console.log(this.tour_array);
         });
       });
   }

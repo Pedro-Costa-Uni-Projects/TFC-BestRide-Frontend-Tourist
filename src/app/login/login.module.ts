@@ -9,12 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 
 import { HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../shared/shared.module';
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/lang/', '.json');
-}
 
 @NgModule({
   imports: [
@@ -24,13 +19,6 @@ export function createTranslateLoader(http: HttpClient) {
     LoginPageRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
   ],
   declarations: [LoginPage],
 })

@@ -5,7 +5,6 @@ import {
   ElementRef,
   ChangeDetectorRef,
 } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { DadosContaApiService } from './user-tab-api.service';
 import {
@@ -46,7 +45,6 @@ export class DadosContaPage implements OnInit {
 
   public icon_input: string = 'create-outline';
 
-  public language: string = this.translateService.currentLang;
   ionicForm: FormGroup;
 
   public user: User;
@@ -54,7 +52,6 @@ export class DadosContaPage implements OnInit {
   public social: String;
 
   constructor(
-    private translateService: TranslateService,
     private router: Router,
     private dadosContaApi: DadosContaApiService,
     public alertController: AlertController,

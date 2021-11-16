@@ -3,14 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController, isPlatform, AlertController } from '@ionic/angular';
 import { Plugins, registerWebPlugin } from '@capacitor/core';
-import { TranslateService } from '@ngx-translate/core';
 //facebook login
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FacebookLoginPlugin } from '@capacitor-community/facebook-login';
-import { FacebookLogin } from '@capacitor-community/facebook-login';
-registerWebPlugin(FacebookLogin);
-//google login
-import '@codetrix-studio/capacitor-google-auth';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 //api
@@ -31,10 +25,8 @@ export class LoginPage implements OnInit {
   public passwordIconToggle = 'eye';
   public ionicForm: FormGroup;
   public name: string;
-  public language: string = this.translateService.currentLang;
 
   //facebook
-  private fbLogin: FacebookLoginPlugin;
   private user = null;
   private token = null;
 
@@ -70,7 +62,6 @@ export class LoginPage implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private http: HttpClient,
-    private translateService: TranslateService,
     private alertCtrl: AlertController,
     private loginApi: LoginApiService,
     private storage: NativeStorage,
@@ -79,13 +70,6 @@ export class LoginPage implements OnInit {
     private iab: InAppBrowser
   ) {
     comp.hide_tab = true;
-    this.translateService.get('alert_login').subscribe((data) => {
-      this.login_alert_text = {
-        header: data['header'],
-        message: data['message'],
-        buttons: data['buttons'][0],
-      };
-    });
   }
 
   ngOnInit() {}

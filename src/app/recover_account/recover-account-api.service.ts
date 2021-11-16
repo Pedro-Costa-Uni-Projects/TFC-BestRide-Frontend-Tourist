@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class RecoverAccountApiService {
   private url_recover: String = '/recoverUser/';
   private recover_alert_text = {};
-  public language: string = this.trans.currentLang;
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    public alertController: AlertController,
-    private trans: TranslateService
+    public alertController: AlertController
   ) {}
 
   public recoverAccount(email: String): void {

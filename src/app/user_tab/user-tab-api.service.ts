@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { User } from '../user_tab/user';
 
 @Injectable({
@@ -35,8 +34,7 @@ export class DadosContaApiService {
     private http: HttpClient,
     private router: Router,
     private nativeStorage: NativeStorage,
-    public alertController: AlertController,
-    private translateService: TranslateService
+    public alertController: AlertController
   ) {
     this.user = new User('', '', '', '', '', '');
     this.ngOnInit();

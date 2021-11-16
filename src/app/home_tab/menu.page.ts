@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-
-import { LatLngBounds, MarkerOptions } from '@ionic-native/google-maps';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { RoadMap } from './roadMap';
 import {
@@ -34,7 +31,6 @@ export class MenuPage implements OnInit {
   @ViewChild('map', { static: false }) mapElement: ElementRef;
 
   public selected: RoadMap;
-  public language: string = this.translateService.currentLang;
   private distance: any;
   private currentPos: Geoposition;
   user: User;
@@ -45,7 +41,6 @@ export class MenuPage implements OnInit {
 
   constructor(
     private geolocation: Geolocation,
-    private translateService: TranslateService,
     private router: Router,
     private model_controller: ModalController,
     private appComp: AppComponent,

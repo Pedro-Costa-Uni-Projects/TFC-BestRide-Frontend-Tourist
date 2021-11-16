@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { InterestPoints, RoadMap } from '../roadMap';
 import { MapServiceService } from '../map-service.service';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -23,13 +22,11 @@ export class TripDetailsPage implements OnInit {
   map: Leaflet.Map;
   @Input() circuito_rec: InterestPoints;
   public circuito: any;
-  public language: string = this.translate.currentLang;
   propertyList = [];
   private interest: Array<any> = [];
 
   constructor(
     private modalCtr: ModalController,
-    private translate: TranslateService,
     private map_service: MapServiceService,
     private http: HttpClient,
     private loadingCtrl: LoadingController

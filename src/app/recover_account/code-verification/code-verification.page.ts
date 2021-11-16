@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { CodeVerificationApiService } from './code-verification-api.service';
 import { ResetPasswordModalPage } from './reset-password-modal/reset-password-modal.page';
 import { ModalController } from '@ionic/angular';
@@ -12,7 +11,6 @@ import { ModalController } from '@ionic/angular';
 })
 export class CodeVerificationPage implements OnInit {
   ionicForm: FormGroup;
-  language: string = this.translateService.currentLang;
 
   registrationForm = this.formBuilder.group({
     code: ['', Validators.required],
@@ -22,7 +20,6 @@ export class CodeVerificationPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private translateService: TranslateService,
     private codeVerificationApi: CodeVerificationApiService,
     private model_controller: ModalController
   ) {}

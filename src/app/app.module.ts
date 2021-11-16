@@ -7,19 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/lang/', '.json');
-}
 import { User } from './user_tab/user';
 import { CustomTranslatePipe } from './shared/pipes/custom-translate.pipe';
 import { SharedModule } from './shared/shared.module';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Stripe } from '@ionic-native/stripe/ngx';
+import { AlertPopup } from './shared/alert-pop';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,13 +26,6 @@ import { Stripe } from '@ionic-native/stripe/ngx';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
     SharedModule,
   ],
   providers: [
@@ -50,6 +38,7 @@ import { Stripe } from '@ionic-native/stripe/ngx';
     InAppBrowser,
     Stripe,
     NativeGeocoder,
+    AlertPopup,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

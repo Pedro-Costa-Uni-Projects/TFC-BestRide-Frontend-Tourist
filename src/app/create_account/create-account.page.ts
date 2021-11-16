@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { CriaContaApiService } from './create-account-api.service';
 import { AppComponent } from '../app.component';
 
@@ -13,7 +12,6 @@ import { AppComponent } from '../app.component';
 export class CriaContaPage implements OnInit {
   public showPass = false;
   public showPass2 = false;
-  public language: string = this.translateService.currentLang;
 
   public passwordIconToggle: String = 'eye';
   public passwordIconToggle2: String = 'eye';
@@ -60,7 +58,6 @@ export class CriaContaPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
-    private translateService: TranslateService,
     private api: CriaContaApiService,
     private comp: AppComponent
   ) {

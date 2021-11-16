@@ -9,11 +9,6 @@ import { CriaContaPageRoutingModule } from './create-account-routing.module';
 import { CriaContaPage } from './create-account.page';
 
 import { HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/lang/', '.json');
-}
 import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [
@@ -24,13 +19,6 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
   ],
   declarations: [CriaContaPage],
 })

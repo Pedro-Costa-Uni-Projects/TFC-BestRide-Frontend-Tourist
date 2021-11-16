@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, IonInput } from '@ionic/angular';
 import { DadosContaApiService } from '../user-tab-api.service';
 import { ModalController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,17 +20,8 @@ export class ResetPasswordModalPage implements OnInit {
     public alertController: AlertController,
     private dadosContaApi: DadosContaApiService,
     private modalCtr: ModalController,
-    public translate: TranslateService,
     private router: Router
-  ) {
-    this.translate.get('reset_page_modal').subscribe((data) => {
-      this.reset_alert_text = {
-        header: data['header'],
-        message: data['message'],
-        buttons: data['buttons'][0],
-      };
-    });
-  }
+  ) {}
 
   public goBack() {
     this.modalCtr.dismiss();

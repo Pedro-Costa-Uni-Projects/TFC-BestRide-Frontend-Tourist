@@ -9,11 +9,6 @@ import { MenuPageRoutingModule } from './menu-routing.module';
 import { MenuPage } from './menu.page';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/lang/', '.json');
-}
 
 @NgModule({
   imports: [
@@ -22,13 +17,6 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModule,
     IonicModule,
     MenuPageRoutingModule,
-    TranslateModule.forChild({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
   ],
   declarations: [MenuPage],
 })

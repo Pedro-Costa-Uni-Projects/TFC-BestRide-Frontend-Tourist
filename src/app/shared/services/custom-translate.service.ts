@@ -26,14 +26,4 @@ export class CustomTranslateService {
       sourceLang: 'en',
     });
   }
-
-  async showAlert(header: string, msg: string, button: string) {
-    const alert = await this.alertController.create({
-      header: '' + header,
-      message: '' + msg,
-      buttons: ['' + button],
-    });
-
-    alert.present();
-  }
 }

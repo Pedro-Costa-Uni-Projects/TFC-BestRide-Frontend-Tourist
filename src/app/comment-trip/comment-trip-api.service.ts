@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { RoadMap } from '../home_tab/roadMap';
 import { Comment, User } from './comment';
 import { CustomTranslateService } from '../shared/services/custom-translate.service';
+import { AlertPopup } from '../shared/alert-pop';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class CommentApiService {
     private router: Router,
     public alertController: AlertController,
     private nativeStorage: NativeStorage,
-    private cts: CustomTranslateService
+    private cts: AlertPopup
   ) {
     this.ngOnInit();
   }
@@ -76,7 +77,7 @@ export class CommentApiService {
       .subscribe(
         (res) => {
           console.log(res);
-          this.cts.showAlert('Comment sent!', 'Thanks for the comment', 'OK');
+          this.cts.presentAlert('Comment', 'Thanks for your comment', 'OK');
         },
         (err) => {
           console.log(err);

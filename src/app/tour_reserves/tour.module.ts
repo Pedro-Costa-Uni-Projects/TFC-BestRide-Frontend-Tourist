@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CalendarModule } from 'ion2-calendar';
 import { IonicModule } from '@ionic/angular';
 
 import { CalendarioPageRoutingModule } from './tour-routing.module';
@@ -13,7 +12,6 @@ import { TourPage } from './tour.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CalendarModule,
     SharedModule,
     CalendarioPageRoutingModule,
   ],

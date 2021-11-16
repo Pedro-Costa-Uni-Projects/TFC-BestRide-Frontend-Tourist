@@ -11,6 +11,8 @@ export class PaymentServiceService {
   constructor(private http: HttpClient) {}
 
   public booking_trip(data: any): void {
+    console.log(data);
+
     this.http
       .post(environment.apiUrl + this.url_create_booking, data)
       .subscribe(
