@@ -38,31 +38,6 @@
         </ion-card-content>
       </ion-card>
     </div>
-
-
-    <div class="content" *ngIf="contentLoad && trips.length==0">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>
-                  <ion-icon name="warning-sharp"></ion-icon>
-                </ion-card-title>
-              </ion-card-header>
-              <ion-card-content>
-                <div class="err_no_trips">
-                  <h3>
-                    {{ "Sorry, we don't have any travel itinerary in the city you want." | customTranslate | async}}
-                  </h3>
-                </div>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
     <div class="content" *ngIf="contentLoad && trips.length > 0">
       <ion-searchbar debounce="500" (ionChange)="ionChange($event)" color="light"
         [placeholder]="'Search Tour' | customTranslate | async">
@@ -81,7 +56,8 @@
               </ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
-              <img [src]="road.image">
+              <img
+                src="https://bestridebucket.s3.amazonaws.com/chiado.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA5QNS4PZAWXN43NUD%2F20220220%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20220220T173300Z&X-Amz-Expires=3200&X-Amz-SignedHeaders=host&X-Amz-Signature=3ea553ed4736bd02dfadce0d6814284c2fa4c50372301c16ab68f6cb49af9459">
               <p>{{ road.description| customTranslate | async}}</p>
               <br>
               <h3>{{ "Price : "| customTranslate |async}}
