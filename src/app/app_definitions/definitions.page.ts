@@ -9,6 +9,8 @@ import { CustomTranslateService } from '../shared/services/custom-translate.serv
   styleUrls: ['./definitions.page.scss'],
 })
 export class DefinicoesPage implements OnInit {
+  language: string = this.customTranslateService.currentLang.value;
+
   constructor(
     private customTranslateService: CustomTranslateService,
     private router: Router,
@@ -19,5 +21,7 @@ export class DefinicoesPage implements OnInit {
 
   changeLanguage() {
     localStorage.setItem('old-lang', localStorage.getItem('lang')); // GUARDA O IDIOMA ANTERIOR
+    localStorage.setItem('lang', this.language);
+    this.customTranslateService.currentLang.next(this.language);
   }
 }
