@@ -18,24 +18,25 @@
           <ion-row>
             <ion-col>
               <h2>Login</h2>
-
               <form class="form" [formGroup]="registrationForm" (ngSubmit)="login()">
-
                 <ion-list>
-                  <ion-item>
-                    <ion-label position="stacked">Email</ion-label>
-                    <ion-input formControlName="email" type="email" required></ion-input>
-                  </ion-item>
-                  <div *ngFor="let error of errorMessages.email">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" required>
+                  </mat-form-field>
+                  <mat-error *ngFor="let error of errorMessages.email">
                     <ng-container *ngIf="email.hasError(error.type) && ( email.touched || email.dirty)">
                       <small class="error-message">{{error.message | customTranslate | async}}</small>
                     </ng-container>
-                  </div>
-                  <ion-item>
-                    <ion-label position="stacked">Password</ion-label>
-                    <ion-input formControlName="password" [type]=" showPass ? 'text' : 'password'" required></ion-input>
-                    <ion-icon slot="end" [name]="passwordIconToggle" (click)="togglePass()"></ion-icon>
-                  </ion-item>
+                  </mat-error>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <div mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </div>
+                  </mat-form-field>
                   <div *ngFor="let error of errorMessages.password">
                     <ng-container *ngIf="password.hasError(error.type) && ( password.touched || password.dirty)">
                       <small class="error-message">{{error.message | customTranslate | async}}</small>

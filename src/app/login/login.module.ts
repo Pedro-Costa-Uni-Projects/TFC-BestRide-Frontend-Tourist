@@ -10,6 +10,7 @@ import { LoginPage } from './login.page';
 
 import { HttpClient } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginPageRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    MaterialModule,
   ],
   declarations: [LoginPage],
 })

@@ -15,6 +15,8 @@ import { SharedModule } from './shared/shared.module';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Stripe } from '@ionic-native/stripe/ngx';
 import { AlertPopup } from './shared/alert-pop';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +29,8 @@ import { AlertPopup } from './shared/alert-pop';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [
     NativeStorage,

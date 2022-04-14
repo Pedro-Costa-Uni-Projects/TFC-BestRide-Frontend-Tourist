@@ -21,7 +21,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public showPass = false;
+  public hide = false;
   public passwordIconToggle = 'eye';
   public ionicForm: FormGroup;
   public name: string;
@@ -73,17 +73,6 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {}
-
-  //esconde/mostra password
-  togglePass(): void {
-    this.showPass = !this.showPass;
-
-    if (this.passwordIconToggle == 'eye') {
-      this.passwordIconToggle = 'eye-off';
-    } else {
-      this.passwordIconToggle = 'eye';
-    }
-  }
 
   public login(): void {
     if (!this.registrationForm.valid) {
