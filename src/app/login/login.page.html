@@ -17,20 +17,20 @@
         <ion-card>
           <ion-row>
             <ion-col>
-              <h2>Login</h2>
               <form class="form" [formGroup]="registrationForm" (ngSubmit)="login()">
                 <ion-list>
+                  <h1>Login</h1>
                   <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" type="email" required>
+                    <input matInput formControlName="email" type="email">
                   </mat-form-field>
                   <mat-error *ngFor="let error of errorMessages.email">
                     <ng-container *ngIf="email.hasError(error.type) && ( email.touched || email.dirty)">
                       <small class="error-message">{{error.message | customTranslate | async}}</small>
                     </ng-container>
                   </mat-error>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Enter your password</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
                     <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
                     <div mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                       [attr.aria-pressed]="hide">
@@ -42,12 +42,7 @@
                       <small class="error-message">{{error.message | customTranslate | async}}</small>
                     </ng-container>
                   </div>
-                  <ion-item>
-                    <ion-label>{{'Remember password? ' | customTranslate | async}}</ion-label>
-                    <ion-checkbox (ionChange)="addValue($event)" [checked]="checked" color="warning">
-                    </ion-checkbox>
-                  </ion-item>
-                  <ion-button [disabled]="!registrationForm.valid" id="btn_login" type="submit">Login</ion-button>
+                  <button mat-button id="btn_login" type="submit">Login</button>
                 </ion-list>
               </form>
             </ion-col>
@@ -55,21 +50,22 @@
         </ion-card>
         <!-- Social Login Buttons-->
         <div class="buttons_social">
-          <ion-button id="btn_google" (click)="socialLogin('Google')">
-            <ion-icon name="logo-google" color="danger" slot="start" size="large"></ion-icon>
-            {{'Sign up with Google' | customTranslate | async}}
-          </ion-button>
-          <ion-button id="btn_face">
-            <ion-icon name="logo-facebook" color="secundary" slot="start" size="large"></ion-icon>
-            {{'Sign up with Facebook' | customTranslate | async}}
-          </ion-button>
+          <button mat-flat-button>
+            <img src="../../assets/icon/google_logo.svg" id="google_logo">
+            Sign up with Google
+          </button>
+          <br>
+          <button mat-flat-button>
+            <img src="../../assets/icon/facebook_logo.svg" id="google_logo">
+            Sign up with Facebook
+          </button>
         </div>
         <!-- Texts -->
         <div class="texts">
-          <h6>{{'Dont have an account? ' | customTranslate | async}}<u (click)="create_account()">{{'Sign up' |
+          <p>{{'Dont have an account? ' | customTranslate | async}}<u (click)="create_account()">{{'Sign up' |
               customTranslate |
-              async}}</u></h6>
-          <h6><u (click)="recover_account()">{{'Forgout your password?' | customTranslate | async}}</u></h6>
+              async}}</u></p>
+          <p><u (click)="recover_account()">{{'Forgout your password?' | customTranslate | async}}</u></p>
         </div>
 
 

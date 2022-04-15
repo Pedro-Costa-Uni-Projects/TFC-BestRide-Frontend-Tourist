@@ -76,7 +76,7 @@ export class LoginPage implements OnInit {
 
   public login(): void {
     if (!this.registrationForm.valid) {
-      this.showDialog();
+      return
     } else {
       let email = this.registrationForm.get('email').value;
       let password = this.registrationForm.get('password').value;

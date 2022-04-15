@@ -10,6 +10,7 @@ import { CriaContaPage } from './create-account.page';
 
 import { HttpClient } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    MaterialModule,
   ],
   declarations: [CriaContaPage],
 })
