@@ -1,112 +1,32 @@
-# Projeto Best Ride
+# TFC BestRide Frontend - Tourist
 
-#### Alterações do ultimo commit:
+## Download das Ferramentas Necessárias
+<p>Para correr este trabalho iremos necessitar de 5 softwares diferentes, 4 para correr o projeto e o
+outro para visualizar o código do mesmo.</p>
+<ul>
+    <li>Node.js para interagir com o ecossistema do Ionic. Download da versão mais recente aqui.</li>
+    <li>Um editor de código (se pretender ver o código). Nós usamos e recomendamos o Visual Studio Code.</li>
+    <li>Linha de Comandos, usar o terminal embutido no Visual Studio Code, CMD ou Powershell CLI.</li>
+    <li>Git, para clonar os repositórios. Pode fazer o download aqui.</li>
+    <li>Browser, pode utilizar qualquer browser que tenha instalado no seu sistema operativo.</li>
+</ul>
 
-> Para Iniciar a app turista, execute os seguinte comandos:
-
+## Correr o Projeto
+1. Ir para a pasta onde pretende fazer o download do código, e abrir um terminal.
+2. Clonar o repositório 
 ```
-    cd BestRide
-
+    git clone https://github.com/claudio-21902813/TFC_BestRide_Frontend_Tourist_Academic
 ```
-
----
-
+3. Instalar Ionic CLI.
 ```
-    ionic serve turista_app
-
+npm install -g @ionic/cli
 ```
-
----
-
-#### Tecnologias Usadas:
-
-1. Ionic
-2. Angular
-3. Python
-4. Django
-5. MYSQL
-6. TypeScript
-7. AWS
-
----
-
-## Para Executar em emulador Android:
-
-> ionic build --prod && npx cap copy && npx cap sync android && npx cap open android
-
-#### Bibliotecas Implementadas a instalar:
-
+4. Instalar dependências.
 ```
-> npm install @ionic-native/geolocation
-> npm install @ionic-native/native-geocoder
-> npm i @ionic-native/core
-> npm install --save @ionic-native/core@latest
-> npm install @ionic/storage-angular
-> npm i cordova plugin add cordova-plugin-stripe
-> npm install @ionic-native/stripe
-> npm install leaflet --save
-> npm install leaflet-ant-path --save
+npm install
 ```
-
----
-
-# Se houver Algum erro no codigo do Image Picker no Android Studio executar:
-
-npm install jetifier
-npx jetify
-npx cap sync android
-
-## Nota :
-
-> Para Iniciar o login do Facebook ou da Google, e
-> aconselhavel emular o proprio usando o android studio (Android) ou o Xcode (IOS) ja que o browser nao consegue implementar as bibliotecas necessarias.
-
-> Ajuste no menu que aparecia no login, agora só aparece depois do login
-
----
-
-## TODO :
-
-> ver Scrum
-
-<br>
-<br>
-<br>
-
-# Servidor Django REST API
-
-## Passos:
-
-1. Instalar o Python e definir como variavel do Sistema
-2. Instalar o pip
-
-- pip install django
-- pip install djangorestframework
-
-3. django-admin startproject BestRideApi
-4. cd BestRideApi
-5. python manage.py startapp best_ride
-
-## Para a Base de dados:
-
-- Iniciar o Wamp
-- correr o Script no phpMyAdmin para aceder a BD BestRide
-
-## Para Iniciar:
-
-> python manage.py runserver 0.0.0.0:8080
-
-> URLS:
-
-- https://127.0.0.1:8000
-
-## Instalações:
-
-# AWS
-
-> pip install boto3
-
-# Social Login
-
-> <preference name="OverrideUserAgent" value="Mozilla/5.0 Google" /> 
-> > Inserir no config.xml
+5. Por fim basta correr o programa em si.
+```
+ionic s
+```
+<p>Se tudo correu como esperado, o browser ira ter um link com a aplicação a correr localmente por exemplo no localhost:8000. Ambas as aplicações são responsivas pelo qual se quiser experienciar a versão mobile deve ir às ferramentas de programador do browser que esta a utilizar e encontrar o processo para fazer essa transformação.</p>
