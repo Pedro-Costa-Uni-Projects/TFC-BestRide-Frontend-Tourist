@@ -25,17 +25,15 @@
           <ion-col>
             <ion-card>
               <form class="form" [formGroup]="ionicForm" (ngSubmit)="submit()">
-                <h2> {{'Create Account' | customTranslate | async}}</h2>
+                <h1> {{'Create Account' | customTranslate | async}}</h1>
 
-
-                <ion-item>
-                  <ion-label position="stacked"> {{'Name' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="name" required></ion-input>
-                </ion-item>
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Name' | customTranslate | async}}</mat-label>
+                  <input matInput formControlName="name">
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.name.errors?.required">
                   {{'Name is required' | customTranslate | async}}
                 </span>
-
 
                 <ion-item>
                   <ion-label position="stacked"> {{'Date of Birth' | customTranslate | async}}</ion-label>
@@ -47,90 +45,90 @@
                   {{'Date Of Birth is required' | customTranslate | async}}
                 </span>
 
-                <ion-item>
-                  <ion-label position="stacked"> {{'Phone Number' | customTranslate | async}}</ion-label>
-                  <ion-row>
-                    <ion-col size="4">
-                      <ion-select formControlName="phone_ind" class="phoneIndicative" placeholder="+351"
-                        interface="action-sheet" value="brown" okText="Okay" cancelText="Dismiss">
-                        <ion-select-option *ngFor="let idct of phoneIndicative" [value]="idct.indicative">
-                          {{idct.country + " " + idct.indicative}}
-                        </ion-select-option>
-                      </ion-select>
-                    </ion-col>
-                    <ion-col size="6">
-                      <ion-input type="number" formControlName="phone" required></ion-input>
-                    </ion-col>
-                  </ion-row>
-                </ion-item>
+                <br>
+                <ion-row class="row_phone">
+                  <mat-form-field appearance="outline" class="indicator_phone">
+                    <mat-select formControlName="phone_ind" placeholder="+351" interface="action-sheet" value="brown"
+                      okText="Okay" cancelText="Dismiss">
+                      <mat-option *ngFor="let idct of phoneIndicative" [value]="idct.indicative">
+                        {{idct.country + " " + idct.indicative}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" class="field_phone">
+                    <mat-label>{{'Number' | customTranslate | async}}</mat-label>
+                    <input matInput formControlName="phone" type="number">
+                  </mat-form-field>
+
+                </ion-row>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.phone.errors?.required">
                   {{'Phone is required' | customTranslate | async}}
                 </span>
-
                 <span class="error-message" *ngIf="isSubmitted && errorControl.phone_ind.errors?.required">
                   {{'Indicative is required' | customTranslate | async}}
                 </span>
 
-
-
-                <ion-item>
-                  <ion-label position="stacked"> {{'Postal Code' | customTranslate | async}}</ion-label>
-                  <ion-input type="text" formControlName="postal" required></ion-input>
-                </ion-item>
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Postal Code' | customTranslate | async}}</mat-label>
+                  <input matInput formControlName="postal" type="text">
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.postal.errors?.required">
                   {{'Postal is required' | customTranslate | async}}
                 </span>
 
-
-                <ion-item>
-                  <ion-label position="stacked"> {{'Gender' | customTranslate | async}}</ion-label>
-                  <ion-select [placeholder]="'Choose Gender' | customTranslate | async" okText="OK" cancelText="Cancel"
+                <mat-form-field appearance="outline">
+                  <mat-select [placeholder]="'Choose Gender' | customTranslate | async" okText="OK" cancelText="Cancel"
                     formControlName="gender">
-                    <ion-select-option *ngFor="let gdr of gender" [value]="gdr.gender">
+                    <mat-option *ngFor="let gdr of gender" [value]="gdr.gender">
                       {{gdr.gender | customTranslate | async}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.gender.errors?.required">
                   {{'Gender is required' | customTranslate | async}}
                 </span>
 
-                <ion-item>
-                  <ion-label position="stacked"> {{'Street Address line 1' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="address" required></ion-input>
-                </ion-item>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Street Address line 1' | customTranslate | async}}</mat-label>
+                  <input matInput formControlName="address" type="text">
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.address.errors?.required">
                   {{'Address is required' | customTranslate | async}}
                 </span>
 
 
 
-                <ion-item>
-                  <ion-label position="stacked"> {{'City' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="city" required></ion-input>
-                </ion-item>
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'City' | customTranslate | async}}</mat-label>
+                  <input matInput formControlName="city" type="text">
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.city.errors?.required">
                   {{'City is required' | customTranslate | async}}
                 </span>
 
 
-                <ion-item>
-                  <ion-label position="stacked">Email</ion-label>
-                  <ion-input formControlName="email" type="email" required></ion-input>
-                </ion-item>
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Email' | customTranslate | async}}</mat-label>
+                  <input matInput formControlName="email" type="email">
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.email.errors?.required">
                   {{'Email is required' | customTranslate | async}}
                 </span>
-
                 <span class="error-message" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
                   {{'Emais is not valid' | customTranslate | async}}
                 </span>
 
-                <ion-item>
-                  <ion-label position="stacked">Password</ion-label>
-                  <ion-input formControlName="pass" [type]=" showPass ? 'text' : 'password'" required></ion-input>
-                  <ion-icon slot="end" [name]="passwordIconToggle" (click)="togglePass()"></ion-icon>
-                </ion-item>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Password' | customTranslate |async}}</mat-label>
+                  <input matInput formControlName="pass" [type]="hide ? 'password' : 'text'">
+                  <div mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </div>
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.pass.errors?.required">
                   {{'Password is required' | customTranslate | async}}
                 </span>
@@ -140,13 +138,14 @@
                 </span>
 
 
-
-                <ion-item>
-                  <ion-label position="stacked"> {{'Repeat Password' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="passRepeat" [type]=" showPass2 ? 'text' : 'password'" required>
-                  </ion-input>
-                  <ion-icon slot="end" [name]="passwordIconToggle2" (click)="togglePass2()"></ion-icon>
-                </ion-item>
+                <mat-form-field appearance="outline">
+                  <mat-label>{{'Repeat password' | customTranslate |async}}</mat-label>
+                  <input matInput formControlName="passRepeat" [type]="hide2 ? 'password' : 'text'">
+                  <div mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide2">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </div>
+                </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.passRepeat.errors?.required">
                   {{'Password is required' | customTranslate | async}}
                 </span>
@@ -155,12 +154,13 @@
                   {{'Password must have 8 digits' | customTranslate | async}}
                 </span>
 
-
-                <br>
-                <ion-button expand="block" color="dark" type="submit">
-                  {{'Create Account' | customTranslate | async}}
-                </ion-button>
-                <br>
+                <ion-row>
+                  <ion-col>
+                    <button id="btn_submit" mat-flat-button type="submit">
+                      {{'Create Account' | customTranslate | async}}
+                    </button>
+                  </ion-col>
+                </ion-row>
               </form>
             </ion-card>
           </ion-col>

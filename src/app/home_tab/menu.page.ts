@@ -63,6 +63,7 @@ export class MenuPage implements OnInit {
   async presentModalMapDefinitions() {
     const modal = await this.modalController.create({
       component: OptionsMapPage,
+      cssClass: 'options-map.page.scss',
     });
 
     modal.onDidDismiss().then((data) => {

@@ -10,8 +10,8 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./create-account.page.scss'],
 })
 export class CriaContaPage implements OnInit {
-  public showPass = false;
-  public showPass2 = false;
+  public hide = false;
+  public hide2 = false;
 
   public passwordIconToggle: String = 'eye';
   public passwordIconToggle2: String = 'eye';
@@ -101,26 +101,6 @@ export class CriaContaPage implements OnInit {
       },
       { validator: this.matchingPasswords('pass', 'passRepeat') }
     );
-  }
-
-  togglePass(): void {
-    this.showPass = !this.showPass;
-
-    if (this.passwordIconToggle == 'eye') {
-      this.passwordIconToggle = 'eye-off';
-    } else {
-      this.passwordIconToggle = 'eye';
-    }
-  }
-
-  togglePass2(): void {
-    this.showPass2 = !this.showPass2;
-
-    if (this.passwordIconToggle2 == 'eye') {
-      this.passwordIconToggle2 = 'eye-off';
-    } else {
-      this.passwordIconToggle2 = 'eye';
-    }
   }
 
   matchingPasswords(passwordKey: string, confirmPasswordKey: string) {

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OptionsMapPageRoutingModule } from './options-map-routing.module';
 
 import { OptionsMapPage } from './options-map.page';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { OptionsMapPage } from './options-map.page';
     SharedModule,
     ReactiveFormsModule,
     OptionsMapPageRoutingModule,
+    MaterialModule,
   ],
   declarations: [OptionsMapPage],
 })

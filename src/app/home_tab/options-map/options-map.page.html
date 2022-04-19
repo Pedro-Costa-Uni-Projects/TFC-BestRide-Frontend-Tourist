@@ -14,38 +14,32 @@
       <circle cx="360" cy="600" r="300" fill="#00adff" />
     </svg>
     <div class="content">
-
       <ion-grid>
         <ion-row>
           <ion-col>
-
             <ion-card>
-
               <ion-card-header>
                 {{'Choose the city' | customTranslate | async}}
               </ion-card-header>
-
               <form class="form" [formGroup]="registrationForm">
-                <ion-list>
-                  <ion-item>
-                    <ion-label>{{'City name' | customTranslate | async}}</ion-label>
-                    <ion-select formControlName="location" value="brown"
-                      [selectedText]="'Lisbon' | customTranslate | async" okText="OK" cancelText="Dismiss"
-                      (ionChange)="submit($event)">
-                      <ion-select-option value="Near"> {{'Near Me' | customTranslate | async}}</ion-select-option>
-                      <ion-select-option value="Lisbon"> {{'Lisbon' | customTranslate | async}}</ion-select-option>
-                      <ion-select-option value="Sintra"> {{'Sintra' | customTranslate | async}}</ion-select-option>
-                    </ion-select>
-                  </ion-item>
-                </ion-list>
+                <ion-row>
+                  <ion-col>
+                    <mat-form-field appearance="fill">
+                      <mat-label> Select an option</mat-label>
+                      <mat-select formControlName="location" placeholder="frfr">
+                        <mat-option *ngFor="let type of foods" [value]="type">{{type}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <button mat-button>
+                      Pesquisar
+                    </button>
+                  </ion-col>
+                </ion-row>
               </form>
             </ion-card>
-
-
           </ion-col>
         </ion-row>
       </ion-grid>
-
     </div>
   </div>
 </ion-content>

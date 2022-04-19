@@ -3,6 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { RoadMap } from '../roadMap';
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-options-map',
   templateUrl: './options-map.page.html',
@@ -16,6 +21,12 @@ export class OptionsMapPage implements OnInit {
   public registrationForm = this.formBuilder.group({
     location: ['', Validators.required],
   });
+
+  foods: Food[] = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
 
   constructor(
     public modalController: ModalController,

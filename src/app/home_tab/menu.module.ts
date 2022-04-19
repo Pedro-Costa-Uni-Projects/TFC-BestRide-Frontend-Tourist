@@ -9,6 +9,7 @@ import { MenuPageRoutingModule } from './menu-routing.module';
 import { MenuPage } from './menu.page';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClient } from '@angular/common/http';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
     SharedModule,
     IonicModule,
     MenuPageRoutingModule,
+    MaterialModule,
   ],
   declarations: [MenuPage],
 })
