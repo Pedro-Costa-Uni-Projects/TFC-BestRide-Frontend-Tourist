@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { RoadMap } from '../roadMap';
 
-interface Food {
+interface City {
   value: string;
   viewValue: string;
 }
@@ -17,15 +17,15 @@ export class OptionsMapPage implements OnInit {
   public ionicForm: FormGroup;
   public trips: Array<RoadMap> = [];
   public locationOption: any;
-
+  isSubmitted = false;
   public registrationForm = this.formBuilder.group({
     location: ['', Validators.required],
   });
 
-  foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+  cities: City[] = [
+    { value: 'Near', viewValue: 'Near Me' },
+    { value: 'lisboa', viewValue: 'Lisboa' },
+    { value: 'leiria', viewValue: 'Leiria' },
   ];
 
   constructor(
@@ -33,22 +33,32 @@ export class OptionsMapPage implements OnInit {
     public formBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {}
-
-  onChange(selectedValue: any) {
-    console.log('Selected:' + selectedValue);
+  ngOnInit() {
+    this.ionicForm = this.formBuilder.group({
+      location: ['', Validators.required],
+    });
   }
 
-  submit(e) {
-    if (e.target.value == undefined) {
-      return;
+  onChange(selectedValue: any) {
+    this.ionicForm.get('location').setValue('' + selectedValue.value);
+  }
+
+  public submit() {
+    this.isSubmitted = true;
+    if (!this.ionicForm.valid) {
+      return false;
+    } else {
+      const location_value = this.ionicForm.get('location').value;
+
+      const dismiss_data = {
+        local: location_value,
+      };
+
+      this.modalController.dismiss(dismiss_data);
     }
-    const local = e.target.value;
+  }
 
-    const dismiss_data = {
-      local: local,
-    };
-
-    this.modalController.dismiss(dismiss_data);
+  get errorControl() {
+    return this.ionicForm.controls;
   }
 }
