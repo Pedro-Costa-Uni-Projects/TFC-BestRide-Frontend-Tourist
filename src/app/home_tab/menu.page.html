@@ -56,22 +56,22 @@
               </ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
-              <!-- <img
-                src="https://bestridebucket.s3.amazonaws.com/chiado.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA5QNS4PZAWXN43NUD%2F20220220%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20220220T173300Z&X-Amz-Expires=3200&X-Amz-SignedHeaders=host&X-Amz-Signature=3ea553ed4736bd02dfadce0d6814284c2fa4c50372301c16ab68f6cb49af9459">-->
               <p>{{ road.description| customTranslate | async}}</p>
               <br>
               <h3>{{ "Price : "| customTranslate |async}}
                 {{ road.price | currency:'EUR'| customTranslate |async}}
               </h3>
-              <ion-button (click)="showRoteiro(road)" expand="block" color="secondary"> {{'Book Tour' | customTranslate|
-                async}}
-              </ion-button>
-              <ion-button (click)="trip_map_details(road)" expand="block" color="primary"> {{'See Tour' |
-                customTranslate | async}}
-              </ion-button>
-              <ion-button (click)="comments(road)" expand="block" color="danger"> {{'See Comments' |
-                customTranslate | async}}
-              </ion-button>
+              <div class="ion-text-center">
+                <button mat-raised-button (click)="showRoteiro(road)" expand="block" id="btn_book">
+                  {{'Book Tour' | customTranslate| async}}
+                </button>
+                <button mat-raised-button (click)="trip_map_details(road)" expand="block" id="btn_view">
+                  {{'See Tour' | customTranslate | async}}
+                </button>
+                <button mat-raised-button (click)="comments(road)" expand="block" id="btn_comments"> {{'See Comments' |
+                  customTranslate | async}}
+                </button>
+              </div>
             </ion-card-content>
           </ion-list>
         </div>

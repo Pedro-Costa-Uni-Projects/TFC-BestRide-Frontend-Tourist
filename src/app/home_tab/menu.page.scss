@@ -9,18 +9,29 @@ ion-content {
   background-color: white;
 }
 
+ion-card-title {
+  color: black;
+  font-weight: 900;
+}
+
+ion-card {
+  margin: 6%;
+}
+
 ion-card-content {
   p {
     color: black;
-    font-weight: 800;
+    font-weight: 500;
   }
 
   h3 {
     text-align: left;
-    font-size: x-large;
+    font-size: medium;
     color: black;
-    font-weight: 900;
+    font-weight: 700;
   }
+
+  border-bottom: 1px solid black;
 }
 .content {
   position: absolute;
@@ -53,4 +64,24 @@ ion-icon {
 }
 ion-refresher {
   z-index: 4;
+}
+
+#btn_book {
+  background-color: #ff3f00;
+  width: 90%;
+  color: white;
+}
+
+#btn_comments {
+  background-color: #ffba00;
+  width: 90%;
+  color: white;
+  margin-top: 6px;
+}
+
+#btn_view {
+  background-color: #00adff;
+  width: 90%;
+  color: white;
+  margin-top: 6px;
 }
