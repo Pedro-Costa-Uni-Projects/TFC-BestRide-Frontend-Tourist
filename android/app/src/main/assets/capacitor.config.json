@@ -25,7 +25,7 @@
   },
   "cordova": {},
   "server": {
-    "url": "http://18.224.189.162/",
+    "url": "http://localhost:8100",
     "cleartext": true
   }
 }
