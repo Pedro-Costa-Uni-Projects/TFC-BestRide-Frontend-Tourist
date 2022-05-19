@@ -9,9 +9,8 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-    implementation project(':capacitor-community-facebook-login')
-    implementation project(':codetrix-studio-capacitor-google-auth')
-    implementation "com.android.support:support-v4:27.+"
+
+    implementation "com.stripe:stripe-android:4.1.2"
 }
 
 

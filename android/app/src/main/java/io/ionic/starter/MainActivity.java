@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
-
 import java.util.ArrayList;
-import com.codetrixstudio.capacitor.GoogleAuth.GoogleAuth;
 
 
 public class MainActivity extends BridgeActivity {
@@ -16,14 +14,6 @@ public class MainActivity extends BridgeActivity {
 
     // Initializes the Bridge
     this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
-     
-      /* Logins */
-      
-      // Facebook
-      add(com.getcapacitor.community.facebooklogin.FacebookLogin.class);
-
-      //google
-      add(GoogleAuth.class);
     }});
   }
 }
