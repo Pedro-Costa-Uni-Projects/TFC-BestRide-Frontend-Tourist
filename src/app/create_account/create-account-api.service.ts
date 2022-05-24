@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { CustomTranslateService } from '../shared/services/custom-translate.service';
+import { Observable } from 'rxjs';
+import { CountryCode } from './countryCode';
 
 @Injectable({
   providedIn: 'root',
@@ -104,6 +106,10 @@ export class CriaContaApiService {
       },
       (error) => {}
     );
+  }
+
+  public getCountryCode(): Observable<CountryCode[]> {
+    return this.http.get<CountryCode[]>('./../assets/countries_phone.json');
   }
 
   async showAlertError(header: string, msg: string) {

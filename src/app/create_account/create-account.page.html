@@ -50,8 +50,8 @@
                   <mat-form-field appearance="outline" class="indicator_phone">
                     <mat-select formControlName="phone_ind" placeholder="+351" interface="action-sheet" value="brown"
                       okText="Okay" cancelText="Dismiss">
-                      <mat-option *ngFor="let idct of phoneIndicative" [value]="idct.indicative">
-                        {{idct.country + " " + idct.indicative}}
+                      <mat-option *ngFor="let idct of countryCode" [value]="idct.dial_code">
+                        {{idct.name + " " + idct.dial_code}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -123,7 +123,7 @@
 
                 <mat-form-field appearance="outline">
                   <mat-label>{{'Password' | customTranslate |async}}</mat-label>
-                  <input matInput formControlName="pass" [type]="hide ? 'password' : 'text'">
+                  <input matInput #passw formControlName="pass" [type]="hide ? 'password' : 'text'">
                   <div mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -133,9 +133,13 @@
                   {{'Password is required' | customTranslate | async}}
                 </span>
 
-                <span class="error-message" *ngIf="isSubmitted && errorControl.pass.errors?.minlength">
-                  {{'Password must have 8 digits' | customTranslate | async}}
-                </span>
+                <div *ngIf="errorControl.pass.errors?.pattern">
+                  <mat-hint>Minimal 8 characters</mat-hint><br>
+                  <mat-hint>1 uppercase letter</mat-hint><br>
+                  <mat-hint>1 number</mat-hint><br>
+                  <mat-hint>1 special character</mat-hint><br>
+                  <mat-hint>Length:{{passw.value.length}}</mat-hint>
+                </div>
 
 
                 <mat-form-field appearance="outline">
@@ -148,10 +152,6 @@
                 </mat-form-field>
                 <span class="error-message" *ngIf="isSubmitted && errorControl.passRepeat.errors?.required">
                   {{'Password is required' | customTranslate | async}}
-                </span>
-
-                <span class="error-message" *ngIf="isSubmitted && errorControl.passRepeat.errors?.minlength">
-                  {{'Password must have 8 digits' | customTranslate | async}}
                 </span>
 
                 <ion-row>
