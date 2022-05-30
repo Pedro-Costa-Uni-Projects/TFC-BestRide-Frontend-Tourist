@@ -36,6 +36,13 @@ ion-content {
   font-size: larger;
 }
 
+#title {
+  margin-top: 4%;
+  color: black;
+  font-weight: 900;
+  font-size: 17dp;
+}
+
 #content-menu {
   img {
     align-self: center;
@@ -68,6 +75,15 @@ mat-form-field.mat-form-field {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+#btn_terms_conditions {
+  background-color: #ffba00;
+  width: 80%;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 15px;
+  border-radius: 8px;
 }
 
 #btn_submit {

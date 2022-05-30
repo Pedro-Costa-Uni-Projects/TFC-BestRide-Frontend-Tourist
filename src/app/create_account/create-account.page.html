@@ -1,158 +1,271 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="login" icon="arrow-back-outline" text=""></ion-back-button>
+      <ion-back-button
+        defaultHref="login"
+        icon="arrow-back-outline"
+        text=""
+      ></ion-back-button>
     </ion-buttons>
     <img src="assets/BestRideLogo.png" />
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <div class="body">
-
     <svg height="100%" width="100%">
       <circle cx="0" cy="0" r="250" fill="#bc3592" />
       <circle cx="0" cy="calc(100%)" r="250" fill="#ffba00" />
-      <circle cx="calc(100% - 20px)" cy="calc(100% - 20px)" r="250" fill="#ff3f00" />
+      <circle
+        cx="calc(100% - 20px)"
+        cy="calc(100% - 20px)"
+        r="250"
+        fill="#ff3f00"
+      />
     </svg>
 
-
     <div class="content">
-
       <ion-grid>
         <ion-row>
           <ion-col>
             <ion-card>
               <form class="form" [formGroup]="ionicForm" (ngSubmit)="submit()">
-                <h1> {{'Create Account' | customTranslate | async}}</h1>
+                <h1 id="title">
+                  {{'Create Account' | customTranslate | async}}
+                </h1>
 
                 <mat-form-field appearance="outline">
                   <mat-label>{{'Name' | customTranslate | async}}</mat-label>
-                  <input matInput formControlName="name">
+                  <input matInput formControlName="name" />
+
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.name.errors?.required"
+                  >
+                    {{'Name is required' | customTranslate | async}}
+                  </mat-error>
                 </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.name.errors?.required">
-                  {{'Name is required' | customTranslate | async}}
-                </span>
 
                 <ion-item>
-                  <ion-label position="stacked"> {{'Date of Birth' | customTranslate | async}}</ion-label>
-                  <ion-datetime (ionChange)="getDate($event)" displayFormat="MM/DD/YYYY" value="2019-02-12"
-                    formControlName="dob">
+                  <ion-label position="stacked">
+                    {{'Date of Birth' | customTranslate | async}}</ion-label
+                  >
+                  <ion-datetime
+                    (ionChange)="getDate($event)"
+                    displayFormat="MM/DD/YYYY"
+                    value="2019-02-12"
+                    formControlName="dob"
+                  >
                   </ion-datetime>
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.dob.errors?.required"
+                  >
+                    {{'Date Of Birth is required' | customTranslate | async}}
+                  </mat-error>
                 </ion-item>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.dob.errors?.required">
-                  {{'Date Of Birth is required' | customTranslate | async}}
-                </span>
 
-                <br>
+                <br />
                 <ion-row class="row_phone">
                   <mat-form-field appearance="outline" class="indicator_phone">
-                    <mat-select formControlName="phone_ind" placeholder="+351" interface="action-sheet" value="brown"
-                      okText="Okay" cancelText="Dismiss">
-                      <mat-option *ngFor="let idct of countryCode" [value]="idct.dial_code">
+                    <mat-select
+                      formControlName="phone_ind"
+                      placeholder="+351"
+                      interface="action-sheet"
+                      value="brown"
+                      okText="Okay"
+                      cancelText="Dismiss"
+                    >
+                      <mat-option
+                        *ngFor="let idct of countryCode"
+                        [value]="idct.dial_code"
+                      >
                         {{idct.name + " " + idct.dial_code}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
 
                   <mat-form-field appearance="outline" class="field_phone">
-                    <mat-label>{{'Number' | customTranslate | async}}</mat-label>
-                    <input matInput formControlName="phone" type="number">
+                    <mat-label
+                      >{{'Number' | customTranslate | async}}</mat-label
+                    >
+                    <input matInput formControlName="phone" type="number" />
+                    <mat-error
+                      class="error-message"
+                      *ngIf="isSubmitted && errorControl.phone.errors?.required"
+                    >
+                      {{'Phone is required' | customTranslate | async}}
+                    </mat-error>
+                    <mat-error
+                      class="error-message"
+                      *ngIf="isSubmitted && errorControl.phone_ind.errors?.required"
+                    >
+                      {{'Indicative is required' | customTranslate | async}}
+                    </mat-error>
                   </mat-form-field>
-
                 </ion-row>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.phone.errors?.required">
-                  {{'Phone is required' | customTranslate | async}}
-                </span>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.phone_ind.errors?.required">
-                  {{'Indicative is required' | customTranslate | async}}
-                </span>
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{'Postal Code' | customTranslate | async}}</mat-label>
-                  <input matInput formControlName="postal" type="text">
+                  <mat-label
+                    >{{'Postal Code' | customTranslate | async}}</mat-label
+                  >
+                  <input matInput formControlName="postal" type="text" />
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.postal.errors?.required"
+                  >
+                    {{'Postal is required' | customTranslate | async}}
+                  </mat-error>
                 </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.postal.errors?.required">
-                  {{'Postal is required' | customTranslate | async}}
-                </span>
 
                 <mat-form-field appearance="outline">
-                  <mat-select [placeholder]="'Choose Gender' | customTranslate | async" okText="OK" cancelText="Cancel"
-                    formControlName="gender">
+                  <mat-select
+                    [placeholder]="'Choose Gender' | customTranslate | async"
+                    okText="OK"
+                    cancelText="Cancel"
+                    formControlName="gender"
+                  >
                     <mat-option *ngFor="let gdr of gender" [value]="gdr.gender">
                       {{gdr.gender | customTranslate | async}}
                     </mat-option>
                   </mat-select>
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.gender.errors?.required"
+                  >
+                    {{'Gender is required' | customTranslate | async}}
+                  </mat-error>
                 </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.gender.errors?.required">
-                  {{'Gender is required' | customTranslate | async}}
-                </span>
-
 
                 <mat-form-field appearance="outline">
-                  <mat-label>{{'Street Address line 1' | customTranslate | async}}</mat-label>
-                  <input matInput formControlName="address" type="text">
+                  <mat-label
+                    >{{'Street Address line 1' | customTranslate |
+                    async}}</mat-label
+                  >
+                  <input matInput formControlName="address" type="text" />
+
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.address.errors?.required"
+                  >
+                    {{'Address is required' | customTranslate | async}}
+                  </mat-error>
                 </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.address.errors?.required">
-                  {{'Address is required' | customTranslate | async}}
-                </span>
-
-
 
                 <mat-form-field appearance="outline">
                   <mat-label>{{'City' | customTranslate | async}}</mat-label>
-                  <input matInput formControlName="city" type="text">
-                </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.city.errors?.required">
-                  {{'City is required' | customTranslate | async}}
-                </span>
+                  <input matInput formControlName="city" type="text" />
 
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.city.errors?.required"
+                  >
+                    {{'City is required' | customTranslate | async}}
+                  </mat-error>
+                </mat-form-field>
 
                 <mat-form-field appearance="outline">
                   <mat-label>{{'Email' | customTranslate | async}}</mat-label>
-                  <input matInput formControlName="email" type="email">
-                </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.email.errors?.required">
-                  {{'Email is required' | customTranslate | async}}
-                </span>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
-                  {{'Emais is not valid' | customTranslate | async}}
-                </span>
+                  <input matInput formControlName="email" type="email" />
 
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.email.errors?.required"
+                  >
+                    {{'Email is required' | customTranslate | async}}
+                  </mat-error>
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.email.errors?.pattern"
+                  >
+                    {{'Emais is not valid' | customTranslate | async}}
+                  </mat-error>
+                </mat-form-field>
 
                 <mat-form-field appearance="outline">
                   <mat-label>{{'Password' | customTranslate |async}}</mat-label>
-                  <input matInput #passw formControlName="pass" [type]="hide ? 'password' : 'text'">
-                  <div mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <input
+                    matInput
+                    #passw
+                    formControlName="pass"
+                    [type]="hide ? 'password' : 'text'"
+                  />
+                  <div
+                    mat-icon-button
+                    matSuffix
+                    (click)="hide = !hide"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide"
+                  >
+                    <mat-icon
+                      >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon
+                    >
                   </div>
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.pass.errors?.required"
+                  >
+                    {{'Password is required' | customTranslate | async}}
+                  </mat-error>
                 </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.pass.errors?.required">
-                  {{'Password is required' | customTranslate | async}}
-                </span>
 
                 <div *ngIf="errorControl.pass.errors?.pattern">
-                  <mat-hint>Minimal 8 characters</mat-hint><br>
-                  <mat-hint>1 uppercase letter</mat-hint><br>
-                  <mat-hint>1 number</mat-hint><br>
-                  <mat-hint>1 special character</mat-hint><br>
+                  <mat-hint>Minimal 8 characters</mat-hint><br />
+                  <mat-hint>1 uppercase letter</mat-hint><br />
+                  <mat-hint>1 number</mat-hint><br />
+                  <mat-hint>1 special character</mat-hint><br />
                   <mat-hint>Length:{{passw.value.length}}</mat-hint>
                 </div>
 
-
                 <mat-form-field appearance="outline">
-                  <mat-label>{{'Repeat password' | customTranslate |async}}</mat-label>
-                  <input matInput formControlName="passRepeat" [type]="hide2 ? 'password' : 'text'">
-                  <div mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide2">
-                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <mat-label
+                    >{{'Repeat password' | customTranslate |async}}</mat-label
+                  >
+                  <input
+                    matInput
+                    formControlName="passRepeat"
+                    [type]="hide2 ? 'password' : 'text'"
+                  />
+                  <div
+                    mat-icon-button
+                    matSuffix
+                    (click)="hide2 = !hide2"
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide2"
+                  >
+                    <mat-icon
+                      >{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon
+                    >
                   </div>
+
+                  <mat-error
+                    class="error-message"
+                    *ngIf="isSubmitted && errorControl.passRepeat.errors?.required"
+                  >
+                    {{'Password is required' | customTranslate | async}}
+                  </mat-error>
                 </mat-form-field>
-                <span class="error-message" *ngIf="isSubmitted && errorControl.passRepeat.errors?.required">
-                  {{'Password is required' | customTranslate | async}}
-                </span>
+
+                <ion-row>
+                  <ion-col>
+                    <button
+                      id="btn_terms_conditions"
+                      mat-flat-button
+                      type="submit"
+                    >
+                      {{'Terms and Conditions' | customTranslate | async}}
+                    </button>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col>
+                    <mat-checkbox formControlName="check"
+                      >{{ 'I agree with the terms and conditions'
+                      }}</mat-checkbox
+                    >
+                  </ion-col>
+                </ion-row>
 
                 <ion-row>
                   <ion-col>
@@ -168,5 +281,4 @@
       </ion-grid>
     </div>
   </div>
-
 </ion-content>

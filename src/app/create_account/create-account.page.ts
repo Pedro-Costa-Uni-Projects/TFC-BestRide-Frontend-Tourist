@@ -13,7 +13,6 @@ import { CountryCode } from './countryCode';
 export class CriaContaPage implements OnInit {
   public hide = false;
   public hide2 = false;
-
   public passwordIconToggle: String = 'eye';
   public passwordIconToggle2: String = 'eye';
   public ionicForm: FormGroup;
@@ -82,6 +81,7 @@ export class CriaContaPage implements OnInit {
         postal: ['', Validators.required],
         gender: ['', Validators.required],
         city: ['', Validators.required],
+        check: [false],
         email: [
           '',
           Validators.compose([
@@ -133,7 +133,8 @@ export class CriaContaPage implements OnInit {
 
   public submit() {
     this.isSubmitted = true;
-    if (!this.ionicForm.valid) {
+
+    if (!this.ionicForm.valid || !this.ionicForm.get('check').value) {
       return false;
     } else {
       const indicative = this.ionicForm.get('phone_ind').value;
