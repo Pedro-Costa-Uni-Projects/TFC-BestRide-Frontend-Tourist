@@ -56,6 +56,8 @@ export class BookTripModalPage implements OnInit {
       this.progress = true;
       this.vehicles.forEach((element) => {});
     }, 2000);
+
+    console.log(this.circuito);
   }
 
   ionViewDidEnter() {}

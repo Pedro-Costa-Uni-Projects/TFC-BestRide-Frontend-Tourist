@@ -3,7 +3,11 @@
     <img src="assets/BestRideLogo.png" />
     <ion-buttons slot="primary">
       <ion-button (click)="close()">
-        <ion-icon slot="icon-only" name="close-outline" color="primary"></ion-icon>
+        <ion-icon
+          slot="icon-only"
+          name="close-outline"
+          color="primary"
+        ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -12,7 +16,6 @@
 <ion-content fullscreen>
   <ion-progress-bar [hidden]="progress" type="indeterminate"></ion-progress-bar>
   <div class="body">
-
     <svg height="100%" width="100%">
       <circle cx="0" cy="0" r="220" fill="#00adff" />
       <circle cx="0" cy="calc(100%)" r="210" fill="#58a600" />
@@ -22,20 +25,36 @@
     <div class="content">
       <form class="form" [formGroup]="ionicForm" (ngSubmit)="booking()">
         <ion-card>
-          <br>
-          <h1> {{ "Tour Info" | customTranslate | async}}</h1>
-          <br>
+          <br />
+          <h1>{{ "Book Tour" | customTranslate | async}}</h1>
+          <h2>{{ this.circuito.title}}</h2>
+          <br />
           <ion-item>
-            <ion-label> {{ "Date for the Tours " | customTranslate | async}} </ion-label>
-            <ion-datetime formControlName="dateInitial" (ionChange)="getDate($event)" displayFormat="DD/MMMM/YYYY"
-              min="1989" max="2021" value="2019-06-17"></ion-datetime>
+            <ion-label>
+              {{ "Date for the Tours " | customTranslate | async}}
+            </ion-label>
+            <ion-datetime
+              formControlName="dateInitial"
+              (ionChange)="getDate($event)"
+              displayFormat="DD/MMMM/YYYY"
+              min="1989"
+              max="2021"
+              value="2019-06-17"
+            ></ion-datetime>
           </ion-item>
 
-          <br>
+          <br />
           <ion-item>
-            <ion-label>{{ "How Many People ?" | customTranslate | async}}</ion-label>
+            <ion-label
+              >{{ "How Many People ?" | customTranslate | async}}</ion-label
+            >
 
-            <ion-select value="2" okText="OK" cancelText="Dismiss" formControlName="people">
+            <ion-select
+              value="2"
+              okText="OK"
+              cancelText="Dismiss"
+              formControlName="people"
+            >
               <ion-select-option value="1">1</ion-select-option>
               <ion-select-option value="2">2</ion-select-option>
               <ion-select-option value="3">3</ion-select-option>
@@ -44,33 +63,53 @@
               <ion-select-option value="6">6</ion-select-option>
             </ion-select>
           </ion-item>
-          <br>
+          <br />
           <ion-item>
-            <ion-label>{{ "Schedule the Time " | customTranslate | async}}</ion-label>
-            <ion-datetime (ionChange)="getDate($event)" formControlName="book_hour" [(ngModel)]="book_hour"
-              displayFormat="hh:mm" minuteValues="0,30">
+            <ion-label
+              >{{ "Schedule the Time " | customTranslate | async}}</ion-label
+            >
+            <ion-datetime
+              (ionChange)="getDate($event)"
+              formControlName="book_hour"
+              [(ngModel)]="book_hour"
+              displayFormat="hh:mm"
+              minuteValues="0,30"
+            >
             </ion-datetime>
           </ion-item>
-          <br>
+          <br />
 
           <ion-item>
             <ion-label>{{ "Vehicles " | customTranslate | async}}</ion-label>
-            <ion-select formControlName="vehicle" value="brown" okText="Okay" cancelText="Dismiss">
-              <ion-select-option *ngFor="let item of this.vehicles | async">{{item['vehicle'].name}}</ion-select-option>
+            <ion-select
+              formControlName="vehicle"
+              value="brown"
+              okText="Okay"
+              cancelText="Dismiss"
+            >
+              <ion-select-option *ngFor="let item of this.vehicles | async"
+                >{{item['vehicle'].name}}</ion-select-option
+              >
             </ion-select>
           </ion-item>
 
-          <br>
+          <br />
 
-          <h2>{{ "Price " | customTranslate | async}} : {{ this.circuito.price }} €</h2>
-          <h2>{{ "Duration " | customTranslate | async}} : {{ this.circuito.duration }}</h2>
-
+          <h2>
+            {{ "Price " | customTranslate | async}} : {{ this.circuito.price }}
+            €
+          </h2>
+          <h2>
+            {{ "Duration " | customTranslate | async}} : {{
+            this.circuito.duration }}
+          </h2>
 
           <section>
-            <ion-button expand="block" color="dark" (click)="booking()">{{ "Book Tour" | customTranslate | async}}
+            <ion-button expand="block" color="dark" (click)="booking()"
+              >{{ "Book Tour" | customTranslate | async}}
             </ion-button>
           </section>
-          <br>
+          <br />
         </ion-card>
       </form>
     </div>

@@ -76,7 +76,8 @@ export class LoginPage implements OnInit {
 
   public login(): void {
     if (!this.registrationForm.valid) {
-      return
+      this.showDialog('Error', 'Invalid Credentials', 'Try Again');
+      return;
     } else {
       let email = this.registrationForm.get('email').value;
       let password = this.registrationForm.get('password').value;
@@ -95,7 +96,7 @@ export class LoginPage implements OnInit {
     return this.registrationForm.get('password');
   }
 
-  async showDialog() {
+  async showDialog(header, message, buttons) {
     const alert = await this.alertCtrl.create({
       header: '' + this.login_alert_text['header'],
       cssClass: 'my-custom-class',
@@ -144,6 +145,9 @@ export class LoginPage implements OnInit {
       { type: 'required', message: 'Email is required' },
       { type: 'pattern', message: 'Please enter a valid email address' },
     ],
-    password: [{ type: 'required', message: 'Password is required' }],
+    password: [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'password got to have 8 characters' },
+    ],
   };
 }
