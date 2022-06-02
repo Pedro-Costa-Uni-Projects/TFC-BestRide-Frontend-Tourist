@@ -6,9 +6,12 @@
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline"
-      [pullingText]="'Pull to refresh' | customTranslate | async" refreshingSpinner="circles"
-      [refreshingText]="'refreshing...' | customTranslate | async">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      [pullingText]="'Pull to refresh' | customTranslate | async"
+      refreshingSpinner="circles"
+      [refreshingText]="'refreshing...' | customTranslate | async"
+    >
     </ion-refresher-content>
   </ion-refresher>
   <div class="body">
@@ -17,59 +20,81 @@
       <circle cx="0" cy="calc(100%)" r="210" fill="#58a600" />
       <circle cx="calc(100%)" cy="calc(50%)" r="210" fill="#ff3f00" />
     </svg>
-    <!-- Skeleton Text -->
-    <div class="content" *ngIf="!contentLoad">
-      <ion-card *ngFor="let item of [].constructor(20)">
-        <ion-card-header>
-          <ion-card-subtitle>
-            <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
-          </ion-card-subtitle>
-          <ion-card-title>
-            <ion-skeleton-text animated style="width: 70%;"></ion-skeleton-text>
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated></ion-skeleton-text>
-          <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    <div class="content" *ngIf="contentLoad && trips.length > 0">
-      <ion-searchbar debounce="500" (ionChange)="ionChange($event)" color="light"
-        [placeholder]="'Search Tour' | customTranslate | async">
+
+    <div class="content">
+      <ion-searchbar
+        debounce="500"
+        (ionChange)="ionChange($event)"
+        color="light"
+        [placeholder]="'Search Tour' | customTranslate | async"
+      >
       </ion-searchbar>
-      <ion-card style="text-align: justify;">
-        <br>
+
+      <!-- Change City -->
+      <mat-form-field appearance="outline">
+        <mat-label>{{'Choose a city' | customTranslate | async}}</mat-label>
+        <mat-select (selectionChange)="onCityChange($event)">
+          <mat-option value="Near"
+            >{{'Near me' | customTranslate | async}}</mat-option
+          >
+          <mat-option value="lisboa"
+            >{{'Lisboa' | customTranslate | async}}</mat-option
+          >
+          <mat-option value="leiria"
+            >{{'Leiria' | customTranslate | async}}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <ion-card style="text-align: justify">
+        <br />
         <div id="iti_title">
-          <h2> {{ place | customTranslate | async}} <br> {{ 'itineraries' | customTranslate | async}}</h2>
+          <h2>
+            {{ place | customTranslate | async}} <br />
+            {{ 'itineraries' | customTranslate | async}}
+          </h2>
         </div>
         <div scrollY="true" class="botoes">
           <ion-list *ngFor="let road of searchedItem">
             <ion-card-header>
-              <ion-card-title>{{ road.title| customTranslate | async}}</ion-card-title>
+              <ion-card-title
+                >{{ road.title| customTranslate | async}}</ion-card-title
+              >
               <ion-card-subtitle>
                 {{ "Duration : " + road.duration| customTranslate |async}}
               </ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
               <p>{{ road.description| customTranslate | async}}</p>
-              <br>
-              <h3>{{ "Price : "| customTranslate |async}}
-                {{ road.price | currency:'EUR'| customTranslate |async}}
+              <br />
+              <h3>
+                {{ "Price : "| customTranslate |async}} {{ road.price |
+                currency:'EUR'| customTranslate |async}}
               </h3>
               <div class="ion-text-center">
-                <button mat-raised-button (click)="showRoteiro(road)" expand="block" id="btn_book">
+                <button
+                  mat-raised-button
+                  (click)="showRoteiro(road)"
+                  expand="block"
+                  id="btn_book"
+                >
                   {{'Book Tour' | customTranslate| async}}
                 </button>
-                <button mat-raised-button (click)="trip_map_details(road)" expand="block" id="btn_view">
+                <button
+                  mat-raised-button
+                  (click)="trip_map_details(road)"
+                  expand="block"
+                  id="btn_view"
+                >
                   {{'See Tour' | customTranslate | async}}
                 </button>
-                <button mat-raised-button (click)="comments(road)" expand="block" id="btn_comments"> {{'See Comments' |
-                  customTranslate | async}}
+                <button
+                  mat-raised-button
+                  (click)="comments(road)"
+                  expand="block"
+                  id="btn_comments"
+                >
+                  {{'See Comments' | customTranslate | async}}
                 </button>
               </div>
             </ion-card-content>

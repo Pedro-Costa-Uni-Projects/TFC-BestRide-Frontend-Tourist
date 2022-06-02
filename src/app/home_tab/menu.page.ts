@@ -204,4 +204,49 @@ export class MenuPage implements OnInit {
       });
     }
   }
+
+  public onCityChange(event) {
+    console.log(event.source._value);
+    this.trips = [];
+    setTimeout(() => {
+      if (event.source._value == 'Near') {
+        this.map_service.get_roads_near_me().subscribe((data) => {
+          for (let pos in data) {
+            this.trips.push(
+              new RoadMap(
+                data[pos].id,
+                data[pos].title,
+                data[pos].duration,
+                data[pos].price,
+                data[pos].description,
+                data[pos].image,
+                data[pos].location['coordinates'][0],
+                data[pos].location['coordinates'][1]
+              )
+            );
+          }
+        });
+      } else {
+        this.map_service
+          .get_roads_by_city(event.source._value)
+          .subscribe((data) => {
+            for (let pos in data) {
+              this.trips.push(
+                new RoadMap(
+                  data[pos].id,
+                  data[pos].title,
+                  data[pos].duration,
+                  data[pos].price,
+                  data[pos].description,
+                  data[pos].image,
+                  data[pos].location['coordinates'][0],
+                  data[pos].location['coordinates'][1]
+                )
+              );
+            }
+          });
+      }
+    }, 2000);
+    this.searchedItem = this.trips;
+  }
 }
