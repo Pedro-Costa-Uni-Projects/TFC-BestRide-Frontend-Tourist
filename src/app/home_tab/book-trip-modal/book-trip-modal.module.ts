@@ -6,6 +6,7 @@ import { BookTripModalPageRoutingModule } from './book-trip-modal-routing.module
 import { BookTripModalPage } from './book-trip-modal.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClient } from '@angular/common/http';
+import { MaterialModule } from 'src/app/material.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -14,6 +15,7 @@ import { HttpClient } from '@angular/common/http';
     ReactiveFormsModule,
     BookTripModalPageRoutingModule,
     SharedModule,
+    MaterialModule,
   ],
   declarations: [BookTripModalPage],
 })

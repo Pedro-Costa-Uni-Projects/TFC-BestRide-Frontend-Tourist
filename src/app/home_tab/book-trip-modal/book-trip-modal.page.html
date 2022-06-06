@@ -43,6 +43,12 @@
             ></ion-datetime>
           </ion-item>
 
+          <mat-error
+            class="error-message"
+            *ngIf="isSubmitted && errorControl.dateInitial.errors?.required"
+          >
+            {{'This field is required' | customTranslate | async}}
+          </mat-error>
           <br />
           <ion-item>
             <ion-label
@@ -63,6 +69,12 @@
               <ion-select-option value="6">6</ion-select-option>
             </ion-select>
           </ion-item>
+          <mat-error
+            class="error-message"
+            *ngIf="isSubmitted && errorControl.people.errors?.required"
+          >
+            {{'This field is required' | customTranslate | async}}
+          </mat-error>
           <br />
           <ion-item>
             <ion-label
@@ -77,6 +89,12 @@
             >
             </ion-datetime>
           </ion-item>
+          <mat-error
+            class="error-message"
+            *ngIf="isSubmitted && errorControl.book_hour.errors?.required"
+          >
+            {{'This field is required' | customTranslate | async}}
+          </mat-error>
           <br />
 
           <ion-item>
@@ -92,7 +110,12 @@
               >
             </ion-select>
           </ion-item>
-
+          <mat-error
+            class="error-message"
+            *ngIf="isSubmitted && errorControl.vehicle.errors?.required"
+          >
+            {{'This field is required' | customTranslate | async}}
+          </mat-error>
           <br />
 
           <h2>
@@ -105,9 +128,9 @@
           </h2>
 
           <section>
-            <ion-button expand="block" color="dark" (click)="booking()"
-              >{{ "Book Tour" | customTranslate | async}}
-            </ion-button>
+            <button mat-button id="btn_submit" type="submit">
+              {{'Pay book' | customTranslate | async}}
+            </button>
           </section>
           <br />
         </ion-card>

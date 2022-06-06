@@ -29,6 +29,7 @@ export class BookTripModalPage implements OnInit {
   @Input() circuito_rec: InterestPoints;
   public circuito: any;
 
+  public isSubmitted = false;
   private interest: any;
   public vehicles: Observable<any>;
   public ionicForm: FormGroup;
@@ -84,21 +85,27 @@ export class BookTripModalPage implements OnInit {
   public book_hour: string;
 
   public booking() {
-    const turist_id = localStorage.getItem('userID');
-    const dateInitial = this.ionicForm.get('dateInitial').value;
-    const book_hour = this.ionicForm.get('book_hour').value;
+    this.isSubmitted = true;
 
-    const data_booking = {
-      Pagamento_idPagamento: 1,
-      dataViagem: dateInitial,
-      turist_id: turist_id,
-      trip_date: dateInitial,
-      trip_time: book_hour,
-      road_map_id: this.circuito.id,
-      driver_id: 1,
-    };
-    //const response = this.booking_service.booking_trip(data_booking);
-    this.openPaymentModal(data_booking, 20, this.circuito.title);
+    if (!this.ionicForm.valid) {
+      return;
+    } else {
+      const turist_id = localStorage.getItem('userID');
+      const dateInitial = this.ionicForm.get('dateInitial').value;
+      const book_hour = this.ionicForm.get('book_hour').value;
+
+      const data_booking = {
+        Pagamento_idPagamento: 1,
+        dataViagem: dateInitial,
+        turist_id: turist_id,
+        trip_date: dateInitial,
+        trip_time: book_hour,
+        road_map_id: this.circuito.id,
+        driver_id: 1,
+      };
+      //const response = this.booking_service.booking_trip(data_booking);
+      this.openPaymentModal(data_booking, 20, this.circuito.title);
+    }
   }
 
   async openPaymentModal(data: any, total, name: any) {
@@ -117,5 +124,9 @@ export class BookTripModalPage implements OnInit {
   async close() {
     const closeModal: string = 'Modal Closed';
     await this.modalCtr.dismiss(closeModal);
+  }
+
+  get errorControl() {
+    return this.ionicForm.controls;
   }
 }
