@@ -60,6 +60,13 @@ export class DadosContaPage implements OnInit {
     public actionSheetController: ActionSheetController,
     private loadingCtrl: LoadingController
   ) {
+    this.ionicForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      city: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      address: ['', Validators.required],
+    });
     this.user = new User('', '', '', '', '', ''); //  Initialize
   }
 
@@ -73,20 +80,17 @@ export class DadosContaPage implements OnInit {
         res.present();
         res.onDidDismiss().then((dis) => {
           this.user = this.dadosContaApi.getUser();
+          this.ionicForm.get('name').setValue(this.user.name);
+          this.ionicForm.get('city').setValue(this.user.city);
+          this.ionicForm.get('email').setValue(this.user.email);
+          this.ionicForm.get('phone').setValue(this.user.phone);
+          this.ionicForm.get('address').setValue(this.user.address);
         });
       });
-    this.social = localStorage.getItem('isSocialLogin');
-    this.ionicForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      city: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      address: ['', Validators.required],
-    });
   }
 
   ionViewDidEnter() {
-    this.name = this.dadosContaApi.name;
+    //this.name = this.dadosContaApi.name;
     this.city = this.dadosContaApi.city;
     this.email = this.dadosContaApi.email;
     this.phone = this.dadosContaApi.phone;
@@ -102,9 +106,6 @@ export class DadosContaPage implements OnInit {
     }
   }
 
-  public al() {
-    console.log('rrffrrf');
-  }
   public alterarPass(): void {
     this.presentModal();
   }

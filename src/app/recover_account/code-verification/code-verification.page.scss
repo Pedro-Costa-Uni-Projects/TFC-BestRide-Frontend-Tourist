@@ -19,24 +19,36 @@
   font-size: larger;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  h2 {
+ion-card {
+  font-size: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  padding: 24px;
+
+  h1 {
     color: black;
-    font-weight: bolder;
-    font-family: "Montserrat", sans-serif;
+    font-size: larger;
     font-weight: 800;
   }
+}
 
-  ion-icon {
-    font-size: 700%;
-    opacity: 0.5;
-  }
+mat-form-field.mat-form-field {
+  font-size: 16px;
+  width: 90%;
+  color: black;
+  font-weight: 800;
+}
 
-  ion-button {
-    width: 70%;
-  }
+#codeInput {
+  text-align: center;
+}
+
+#btn_recover {
+  background-color: #ff3f00;
+  width: 90%;
+  height: 50%;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 8px;
 }

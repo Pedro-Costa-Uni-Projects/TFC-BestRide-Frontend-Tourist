@@ -1,20 +1,3 @@
-component-card h1 {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-component-card p {
-  color: var(--text-light);
-}
-
-component-card ion-icon {
-  align-self: start;
-  margin-top: 10px;
-  margin-right: 29px;
-
-  color: var(--text-lightest);
-}
-
 * {
   color: black;
   font-weight: 700;
@@ -50,13 +33,48 @@ ion-thumbnail {
   font-size: larger;
 }
 
-ion-button {
-  color: white;
-  font-weight: bolder;
+ion-card {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+
+  h1 {
+    color: black;
+    font-weight: 900;
+  }
+
+  mat-form-field.mat-form-field {
+    font-size: 16px;
+    width: 90%;
+    color: black;
+    font-weight: 800;
+  }
 }
 
-ion-list {
-  .edit-button {
-    top: 5%;
-  }
+#btn_update {
+  background-color: #ff3f00;
+  font-size: 15px;
+  font-weight: 700;
+  width: 80%;
+  color: #ffffff;
+}
+
+#btn_pwchange {
+  background-color: #00adff;
+  font-size: 15px;
+  font-weight: 700;
+  width: 80%;
+  color: #ffffff;
+}
+
+#btn_delete {
+  background-color: red;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+#btn_logout {
+  background-color: yellow;
+  font-size: 15px;
+  color: #ffffff;
 }

@@ -37,9 +37,12 @@ export class RecoverAccountPage implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.registrationForm.value);
-    var email = this.registrationForm.get('email').value;
-    this.recuperarContaApi.recoverAccount(email);
-    this.presentModal();
+    if (!this.registrationForm.valid) {
+    } else {
+      console.log(this.registrationForm.value);
+      var email = this.registrationForm.get('email').value;
+      this.recuperarContaApi.recoverAccount(email);
+      this.presentModal();
+    }
   }
 }

@@ -6,6 +6,7 @@ import { DadosContaPageRoutingModule } from './user-tab-routing.module';
 import { HttpClient } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { DadosContaPage } from './user-tab.page';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DadosContaPage } from './user-tab.page';
     SharedModule,
     ReactiveFormsModule,
     DadosContaPageRoutingModule,
+    MaterialModule,
   ],
   declarations: [DadosContaPage],
 })

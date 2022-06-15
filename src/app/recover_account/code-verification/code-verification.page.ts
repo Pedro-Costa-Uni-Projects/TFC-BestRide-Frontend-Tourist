@@ -38,7 +38,7 @@ export class CodeVerificationPage implements OnInit {
     }
   }
 
-  async close() {
+  public async close() {
     const closeModal: string = 'Modal Closed';
     await this.model_controller.dismiss(closeModal);
   }

@@ -10,6 +10,7 @@ import { CodeVerificationPage } from './code-verification.page';
 
 import { HttpClient } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
+    MaterialModule,
   ],
   declarations: [CodeVerificationPage],
 })

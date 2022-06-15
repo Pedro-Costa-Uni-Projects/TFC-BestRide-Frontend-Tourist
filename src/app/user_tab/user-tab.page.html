@@ -15,105 +15,75 @@
       <circle cx="calc(100%)" cy="calc(100%)" r="230" fill="#FF3F00" />
     </svg>
 
-
-    <div class="content" *ngIf="social==='false'">
+    <div class="content">
       <ion-grid>
         <ion-card>
-          <h2 style="color: black;font-size: 25px;font-weight: bold;">{{'User Definitions' | customTranslate | async
-            |uppercase}}</h2>
           <form class="form" [formGroup]="ionicForm">
+            <h1>{{'User Definitions' | customTranslate | async |uppercase}}</h1>
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'Name' | customTranslate | async}}</mat-label>
+              <input matInput formControlName="name" type="text" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'City' | customTranslate | async}}</mat-label>
+              <input matInput formControlName="city" type="text" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'Email' | customTranslate | async}}</mat-label>
+              <input matInput formControlName="email" type="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label
+                >{{ 'Phone Number' | customTranslate | async}}</mat-label
+              >
+              <input matInput formControlName="phone" type="text" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label
+                >{{ 'Street address' | customTranslate | async}}</mat-label
+              >
+              <input matInput formControlName="address" type="text" />
+            </mat-form-field>
+
+            <br />
+
+            <button
+              mat-button
+              (click)="updateUser()"
+              id="btn_update"
+              type="submit"
+            >
+              {{'Update Account' | customTranslate | async}}
+            </button>
+
+            <br />
+            <button
+              mat-button
+              (click)="alterarPass()"
+              id="btn_pwchange"
+              type="button"
+            >
+              {{'Change Password' | customTranslate | async}}
+            </button>
+
+            <br />
+
             <ion-row>
-              <ion-list lines="full">
-                <ion-item>
-                  <ion-thumbnail slot="start">
-                    <ion-icon name="person-outline"></ion-icon>
-                  </ion-thumbnail>
-                  <ion-label position="stacked">{{ 'Name' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="name" type="text" required value="{{ user.name }}"
-                    [disabled]="name_input">
-                  </ion-input>
-                  <ion-button slot="end" (click)="activateEdit('name')" fill="clear">
-                    <ion-icon color="warning" slot="icon-only" name="{{ icon_input }}"></ion-icon>
-                  </ion-button>
-                </ion-item>
+              <ion-col>
+                <div class="ion-justify-content-around">
+                  <button mat-fab id="btn_delete" (click)="deleteAccount()">
+                    <mat-icon>delete</mat-icon>
+                  </button>
 
-
-                <ion-item>
-                  <ion-thumbnail slot="start">
-                    <ion-icon name="business-outline"></ion-icon>
-                  </ion-thumbnail>
-                  <ion-label position="stacked">{{ 'City' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="city" type="text" required value="{{ user.city }}"
-                    [disabled]="city_input">
-                  </ion-input>
-                  <ion-button slot="end" (click)="activateEdit('city')" fill="clear">
-                    <ion-icon color="warning" slot="icon-only" name="{{ icon_input }}"></ion-icon>
-                  </ion-button>
-                </ion-item>
-
-                <ion-item>
-                  <ion-thumbnail slot="start">
-                    <ion-icon name="mail-outline"></ion-icon>
-                  </ion-thumbnail>
-                  <ion-label position="stacked">{{ 'Email' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="email" type="email" required value="{{ user.email }}"
-                    [disabled]="email_input"></ion-input>
-                  <ion-button slot="end" (click)="activateEdit('email')" fill="clear">
-                    <ion-icon color="warning" slot="icon-only" name="{{ icon_input }}"></ion-icon>
-                  </ion-button>
-                </ion-item>
-
-                <ion-item>
-                  <ion-thumbnail slot="start">
-                    <ion-icon name="call-outline"></ion-icon>
-                  </ion-thumbnail>
-                  <ion-label position="stacked">{{ 'Phone Number' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="phone" type="Number" required value="{{ user.phone }}"
-                    [disabled]="phone_input"></ion-input>
-                  <ion-button slot="end" (click)="activateEdit('phone')" fill="clear">
-                    <ion-icon color="warning" slot="icon-only" name="{{ icon_input }}"></ion-icon>
-                  </ion-button>
-                </ion-item>
-
-                <ion-item>
-                  <ion-thumbnail slot="start">
-                    <ion-icon name="home-outline"></ion-icon>
-                  </ion-thumbnail>
-                  <ion-label position="stacked">{{ 'Street address' | customTranslate | async}}</ion-label>
-                  <ion-input formControlName="address" type="text" required value="{{ user.address }}"
-                    [disabled]="street_input"></ion-input>
-                  <ion-button slot="end" (click)="activateEdit('street')" fill="clear">
-                    <ion-icon color="warning" slot="icon-only" name="{{ icon_input }}"></ion-icon>
-                  </ion-button>
-                </ion-item>
-
-                <ion-button [disabled]="button" (click)="updateUser()" expand="block">{{'Update Account' |
-                  customTranslate |
-                  async}}
-                </ion-button>
-
-
-                <ion-button color="warning" expand="block" (click)="alterarPass()">{{'Change
-                  Password' | customTranslate |
-                  async}}</ion-button>
-                <ion-row>
-                  <ion-col>
-                    <ion-button color="danger" expand="block" (click)="deleteAccount()"> {{'Delete Account' |
-                      customTranslate |
-                      async}}
-                    </ion-button>
-                  </ion-col>
-
-                  <ion-col>
-                    <ion-button color="dark" [routerLink]="['/login']" expand="block">{{'Log out' | customTranslate |
-                      async}}
-                    </ion-button>
-                  </ion-col>
-                </ion-row>
-
-
-
-              </ion-list>
+                  <button mat-fab id="btn_logout" (click)="alterarPass()">
+                    <mat-icon>logout</mat-icon>
+                  </button>
+                </div>
+              </ion-col>
             </ion-row>
           </form>
         </ion-card>

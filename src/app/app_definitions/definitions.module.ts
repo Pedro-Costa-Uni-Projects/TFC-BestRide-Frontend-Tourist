@@ -9,6 +9,7 @@ import { DefinicoesPageRoutingModule } from './definitions-routing.module';
 import { DefinicoesPage } from './definitions.page';
 import { SharedModule } from '../shared/shared.module';
 import { HttpClient } from '@angular/common/http';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
     IonicModule,
     SharedModule,
     DefinicoesPageRoutingModule,
+    MaterialModule,
   ],
   declarations: [DefinicoesPage],
 })
