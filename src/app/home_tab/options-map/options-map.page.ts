@@ -41,9 +41,6 @@ export class OptionsMapPage implements OnInit {
 
   onChange(selectedValue: any) {
     this.ionicForm.get('location').setValue('' + selectedValue.value);
-  }
-
-  public submit() {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
       return false;
@@ -56,6 +53,21 @@ export class OptionsMapPage implements OnInit {
 
       this.modalController.dismiss(dismiss_data);
     }
+  }
+
+  public submit() {
+    /*this.isSubmitted = true;
+    if (!this.ionicForm.valid) {
+      return false;
+    } else {
+      const location_value = this.ionicForm.get('location').value;
+
+      const dismiss_data = {
+        local: location_value,
+      };
+
+      this.modalController.dismiss(dismiss_data);
+    }*/
   }
 
   get errorControl() {

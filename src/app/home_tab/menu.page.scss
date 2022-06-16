@@ -40,8 +40,8 @@ mat-form-field.mat-form-field {
   color: black;
   font-weight: 800;
 
-  mat-select {
-    color: #00adff;
+  .mat-select-panel {
+    background: red;
   }
 }
 

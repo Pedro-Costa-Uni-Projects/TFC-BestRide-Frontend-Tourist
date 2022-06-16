@@ -30,23 +30,25 @@
       >
       </ion-searchbar>
 
-      <!-- Change City -->
-      <mat-form-field appearance="outline">
-        <mat-label>{{'Choose a city' | customTranslate | async}}</mat-label>
-        <mat-select (selectionChange)="onCityChange($event)">
-          <mat-option value="Near"
-            >{{'Near me' | customTranslate | async}}</mat-option
-          >
-          <mat-option value="lisboa"
-            >{{'Lisboa' | customTranslate | async}}</mat-option
-          >
-          <mat-option value="leiria"
-            >{{'Leiria' | customTranslate | async}}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
-
       <ion-card style="text-align: justify">
+        <div class="ion-text-center">
+          <!-- Change City -->
+          <mat-form-field appearance="outline">
+            <mat-label>{{'Choose a city' | customTranslate | async}}</mat-label>
+            <mat-select (selectionChange)="onCityChange($event)">
+              <mat-option value="Near"
+                >{{'Near me' | customTranslate | async}}</mat-option
+              >
+              <mat-option value="lisboa"
+                >{{'Lisboa' | customTranslate | async}}</mat-option
+              >
+              <mat-option value="leiria"
+                >{{'Leiria' | customTranslate | async}}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+
         <br />
         <div id="iti_title">
           <h2>

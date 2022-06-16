@@ -18,24 +18,36 @@
         <ion-row>
           <ion-col>
             <ion-card>
-              <form class="form" [formGroup]="registrationForm" (ngSubmit)="submit()">
+              <form
+                class="form"
+                [formGroup]="registrationForm"
+                (ngSubmit)="submit()"
+              >
                 <ion-row>
                   <ion-col>
-
-                    <ion-label> {{'Choose the city' | customTranslate | async}}</ion-label>
-                    <ion-select formControlName="location" placeholder="Choose Location"
-                      (ngModelChange)="onChange($event)">
-                      <ion-select-option *ngFor="let type of cities" [value]="type">{{type.viewValue}}
-                      </ion-select-option>
-                    </ion-select>
-
-                    <span class="error-message" *ngIf="isSubmitted && errorControl.location.errors?.required">
+                    <ion-item>
+                      <ion-label>
+                        {{'Choose the city' | customTranslate |
+                        async}}</ion-label
+                      >
+                      <ion-select
+                        formControlName="location"
+                        placeholder="Choose Location"
+                        (ngModelChange)="onChange($event)"
+                      >
+                        <ion-select-option
+                          *ngFor="let type of cities"
+                          [value]="type"
+                          >{{type.viewValue}}
+                        </ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    <span
+                      class="error-message"
+                      *ngIf="isSubmitted && errorControl.location.errors?.required"
+                    >
                       {{'City is required' | customTranslate | async}}
                     </span>
-
-                    <button mat-button type="submit" id="btn_submit">
-                      {{'Go tuking' | customTranslate | async}}
-                    </button>
                   </ion-col>
                 </ion-row>
               </form>
