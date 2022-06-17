@@ -14,6 +14,9 @@ export class ResetPasswordModalPage implements OnInit {
   public ionicForm: FormGroup;
   public isSubmitted = false;
   private reset_alert_text = {};
+  public hide = false;
+  public hide_repeat = false;
+  public hide_repeat_valid = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -37,24 +40,6 @@ export class ResetPasswordModalPage implements OnInit {
     await alert.present();
   }
 
-  passwordType: string = 'password';
-  passwordIcon: string = 'eye-off';
-
-  public hideShowPassword() {
-    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
-    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
-  }
-
-  passwordTyperepeat: string = 'password';
-  passwordIconRepeat: string = 'eye-off';
-
-  public hideShowPasswordRepeat() {
-    this.passwordTyperepeat =
-      this.passwordTyperepeat === 'text' ? 'password' : 'text';
-    this.passwordIconRepeat =
-      this.passwordIconRepeat === 'eye-off' ? 'eye' : 'eye-off';
-  }
-
   submitForm() {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
@@ -75,7 +60,8 @@ export class ResetPasswordModalPage implements OnInit {
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
       pass: ['', [Validators.required, Validators.minLength(8)]],
-      pass_repeat: ['', [Validators.required, Validators.minLength(8)]],
+      new_pass: ['', [Validators.required, Validators.minLength(8)]],
+      new_pass_valid: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 }
