@@ -55,7 +55,9 @@ export class BookTripModalPage implements OnInit {
     this.vehicles = this.map_service.get_vehicles_road(this.circuito['id']);
     setTimeout(() => {
       this.progress = true;
-      this.vehicles.forEach((element) => {});
+      this.vehicles.forEach((element) => {
+        console.log(element);
+      });
     }, 2000);
 
     console.log(this.circuito);
