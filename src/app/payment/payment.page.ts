@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  ModalController,
+  ToastController,
+} from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { PaymentServiceService } from './payment-service.service';
 declare var Stripe;
@@ -29,7 +33,8 @@ export class PaymentPage implements OnInit {
     private toast: ToastController,
     private http: HttpClient,
     private payment_service: PaymentServiceService,
-    private router: Router
+    private router: Router,
+    public alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -119,6 +124,7 @@ export class PaymentPage implements OnInit {
           };
           this.http.post(environment.apiUrl + this.url_payment, data).subscribe(
             (resp) => {
+              this.presentAlert();
               this.payment_service.booking_trip(this.data);
               this.modalCtrl.dismiss();
               this.router.navigate(['/tourBooking']);
@@ -132,5 +138,16 @@ export class PaymentPage implements OnInit {
 
   cancel() {
     this.modalCtrl.dismiss();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Payment done',
+      message: 'Your trip has been recorded. Nice trip !',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 }

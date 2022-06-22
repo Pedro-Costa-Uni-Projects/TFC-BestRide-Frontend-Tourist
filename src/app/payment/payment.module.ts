@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { PaymentPageRoutingModule } from './payment-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PaymentPage } from './payment.page';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { PaymentPage } from './payment.page';
     IonicModule,
     PaymentPageRoutingModule,
     SharedModule,
+    MaterialModule,
   ],
   declarations: [PaymentPage],
 })

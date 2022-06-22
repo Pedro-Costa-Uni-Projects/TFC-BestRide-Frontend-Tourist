@@ -48,7 +48,7 @@ export class BookTripModalPage implements OnInit {
       dateInitial: ['', Validators.required],
       people: ['', Validators.required],
       book_hour: ['', Validators.required],
-      vehicle: ['', Validators.required],
+      vehicle: ['' /*Validators.required*/],
     });
 
     this.circuito = this.circuito;
@@ -106,7 +106,11 @@ export class BookTripModalPage implements OnInit {
         driver_id: 1,
       };
       //const response = this.booking_service.booking_trip(data_booking);
-      this.openPaymentModal(data_booking, 20, this.circuito.title);
+      this.openPaymentModal(
+        data_booking,
+        this.circuito.price,
+        this.circuito.title
+      );
     }
   }
 

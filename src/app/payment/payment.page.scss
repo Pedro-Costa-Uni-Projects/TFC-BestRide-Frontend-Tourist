@@ -7,8 +7,15 @@ ion-toolbar {
   }
 }
 
+ion-content {
+  --background: #ffba00;
+}
+
 ion-card {
-  ion-card-title {
+  h1 {
+    color: black;
+    font-weight: 900;
+    font-size: 30px;
     text-align: center;
   }
 
@@ -16,6 +23,15 @@ ion-card {
     color: black;
     font-weight: 800;
   }
+}
+
+#btn_pay {
+  background-color: #ffba00;
+  width: 70%;
+  color: black;
+  font-weight: 800;
+  font-size: 15px;
+  border-radius: 8px;
 }
 
 * {

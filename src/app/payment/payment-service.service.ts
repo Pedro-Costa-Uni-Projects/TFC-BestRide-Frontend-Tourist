@@ -16,9 +16,7 @@ export class PaymentServiceService {
     this.http
       .post(environment.apiUrl + this.url_create_booking, data)
       .subscribe(
-        (response) => {
-          console.log(response);
-        },
+        (response) => {},
         (err) => {
           //this.presentToast('Error!');
           console.log(err);
